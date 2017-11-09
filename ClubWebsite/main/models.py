@@ -8,6 +8,8 @@ import datetime
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.EmailField()
+    fname = models.CharField(max_length=100, blank=True)
+    lname = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)
     batch = models.IntegerField(default=2017)
     facebook = models.CharField(max_length=100, blank=True)
