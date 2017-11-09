@@ -6,12 +6,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.utils import timezone
 import datetime
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+from .serializers import profileSerializer
 
 # Create your views here.
 
 def home(request):
 	return render(request,'login.html',{})
 
+@login_required
 def index(request):
 	return render(request,'addMember.html',{})
 
@@ -89,3 +94,62 @@ def event_detailview(request,pk):
 	if obj.start_date < datetime.date.today() or (obj.start_date == datetime.date.today() and obj.start_time <datetime.datetime.now().time() ) :
 		past=1
 	return render(request,'eventDetails.html',{'obj':obj,'past':past})
+
+@login_required
+def editprofileview(request):
+	if request.method == 'POST':
+		username = request.POST.get('mobile', None)
+		email = request.POST.get('email', None)
+		fname = request.POST.get('fname', None)
+		lname = request.POST.get('email', None)
+		github = request.POST.get('github', None)
+		facebook = request.POST.get('facebook', None)
+		linkedin = request.POST.get('linkedin', None)
+		twitter = request.POST.get('twitter', None)
+		try:
+			user=User.objects.get(username=username)
+		except User.DoesNotExist :
+			return render(request,'editprofile.html',{'err':"user does not exist!!"})
+		user.profile.email = email
+		user.profile.fname = fname
+		user.profile.lname = lname
+		user.profile.github = github
+		user.profile.facebook = facebook
+		user.profile.twitter = twitter
+		user.profile.linkedin = linkedin
+		user.profile.save()
+		return render(request,'editprofile.html',{'msg':"profile is saved"})
+	else :
+		return render(request,'editprofile.html',{})
+
+class getprofile_apiview(APIView):
+	serializer_class = profileSerializer
+	def post(self,request,*args,**kwargs):
+		mobile = request.data.get('username')
+		try :
+			user = User.objects.get(username=mobile)
+		except User.DoesNotExist:
+			content = {'please move along': 'nothing to see here'}
+			return Response(content, status=status.HTTP_404_NOT_FOUND)
+		data ={
+		'username':mobile,
+		'fname':user.profile.fname,
+		'lname':user.profile.lname,
+		'batch':user.profile.batch,
+		'github':user.profile.github,
+		'facebook':user.profile.facebook,
+		'linkedin':user.profile.linkedin,
+		'twitter':user.profile.twitter,
+		'email':user.profile.email,
+		}
+		serializer = profileSerializer(data=data)
+		if serializer.is_valid():
+			return Response(serializer.data,status=status.HTTP_200_OK)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@login_required
+def myprofileview(request):
+	if request.method == 'GET':
+		user = request.user
+		return render(request,'myprofile.html',{'obj':user})
+

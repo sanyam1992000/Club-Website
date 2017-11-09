@@ -7,7 +7,7 @@ import datetime
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
     fname = models.CharField(max_length=100, blank=True)
     lname = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)
@@ -16,7 +16,7 @@ class Profile(models.Model):
     linkedin = models.CharField(max_length=100, blank=True)
     twitter = models.CharField(max_length=100, blank=True)
     def __str__(self):
-        return self.batch
+        return self.fname
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
