@@ -1,0 +1,10 @@
+{% if user.is_authenticated %}<h1>
+logged in .</h1>
+{% else %}
+<form method="post" action="/login/">
+{% csrf_token %}
+  <input type="text" name="username" placeholder="phone number">
+  <input type="password" name="password" placeholder="enter password">
+  <button type="submit" >Create</button>
+</form>
+{% endif %}

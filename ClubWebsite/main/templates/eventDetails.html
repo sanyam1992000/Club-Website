@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Manan's Members | Programing Club Of YMCA University, Faridabad</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <style>
+  body{
+    font-family: "BentonSans", "Helvetica Neue", sans-serif;
+  }
+  a{
+    color: #000;
+  }
+  .txxt-head{
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: .125em;
+    margin: 0 0 .5em 0;
+    line-height: 1.2;
+  }
+  .txxt-body{
+    color:#79589F;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    line-height: 1.2;
+  }
+  .txxt-tail{
+    margin-bottom: 20px;
+    font-size: 15px;
+    letter-spacing: .125em;
+    margin: 0 0 .5em 0;
+    line-height: 1.2;
+  }
+</style>
+</head>
+<body style="background-color: #fff">
+  <nav class="navbar fixed-top navbar-expand-lg bg-light" style="background-color: #fff;">
+    <a class="navbar-brand" href="">
+      <img src="logo.png" width=250" height="50">
+      <!--CodeShala-->
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav justify-content-end">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#courses-section">Members <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about-us">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact-us">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid bg-dark" style="">
+    <br/><br/><br/> 
+    <img src="cover.jpg" class="img-fluid">
+  </div>
+  
+  <div class="container-fluid" style="background-color: #d1d1dd">
+    <div class="container">
+      <h2 class="text-center" style="padding:10px;"><b>{{obj.title}}</b><h6 class="text-center card-subtitle mb-2" style="color:#79589F;">{{obj.host}}</h6></h2>
+    </div>
+    
+  </div>
+  
+  <div class="container">
+   <div class="row" style="padding:10px;">
+    <div class="col-lg-3 txxt-body">
+      Start time: {{ obj.start_date|date:"D d M Y" }} {{ obj.start_time|time:"H:i" }}
+    </div>
+    <div class="col-lg-3 txxt-body">
+      End time: {{ obj.end_date|date:"D d M Y" }} {{ obj.end_time|time:"H:i" }}
+    </div>
+    <div class="col-lg-3 txxt-body">
+      Venue: {{obj.venue}}
+    </div>
+    {% if past < 1 %}
+    <div class="col-lg-3">
+      <a href="#" class="card-link"  style="padding:15px;background-color:#79589F;color:#fff;border-radius:5px; ">Register Now</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <p class="txxt-head">Event</p>
+      <h3 class="txxt-body">Menu</h3> 
+      <ul class="list-group">
+        <li class="list-group-item">Event Description</li>
+        <li class="list-group-item">Prerequisite</li>
+        <li class="list-group-item">Pictures</li>
+        <li class="list-group-item">Feedbacks and Queries</li>
+      </ul>
+    </div>
+    <div class="col-lg-9" style="background-color: #f3f3f3"><br/>
+      <h3 class="txxt-body">Event Description</h3>
+      <p>{{obj.description}}</p>
+      <hr style="background-color: #79589F">
+      <h3 class="txxt-body">Prerequisite</h3>
+      <p>{{obj.prerequistes}}</p>
+      <hr style="background-color: #79589F">
+      <h3 class="txxt-body">Rules</h3>
+      <p>{{obj.rules}}</p>
+      <hr style="background-color: #79589F">
+      <h3 class="txxt-body">Feedbacks and Queries</h3>
+      <hr style="background-color: #79589F">
+    </div>
+  </div>
+</div>
+
+<br/><br/>
+<footer class="txxt-tail text-center">
+  <p style="color:#79589F;padding-top: 10px;">© Manan | All Rights Reserved.</p>
+
+</footer>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/bc4369196c.js"></script>
+</body>
+</html>
