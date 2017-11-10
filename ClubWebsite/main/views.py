@@ -14,6 +14,8 @@ from .serializers import profileSerializer
 # Create your views here.
 
 def home(request):
+	if request.user.is_authenticated :
+		return redirect('/profile/')
 	return render(request,'login.html',{})
 
 @login_required
@@ -33,7 +35,7 @@ def login_view(request):
 	        return redirect('/')
 	    else:
 	    	return redirect('/')
-	return redirect('/')
+	return redirect('/profile/')
 
 
 @login_required
@@ -101,7 +103,7 @@ def editprofileview(request):
 		username = request.POST.get('mobile', None)
 		email = request.POST.get('email', None)
 		fname = request.POST.get('fname', None)
-		lname = request.POST.get('email', None)
+		lname = request.POST.get('lname', None)
 		github = request.POST.get('github', None)
 		facebook = request.POST.get('facebook', None)
 		linkedin = request.POST.get('linkedin', None)
@@ -109,7 +111,7 @@ def editprofileview(request):
 		try:
 			user=User.objects.get(username=username)
 		except User.DoesNotExist :
-			return render(request,'editprofile.html',{'err':"user does not exist!!"})
+			return render(request,'myprofile.html',{'err':"user does not exist!!"})
 		user.profile.email = email
 		user.profile.fname = fname
 		user.profile.lname = lname
@@ -118,9 +120,9 @@ def editprofileview(request):
 		user.profile.twitter = twitter
 		user.profile.linkedin = linkedin
 		user.profile.save()
-		return render(request,'editprofile.html',{'msg':"profile is saved"})
+		return render(request,'myprofile.html',{'msg':"profile is saved",'obj':user})
 	else :
-		return render(request,'editprofile.html',{})
+		return render(request,'myprofile.html',{'err':"Profile was not updated!",'obj':user})
 
 class getprofile_apiview(APIView):
 	serializer_class = profileSerializer

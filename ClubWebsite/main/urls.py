@@ -1,5 +1,7 @@
 
 from django.conf.urls import url,include
+from django.contrib.auth.views import logout
+from django.conf import settings
 from .views import myprofileview,getprofile_apiview,editprofileview,home,register,index,create_event,login_view,event_list_view,event_detailview
 
 urlpatterns = [
@@ -11,5 +13,7 @@ urlpatterns = [
     url(r'^events/$',event_list_view,name="events-list"),
     url(r'^profile/$',myprofileview,name="profile"),
     url(r'^api/getprofile/$',getprofile_apiview.as_view(),name="get-userprofile"),
+    url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     url(r'^event/detail/(?P<pk>(\d+)+)/$',event_detailview,name="detailview-event"),
+    url(r'^update_user/$',editprofileview,name="profile"),
 ]
