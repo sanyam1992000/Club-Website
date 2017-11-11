@@ -16,7 +16,7 @@ from .serializers import profileSerializer
 def home(request):
 	if request.user.is_authenticated :
 		return redirect('/profile/')
-	return render(request,'login.html',{})
+	return render(request,'index.html',{})
 
 @login_required
 def index(request):

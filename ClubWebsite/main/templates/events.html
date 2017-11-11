@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Manan's Members | Programing Club Of YMCA University, Faridabad</title>
+  <title>Manan's Events | Programing Club Of YMCA University, Faridabad</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,12 +38,29 @@
     line-height: 1.2;
   }
 </style>
+<link rel="apple-touch-icon" sizes="57x57" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-16x16.png">
+<link rel="manifest" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/manifest.json">
+<meta name="msapplication-TileColor" content="#79589F">
+<meta name="msapplication-TileImage" content="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/ms-icon-144x144.png">
+<meta name="theme-color" content="#79589F">
 </head>
 <body style="background-color: #fff">
   <nav class="navbar fixed-top navbar-expand-lg bg-light" style="background-color: #fff;">
-    <a class="navbar-brand" href="">
-      <img src="logo.png" width=250" height="50">
-      <!--CodeShala-->
+    <a class="navbar-brand" href="/">
+      <img src="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png" width="190" height="65">
+      
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -52,16 +69,19 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav justify-content-end">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#courses-section">Members</a>
+          <a class="nav-link" href="/members">Members</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#about-us">Events <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/events/">Events</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#contact-us">Contact Us</a>
+          <a class="nav-link" href="/projects/">Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact/">Contact Us</a>
         </li>
       </ul>
     </div>
@@ -70,7 +90,7 @@
   <div class="container">
     <br/><br/><br/><br/>
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12"><br/>
         <p class="txxt-head">Here are our</p>
         <h3 class="txxt-body">Upcoming events</h3>
         <hr style="background-color: #79589F">
@@ -78,9 +98,9 @@
       </div>
     </div>
     
-  
+    
 
-   
+    
     
 
     
@@ -109,7 +129,8 @@
                 <h5 class="card-title">{{x.title}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">By Sameer Taneja</h6>
                 <p class="card-text"></p>
-                <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">Register</a>
+                
+                <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#exampleModal" data-eventid="{{x.title}}"  data-eventname="{{x.title}}">Register</a>
                 <a href="#" class="card-link">Share</a>
               </div>
 
@@ -137,9 +158,9 @@
       </div>
     </div>
     
-   
+    
 
- 
+    
 
 
     <div class="row">
@@ -171,7 +192,7 @@
           </div>
         </div>
       </div>
-   {% endfor %}
+      {% endfor %}
     </div>
     <br/><br/>
     <hr style="background-color: #79589F">
@@ -180,6 +201,48 @@
 
   </div>
   <br/><br/>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+              <input type="text" class="form-control" id="eventid" hidden>
+            
+            <div class="form-group">
+              <label for="register-fname" class="col-form-label">First name</label>
+              <input type="text" class="form-control" id="register-fname" name="register-fname">
+            </div>
+            <div class="form-group">
+              <label for="register-lname" class="col-form-label">Last name</label>
+              <input type="text" class="form-control" id="register-lname" name="register-lname">
+            </div>
+            <div class="form-group">
+              <label for="register-email" class="col-form-label">Email</label>
+              <input type="email" class="form-control" id="register-email" name="register-email">
+            </div>
+            <div class="form-group">
+              <label for="register-phone" class="col-form-label">Phone number</label>
+              <input type="text" class="form-control" id="register-phone" name="register-phone">
+            </div>
+            <div class="form-group">
+              <label for="register-text" class="col-form-label">Any queries/feedback:</label>
+              <textarea class="form-control" id="register-text" name="register-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer class="txxt-tail text-center">
     <p style="color:#79589F;padding-top: 10px;">© Manan | All Rights Reserved.</p>
 
@@ -190,5 +253,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/bc4369196c.js"></script>
+  <script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var modal = $(this)
+  modal.find('.modal-title').text('Register for ' + button.data('eventname'))
+  modal.find('#eventid').val(button.data('eventid'))
+})
+</script>
 </body>
 </html>
