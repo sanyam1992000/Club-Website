@@ -9,11 +9,48 @@ import datetime
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializers import profileSerializer
+from .serializers import profileSerializer,EventSerializer
+from rest_framework.generics import RetrieveAPIView,ListAPIView
+
 
 # Create your views here.
 def home(request):
 	return render(request,'index.html',{})
+
+class EventlistAPIView(ListAPIView):
+	queryset = Event.objects.order_by('start_date','start_time')
+	serializer_class = EventSerializer
+
+class nearestEventsAPIView(ListAPIView):
+	serializer_class = EventSerializer
+
+	def get_queryset(self):
+		obj = Event.objects.order_by('start_date','start_time')
+		past = []
+		future = []
+		if len(obj)<=3 :
+			return obj
+		for x in obj :
+			if x.end_date <datetime.date.today():
+				past.append(x)
+			elif x.end_date ==datetime.date.today() and x.end_time < datetime.datetime.now().time():
+				past.append(x)
+			else :
+				future.append(x)
+		if len(future)>=3:
+			return future
+		else:
+			queryset = future
+			l=len(future)
+			print(past)
+			for x in past[::-1]:
+				if l==3:
+					break
+				queryset.append(x)
+				l+=1
+			print(queryset)
+			return queryset
+
 
 
 

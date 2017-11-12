@@ -30,7 +30,7 @@ def save_user_profile(sender, instance, **kwargs):
 class Event(models.Model):
     description = models.TextField(blank=True, null=True)
     title = models.CharField(max_length=500)
-    host = models.CharField(max_length=100)
+    host = models.ManyToManyField(User)
     venue = models.CharField(max_length=100)
     fee = models.IntegerField(default=0)
     rules = models.TextField(blank=True, null=True)
@@ -40,6 +40,6 @@ class Event(models.Model):
     start_time = models.TimeField(default=datetime.datetime.now().time(),auto_now=False,auto_now_add=False)
     end_time = models.TimeField(default=datetime.datetime.now().time(),auto_now=False,auto_now_add=False)
     def __str__(self):
-        return self.title + self.host
+        return self.title 
 
 
