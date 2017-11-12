@@ -12,11 +12,10 @@ from rest_framework import status
 from .serializers import profileSerializer
 
 # Create your views here.
-
 def home(request):
-	if request.user.is_authenticated :
-		return redirect('/profile/')
 	return render(request,'index.html',{})
+
+
 
 @login_required
 def index(request):
@@ -32,9 +31,13 @@ def login_view(request):
 	        if user:
 	        	if user.is_active:
 	        		login(request, user)
-	        return redirect('/')
+	        return redirect('/login/')
 	    else:
-	    	return redirect('/')
+	    	return redirect('/login/')
+	elif request.method == 'GET':
+		if request.user.is_authenticated :
+			return redirect('/profile/')
+		return render(request,'login.html',{})
 	return redirect('/profile/')
 
 
