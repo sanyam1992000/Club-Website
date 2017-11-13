@@ -75,6 +75,8 @@ def login_view(request):
 	    	return redirect('/login/')
 	elif request.method == 'GET':
 		if request.user.is_authenticated :
+			if request.user.is_superuser :
+				return redirect('/home/')
 			return redirect('/profile/')
 		return render(request,'login.html',{})
 	return redirect('/profile/')
@@ -200,6 +202,8 @@ class getprofile_apiview(APIView):
 
 @login_required
 def myprofileview(request):
+	if request.user.is_superuser :
+		return redirect('/home/')
 	if request.method == 'GET':
 		user = request.user
 		return render(request,'myprofile.html',{'obj':user})
