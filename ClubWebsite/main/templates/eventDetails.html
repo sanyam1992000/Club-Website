@@ -74,7 +74,9 @@
   
   <div class="container-fluid" style="background-color: #d1d1dd">
     <div class="container">
-      <h2 class="text-center" style="padding:10px;"><b>{{obj.title}}</b><h6 class="text-center card-subtitle mb-2" style="color:#79589F;">{{obj.host}}</h6></h2>
+      <h2 class="text-center" style="padding:10px;"><b>{{obj.title}}</b><h6 class="text-center card-subtitle mb-2" style="color:#79589F;">{% for y in obj.host.all %}
+                <a href="/member/{{y.username}}">{{y.username}}</a>
+                {% endfor %}</h6></h2>
     </div>
     
   </div>

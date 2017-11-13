@@ -127,7 +127,11 @@
               </div>
               <div class="col-lg-8">
                 <h5 class="card-title">{{x.title}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">By Sameer Taneja</h6>
+                <h6 class="card-subtitle mb-2 text-muted">By 
+                {% for y in x.host.all %}
+                <a href="/member/{{y.username}}">{{y.username}}</a>
+                {% endfor %}
+                </h6>
                 <p class="card-text"></p>
                 
                 <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#exampleModal" data-eventid="{{x.title}}"  data-eventname="{{x.title}}">Register</a>
@@ -138,7 +142,7 @@
           </div>
           <div class="card-footer">
 
-            <a href="#" class=" float-right">View event details</a>
+            <a href="/event/detail/{{x.pk}}" class=" float-right">View event details</a>
           </div>
         </div>
       </div>
@@ -178,7 +182,11 @@
               </div>
               <div class="col-lg-8">
                 <h5 class="card-title">{{x.title}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">By Sameer Taneja</h6>
+                <h6 class="card-subtitle mb-2 text-muted">By 
+                {% for y in x.host.all %}
+                <a href="/member/{{y.username}}">{{y.username}}</a>
+                {% endfor %}
+                </h6>
                 <p class="card-text"></p>
                 <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">Feedback or Queries</a>
                 
@@ -188,7 +196,7 @@
           </div>
           <div class="card-footer">
 
-            <a href="#" class=" float-right">View event details</a>
+            <a href="/event/detail/{{x.pk}}" class=" float-right">View event details</a>
           </div>
         </div>
       </div>

@@ -38,7 +38,8 @@ class nearestEventsAPIView(ListAPIView):
 			else :
 				future.append(x)
 		if len(future)>=3:
-			return future
+			future.sort(key = lambda x: (x.start_date , x.start_time))
+			return future[:3]
 		else:
 			queryset = future
 			l=len(future)
@@ -48,7 +49,8 @@ class nearestEventsAPIView(ListAPIView):
 					break
 				queryset.append(x)
 				l+=1
-			print(queryset)
+			print(future)
+			queryset.sort(key = lambda x: (x.start_date , x.start_time))
 			return queryset
 
 
@@ -109,11 +111,18 @@ def create_event(request):
 		end_time = request.POST.get('end_time', None)
 		start_date = request.POST.get('start_date', None)
 		end_date = request.POST.get('end_date', None)
-		user = request.user
-		host = user.username
-		event = Event.objects.create(title=title,end_date=end_date,start_date=start_date,end_time=end_time,start_time=start_time,description=description,rules=rules,prerequistes=prerequistes,venue=venue,fee=fee,host=host)
+		host = request.POST.get('host', None)
+		event = Event.objects.create(title=title,end_date=end_date,start_date=start_date,end_time=end_time,start_time=start_time,description=description,rules=rules,prerequistes=prerequistes,venue=venue,fee=fee)
 		event.save()
-		return redirect('/')
+		a=host.split()
+		for x in a:
+			try:
+				user=User.objects.get(username=x)
+				event.host.add(user)
+			except User.DoesNotExist:
+				pass
+		event.save()
+		return redirect('/home/')
 	elif request.method == 'GET':
 		return render(request,'addEvent.html',{})
 
@@ -195,3 +204,6 @@ def myprofileview(request):
 		user = request.user
 		return render(request,'myprofile.html',{'obj':user})
 
+def memberprofileview(request,username):
+	user = get_object_or_404(User,username=username)
+	return render(request,'Memberdetail.html',{'user':user})
