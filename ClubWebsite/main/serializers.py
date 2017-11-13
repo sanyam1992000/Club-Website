@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer,CharField
+from rest_framework.serializers import ModelSerializer,CharField,IntegerField
 from .models import Profile,Event,registration
 from django.contrib.auth.models import User
 
@@ -35,6 +35,25 @@ class UserSerializer(ModelSerializer):
 		'username',
 		'profile',
 		]
+class Event1Serializer(ModelSerializer):
+	host = CharField(max_length=1000)
+	eventid = IntegerField()
+	class Meta :
+		model = Event
+		fields = [
+		'eventid',
+		'host',
+		'description',
+		'title',
+		'fee',
+		'rules',
+		'prerequistes',
+		'venue',
+		'start_date',
+		'end_date',
+		'start_time',
+		'end_time',
+		]
 
 
 class EventSerializer(ModelSerializer):
@@ -63,6 +82,8 @@ class registrationSerializer(ModelSerializer):
 		'eventid',
 		'mobile',
 		'email',
-		'Fullname',
+		'fname',
+		'lname',
+		'query',
 		'College',
 		]

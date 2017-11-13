@@ -155,6 +155,9 @@
         <li class="list-group-item">Prerequisite</li>
         <li class="list-group-item">Rules</li>
         <li class="list-group-item">Feedbacks and Queries</li>
+        {% if user.is_superuser %}
+        <li class="list-group-item"><a href="/event/{{obj.pk}}/registrations/">Registrations</a></li>
+        {% endif %}
       </ul>
     </div>
     <div class="col-lg-9" style="background-color: #f3f3f3"><br/>

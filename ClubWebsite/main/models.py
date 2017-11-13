@@ -45,10 +45,12 @@ class Event(models.Model):
 class registration(models.Model):
     eventid = models.IntegerField()
     mobile = models.CharField(max_length=20)
-    Fullname = models.CharField(max_length=100)
+    fname = models.CharField(max_length=100)
+    lname = models.CharField(max_length=100,default="")
     College = models.CharField(max_length=300)
     email = models.EmailField()
+    query = models.CharField(max_length=1000,default="")
 
     def __str__(self):
-        return self.Fullname + str(self.eventid)
+        return self.fname + str(self.eventid)
 

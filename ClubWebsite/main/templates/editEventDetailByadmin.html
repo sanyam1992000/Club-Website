@@ -90,62 +90,75 @@
             <p class="txxt-head text-center"><span>Your </span><span style="color:#79589F">Profile</span></p>
             {% if err %}
             <div class="alert alert-danger" role="alert">
-              Some error occured while updating profile
+              Some error occured while updating Event + {{err}}
             </div>
             {% endif %}
 
             {% if msg %}
             <div class="alert alert-success" role="alert">
-              Profile was updated!
+              Event was updated!
             </div>
             {% endif %}
 
             <form method="post" action="">
               {% csrf_token %}
               <div class="form-group">
-                <label for="exampleInputPhone1">Phone number</label>
+                <label for="exampleInputeventid1">Event Id</label>
                 <div class="row">
                   <div class="col-lg-9">
-                    <input name="mobile" type="text" class="form-control" id="exampleInputPhone1" aria-describedby="PhoneHelp" placeholder="Enter Phone Number">
+                    <input name="eventid" type="text" class="form-control" id="exampleInputeventid1" aria-describedby="EventHelp" placeholder="Enter Event Id">
                   </div>
                   <div class="col-lg-3">
-                    <button class="btn btn-primary" id="fetchMemberDetailsBtn">Fetch & Render</button>
+                    <button class="btn btn-primary" id="fetchEventDetailsBtn">Fetch & Render</button>
                   </div>
                 </div>
                 
                 <small id="PhoneHelp" class="form-text text-muted"></small>
               </div>
               <div class="form-group">
-                <label for="exampleInputBatch1">Batch</label>
-                <input name="batch" type="text" class="form-control" id="exampleInputBatch1" aria-describedby="BatchHelp" placeholder="Enter Batch" value="">
+                <label for="exampleInputTitle1">Title</label>
+                <input name="title" type="text" class="form-control" id="exampleInputTitle1"  placeholder="Title of event">
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="">
+                <label for="exampleInputDescription1">Description</label>
+                <input name="description" type="text" class="form-control" id="exampleInputDescription1"  placeholder="Brief about event">
               </div>
               <div class="form-group">
-                <label for="exampleInputfname">First name</label>
-                <input name="fname" type="text" class="form-control" id="exampleInputfname" aria-describedby="fname" placeholder="Enter first name" value="">
+                <label for="exampleInputHost1">Host</label>
+                <input name="host" type="text" class="form-control" id="exampleInputHost1"  placeholder="enter host of event in space seperated format">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputVenue1">Venue</label>
+                <input name="venue" type="text" class="form-control" id="exampleInputVenue1"  placeholder="Venue of event">
               </div>
               <div class="form-group">
-                <label for="exampleInputlname">Last name</label>
-                <input name="lname" type="text" class="form-control" id="exampleInputlname" aria-describedby="lname" placeholder="Enter last name" value="">
+                <label for="exampleInputRules1">Rules</label>
+                <input name="rules" type="text" class="form-control" id="exampleInputRules1"  placeholder="Rules about event">
               </div>
               <div class="form-group">
-                <label for="exampleInputgithub">Github</label>
-                <input name="github" type="text" class="form-control" id="exampleInputgithub" aria-describedby="github" placeholder="Enter github profile link" value="">
+                <label for="exampleInputFee1">Fee</label>
+                <input name="fee" type="number" class="form-control" id="exampleInputFee1"  placeholder="Fee for event">
               </div>
               <div class="form-group">
-                <label for="exampleInputfacebook">Facebook</label>
-                <input name="facebook" type="text" class="form-control" id="exampleInputfacebook" aria-describedby="facebook" placeholder="Enter facebook profile link" value="">
+                <label for="exampleInputStart_date1">Start at</label>
+                <input name="start_date" type="date" class="form-control" id="exampleInputStart_date1"  placeholder="starting date of event">
               </div>
               <div class="form-group">
-                <label for="exampleInputtwitter">Twitter</label>
-                <input name="twitter" type="text" class="form-control" id="exampleInputtwitter" aria-describedby="twitter" placeholder="Enter twitter profile link" value="">
+                <label for="exampleInputEnd_date1">End at</label>
+                <input name="end_date" type="date" class="form-control" id="exampleInputEnd_date1"  placeholder="ending date of event">
               </div>
               <div class="form-group">
-                <label for="exampleInputlinkedin">Linkedin</label>
-                <input name="linkedin" type="text" class="form-control" id="exampleInputlinkedin" aria-describedby="linkedin" placeholder="Enter linkedin profile link" value="">
+                <label for="exampleInputStart_time1">Start at</label>
+                <input name="start_time" type="time" class="form-control" id="exampleInputStart_time1"  placeholder="starting time of event">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEnd_time1">End at</label>
+                <input name="end_time" type="time" class="form-control" id="exampleInputEnd_time1"  placeholder="ending time of event">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPrerequistes1">Prerequistes</label>
+                <input name="prerequistes" type="text" class="form-control" id="exampleInputPrerequistes1"  placeholder="prerequistes for event">
               </div>
               <button type="submit" class="btn btn-primary">Update</button>
             </form>
@@ -181,24 +194,27 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#fetchMemberDetailsBtn').click(function(e){
+      $('#fetchEventDetailsBtn').click(function(e){
         e.preventDefault();
-        var phone_number=$('#exampleInputPhone1').val();
-        console.log(phone_number);
+        var event_id=$('#exampleInputeventid1').val();
+        console.log(event_id);
         $.ajax({
           type: "POST",
-          url: "/api/getprofile/",
-          data: {"username": phone_number,"csrfmiddlewaretoken": '{{csrf_token}}'},
+          url: "/api/getevent/",
+          data: {"eventid": event_id,"csrfmiddlewaretoken": '{{csrf_token}}'},
           success: function(data)
           { 
-            $('#exampleInputBatch1').val(data.batch);
-            $('#exampleInputfname').val(data.fname);
-            $('#exampleInputlname').val(data.lname);
-            $('#exampleInputgithub').val(data.github);
-            $('#exampleInputfacebook').val(data.facebook);
-            $('#exampleInputtwitter').val(data.twitter);
-            $('#exampleInputlinkedin').val(data.linkedin);
-            $('#exampleInputEmail1').val(data.email);
+            $('#exampleInputTitle1').val(data.title);
+            $('#exampleInputFee1').val(data.fee);
+            $('#exampleInputVenue1').val(data.venue);
+            $('#exampleInputDescription1').val(data.description);
+            $('#exampleInputPrerequistes1').val(data.prerequistes);
+            $('#exampleInputHost1').val(data.host);
+            $('#exampleInputRules1').val(data.rules);
+            $('#exampleInputStart_time1').val(data.start_time);
+            $('#exampleInputEnd_time1').val(data.end_time);
+            $('#exampleInputStart_date1').val(data.start_date);
+            $('#exampleInputEnd_date1').val(data.end_date);
           },
           error: function(jqXHR, textStatus, errorThrown)
           {
