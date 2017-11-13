@@ -1,2 +1,4 @@
 # Club-Website
-Frontend of clubs new website
+Our new clubs website
+
+Alpha
