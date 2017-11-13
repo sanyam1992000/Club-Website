@@ -95,14 +95,16 @@
         <p class="txxt-head">We are enthusiast and passionate</p>
         <h3 class="txxt-body">Programers, Developers & Designers</h3> 
         <p class="txxt-tail">We believe in learning more and more, practical implementation and sharing our knowledge. We host and attend short sessions, workshops, hackathons, programing events, gaming events, virtual reality events and much more.</p>
-        <p class="txxt-tail">More text to be added soon... </p>
-        <br/><br/><br/><br/><br/><br/><br/>
+        <p class="txxt-tail">We are the offical programing club of YMCA University Of Science And Technology, Faridabad, India. We were sponsored by companies like codeshala, hackerearth, codechef, hackerrank for conducting coding contests and were are sponsored by companies like digitalocean, dot tech, jetbrains, mozilla, codeshala, sapphire engine, sticker mule for conducting our annual hackathon 'Zenith'.  </p>
+        <p class="txxt-tail">We conduct a test called 'Manthan' to enroll new coders and developers to our club every year. We have been conducting various series of coding contests such as 'Code For YMCA' which focuses on promoting participation towards ICPC, 'Code Cadet' which focuses on promoting coding culture in the newbies to coding, 'Code Relay' which focuses on improving data structures topic wise. We host variety of coding, gaming and fun events during our annual college fest 'Culmyca 2017'. We develop prefest online games every year such as 'Xunbao', 'Hackon'.</p>
+        <p class="txxt-tail">We are winners of several international hackathons such as 'Angel Hacks', 'Code for india' and many more. We have participated in ACM ICPC at regional level and India finals. We have developed lots of projects as well. </p>
+        <br/><br/><br/><br/>
       </div> 
       <div class="col-lg-6">
         <div class="row">
           <div class="col-lg-12">
             <p class="txxt-head text-center"><span>Upcoming </span><span style="color:#79589F">Events</span></p>
-            <div id="UpcomingEventsView">Loading Upcoming events, Please wait.....</div>
+            <div id="UpcomingEventsView"><img src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">&nbsp;Loading Upcoming events, Please wait.....</div>
           </div>
         </div>
 
@@ -131,36 +133,41 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <div class="alert alert-success" role="alert" id="register-success-msg">You have been registered successfully!</div>
+          <form id="registerPublic">
+            <input type="text" class="form-control" id="eventid" hidden>
+            {% csrf_token %}
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We might send you updates regarding this event, We'll never share your email with anyone else.</small>
+              <label for="register-fname" class="col-form-label">First name<span style="color:red">*</span></label>
+              <input type="text" class="form-control" id="register-fname" name="register-fname" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputPhonenumber">Phone number</label>
-              <input type="text" class="form-control" id="exampleInputPhonenumber" placeholder="Phonenumber">
+              <label for="register-lname" class="col-form-label">Last name<span style="color:red">*</span></label>
+              <input type="text" class="form-control" id="register-lname" name="register-lname" required>
+            </div>
+            <div class="form-group">
+              <label for="register-email" class="col-form-label">Email<span style="color:red">*</span></label>
+              <input type="email" class="form-control" id="register-email" name="register-email" required>
+            </div>
+            <div class="form-group">
+              <label for="register-phone" class="col-form-label">Phone number<span style="color:red">*</span></label>
+              <input type="text" class="form-control" id="register-phone" name="register-phone" required>
               <small id="emailHelp" class="form-text text-muted">Don't include country code. We might send you updates regarding this event via sms, We'll never share your phone number with anyone else.</small>
             </div>
             <div class="form-group">
-              <label for="exampleInputFullName">Full name</label>
-              <input type="text" class="form-control" id="exampleInputFullName" placeholder="Full name">
+              <label for="register-college" class="col-form-label">College<span style="color:red">*</span></label>
+              <input type="text" class="form-control" id="register-college" name="register-college" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputCollege">College</label>
-              <input type="text" class="form-control" id="exampleInputCollege" placeholder="College">
+              <label for="register-text" class="col-form-label">Any queries/feedback:</label>
+              <textarea class="form-control" id="register-text" name="register-text"></textarea>
             </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">
-                You agree to our T&C and privacy policy
-              </label>
-            </div>
+
             
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" id="btn-register-public">Register</button>
           </form>
         </div>
       </div>
@@ -172,29 +179,45 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/bc4369196c.js"></script>
+    <script>
+    $('#registerModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var modal = $(this)
+        console.log(button.data('eventname'));
+        modal.find('.modal-title').text('Register for ' + button.data('eventname'))
+        modal.find('#eventid').val(button.data('eventid'))
+            $('#register-success-msg').hide();
+            $('#registerPublic').show();
+            $('#btn-register-public').show();
+      })
+    </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    dataToBeDisplayed='';
 
-    $(document).ready(function(){
-      $.ajax({
-        type: "GET",
-        url: "/api/nearevents/",
-        data: {},
-        success: function(data)
-        { 
+    <script>
+      dataToBeDisplayed='';
+
+      $(document).ready(function(){
+        $.ajax({
+          type: "GET",
+          url: "/api/nearevents/",
+          data: {},
+          success: function(data)
+          { 
 
           //data=JSON.stringify(data);
-          //console.log(data);
-          for(var i=0;i<3;i++){
+          console.log(data);
+          for(var i=0;i<data.length;i++){
             hosts='';
             //console.log(data[i]);
             for(var j=0;j<data[i].host.length;j++){
               //console.log(data[i].host[j].username);
-              hosts+=data[i].host[j].profile.fname+" "+data[i].host[j].profile.fname+" ";
+              hosts+=data[i].host[j].profile.fname;
+              if(j!=data[i].host.length-1){
+                hosts+=", ";
+              }
             }
             
-            dataToBeDisplayed+='<div class="card mx-auto" style="width: 85%"><div class="card-body"><div class="row"><div class="col-lg-4"><div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">'+data[i].start_date+'<br/>'+data[i].start_time+'<br/>  -  <br/>'+data[i].end_date+'<br/>'+data[i].end_time+'</div></div><div class="col-lg-8"><h4 class="card-title">'+data[i].title+'</h4><h6 class="card-subtitle mb-2 text-muted">By '+hosts+'</h6><p class="card-text"></p><a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#registerModal">Register</a><a href="#" class="card-link">Share</a></div></div></div></div><br/>'
+            dataToBeDisplayed+='<div class="card mx-auto" style="width: 85%"><div class="card-body"><div class="row"><div class="col-lg-4"><div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">'+data[i].start_date+'<br/>'+data[i].start_time+'<br/>  -  <br/>'+data[i].end_date+'<br/>'+data[i].end_time+'</div></div><div class="col-lg-8"><a href="/event/detail/'+data[i].pk+'/"><h4 class="card-title">'+data[i].title+'</h4></a><h6 class="card-subtitle mb-2 text-muted">By '+hosts+'</h6><p class="card-text"></p><a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#registerModal" data-eventid="'+data[i].pk+'"  data-eventname="'+data[i].title+'">Register</a><a href="/event/detail/'+data[i].pk+'/" class="card-link">Know more</a></div></div></div></div><br/>'
           }
           $('#UpcomingEventsView').html(dataToBeDisplayed);
         },
@@ -203,7 +226,34 @@
           console.log('error');       
         }
       });
+
+      })
+    </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#registerPublic').submit(function(e){
+        e.preventDefault();
+        var event_id=$('#exampleInputeventid1').val();
+        //console.log(event_id);
+        $.ajax({
+          type: "POST",
+          url: "/api/event/register/",
+          data: {"csrfmiddlewaretoken": '{{csrf_token}}',"eventid": $('#eventid').val(),"fname": $('#register-fname').val(),"lname": $('#register-lname').val(),"email":$('#register-email').val(),"College":$('#register-college').val(),"query":$('#register-text').val(),"mobile":$('#register-phone').val()},
+          success: function(data)
+          { 
+            //console.log('Done'+data);
+            $('#register-success-msg').show();
+            $('#registerPublic').hide();
+            $('#btn-register-public').hide();
+          },
+          error: function(jqXHR, textStatus, errorThrown)
+          {
+            console.log('err');       
+          }
+        });
+      })
     })
+
   </script>
-</body>
-</html>
+  </body>
+  </html>
