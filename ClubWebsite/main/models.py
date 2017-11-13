@@ -42,4 +42,13 @@ class Event(models.Model):
     def __str__(self):
         return self.title 
 
+class registration(models.Model):
+    eventid = models.IntegerField()
+    mobile = models.CharField(max_length=20)
+    Fullname = models.CharField(max_length=100)
+    College = models.CharField(max_length=300)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.Fullname + str(self.eventid)
 

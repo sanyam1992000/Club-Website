@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Profile,Event
+from .models import Profile,Event,registration
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -9,11 +9,16 @@ import datetime
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializers import profileSerializer,EventSerializer
-from rest_framework.generics import RetrieveAPIView,ListAPIView
+from .serializers import profileSerializer,EventSerializer,registrationSerializer
+from rest_framework.generics import RetrieveAPIView,ListAPIView,CreateAPIView
 
 
 # Create your views here.
+class RegistrationAPIView(CreateAPIView):
+	queryset = registration.objects.all()
+	serializer_class = registrationSerializer
+
+
 def home(request):
 	return render(request,'index.html',{})
 
@@ -211,3 +216,4 @@ def myprofileview(request):
 def memberprofileview(request,username):
 	user = get_object_or_404(User,username=username)
 	return render(request,'Memberdetail.html',{'user':user})
+

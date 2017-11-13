@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer,CharField
-from .models import Profile,Event
+from .models import Profile,Event,registration
 from django.contrib.auth.models import User
 
 class profileSerializer(ModelSerializer):
@@ -42,4 +42,15 @@ class EventSerializer(ModelSerializer):
 		'end_date',
 		'start_time',
 		'end_time',
+		]
+
+class registrationSerializer(ModelSerializer):
+	class Meta :
+		model =registration
+		fields = [
+		'eventid',
+		'mobile',
+		'email',
+		'Fullname',
+		'College',
 		]
