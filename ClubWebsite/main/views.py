@@ -22,6 +22,7 @@ class RegistrationAPIView(CreateAPIView):
 def home(request):
 	return render(request,'index.html',{})
 
+
 class EventlistAPIView(ListAPIView):
 	queryset = Event.objects.order_by('start_date','start_time')
 	serializer_class = EventSerializer
@@ -199,4 +200,3 @@ def myprofileview(request):
 def memberprofileview(request,username):
 	user = get_object_or_404(User,username=username)
 	return render(request,'Memberdetail.html',{'user':user})
-
