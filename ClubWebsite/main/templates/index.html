@@ -60,7 +60,7 @@
 <body style="background-color: #fff">
   <nav class="navbar fixed-top navbar-expand-lg bg-light" style="background-color: #fff;">
     <a class="navbar-brand" href="/">
-      <img src="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png" width="190" height="65">
+      <img src="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png" width="190" height="65"><span class="badge badge-secondary">V Alpha 0.1</span>
       
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,77 +94,15 @@
       <div class="col-lg-6">
         <p class="txxt-head">We are enthusiast and passionate</p>
         <h3 class="txxt-body">Programers, Developers & Designers</h3> 
-        <p class="txxt-tail">We believe in learning more and more, practical implementation and sharing our knowledge. We host and attend short sessions, workshops, hackathons, programing events, gaming events, virtual reality events and much more.</p><br/><br/><br/><br/><br/><br/><br/>
+        <p class="txxt-tail">We believe in learning more and more, practical implementation and sharing our knowledge. We host and attend short sessions, workshops, hackathons, programing events, gaming events, virtual reality events and much more.</p>
+        <p class="txxt-tail">More text to be added soon... </p>
+        <br/><br/><br/><br/><br/><br/><br/>
       </div> 
       <div class="col-lg-6">
         <div class="row">
           <div class="col-lg-12">
             <p class="txxt-head text-center"><span>Upcoming </span><span style="color:#79589F">Events</span></p>
-
-            <div class="card mx-auto" style="width: 85%">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">
-                      NOV 11<br/>  -  <br/>NOV 12
-                    </div>
-                  </div>
-                  <div class="col-lg-8">
-                    <h4 class="card-title">Introduction to Django</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">By Sameer Taneja</h6>
-                    <p class="card-text"></p>
-                    <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">Register</a>
-                    <a href="#" class="card-link">Share</a>
-                  </div>
-
-                </div>
-                
-              </div>
-            </div>
-
-            <div class="card mx-auto" style="width: 85%;margin-top: 5px;">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">
-                      NOV 11<br/>  -  <br/>NOV 12
-                    </div>
-                  </div>
-                  <div class="col-lg-8">
-                    <h4 class="card-title">Introduction to Bootstrap</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">By Vipin Khushu</h6>
-                    <p class="card-text"></p>
-                    <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">Register</a>
-                    <a href="#" class="card-link">Share</a>
-                  </div>
-
-                </div>
-                
-              </div>
-            </div>
-
-            <div class="card mx-auto" style="width: 85%;margin-top: 5px;">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">
-                      NOV 11<br/>  -  <br/>NOV 12
-                    </div>
-                  </div>
-                  <div class="col-lg-8">
-                    <h4 class="card-title">Introduction to Node.Js</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">By Vipin Khushu</h6>
-                    <p class="card-text"></p>
-                    <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">Register</a>
-                    <a href="#" class="card-link">Share</a>
-                  </div>
-
-                </div>
-                
-              </div>
-            </div>
-
-
+            <div id="UpcomingEventsView">Loading Upcoming events, Please wait.....</div>
           </div>
         </div>
 
@@ -174,20 +112,98 @@
 
     <br/><br/>
     <hr style="background-color: #79589F">
-    <br/><br/>
+    
 
 
   </div>
-  <br/><br/>
+  <br/>
   <footer class="txxt-tail text-center">
     <p style="color:#79589F;padding-top: 10px;">© Manan | All Rights Reserved.</p>
 
   </footer>
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registration form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We might send you updates regarding this event, We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPhonenumber">Phone number</label>
+              <input type="text" class="form-control" id="exampleInputPhonenumber" placeholder="Phonenumber">
+              <small id="emailHelp" class="form-text text-muted">Don't include country code. We might send you updates regarding this event via sms, We'll never share your phone number with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFullName">Full name</label>
+              <input type="text" class="form-control" id="exampleInputFullName" placeholder="Full name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputCollege">College</label>
+              <input type="text" class="form-control" id="exampleInputCollege" placeholder="College">
+            </div>
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input">
+                You agree to our T&C and privacy policy
+              </label>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/bc4369196c.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    dataToBeDisplayed='';
+
+    $(document).ready(function(){
+      $.ajax({
+        type: "GET",
+        url: "/api/nearevents/",
+        data: {},
+        success: function(data)
+        { 
+
+          //data=JSON.stringify(data);
+          //console.log(data);
+          for(var i=0;i<3;i++){
+            hosts='';
+            //console.log(data[i]);
+            for(var j=0;j<data[i].host.length;j++){
+              //console.log(data[i].host[j].username);
+              hosts+=data[i].host[j].username+" ";
+            }
+            
+            dataToBeDisplayed+='<div class="card mx-auto" style="width: 85%"><div class="card-body"><div class="row"><div class="col-lg-4"><div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">'+data[i].start_date+'<br/>'+data[i].start_time+'<br/>  -  <br/>'+data[i].end_date+'<br/>'+data[i].end_time+'</div></div><div class="col-lg-8"><h4 class="card-title">'+data[i].title+'</h4><h6 class="card-subtitle mb-2 text-muted">By '+hosts+'</h6><p class="card-text"></p><a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#registerModal">Register</a><a href="#" class="card-link">Share</a></div></div></div></div><br/>'
+          }
+          $('#UpcomingEventsView').html(dataToBeDisplayed);
+        },
+        error: function(data)
+        {
+          console.log('error');       
+        }
+      });
+    })
+  </script>
 </body>
 </html>
