@@ -18,11 +18,22 @@ class profileSerializer(ModelSerializer):
 		'email',
 		]
 
+class hostSerializer(ModelSerializer):
+	class Meta :
+		model = Profile
+		fields = [
+		'fname',
+		'lname',
+		]
+
+
 class UserSerializer(ModelSerializer):
+	profile = hostSerializer(read_only=True)
 	class Meta :
 		model = User
 		fields = [
 		'username',
+		'profile',
 		]
 
 
@@ -31,6 +42,7 @@ class EventSerializer(ModelSerializer):
 	class Meta :
 		model = Event
 		fields = [
+		'pk',
 		'host',
 		'description',
 		'title',

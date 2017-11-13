@@ -33,8 +33,6 @@ class nearestEventsAPIView(ListAPIView):
 		obj = Event.objects.order_by('start_date','start_time')
 		past = []
 		future = []
-		if len(obj)<=3 :
-			return obj
 		for x in obj :
 			if x.end_date <datetime.date.today():
 				past.append(x)
@@ -42,24 +40,9 @@ class nearestEventsAPIView(ListAPIView):
 				past.append(x)
 			else :
 				future.append(x)
-		if len(future)>=3:
-			future.sort(key = lambda x: (x.start_date , x.start_time))
-			return future[:3]
-		else:
-			queryset = future
-			l=len(future)
-			print(past)
-			for x in past[::-1]:
-				if l==3:
-					break
-				queryset.append(x)
-				l+=1
-			print(future)
-			queryset.sort(key = lambda x: (x.start_date , x.start_time))
-			return queryset
-
-
-
+		future.sort(key = lambda x: (x.start_date , x.start_time))
+		return future[:3]
+		
 
 @login_required
 def index(request):

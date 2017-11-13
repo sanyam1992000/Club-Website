@@ -191,7 +191,7 @@
             //console.log(data[i]);
             for(var j=0;j<data[i].host.length;j++){
               //console.log(data[i].host[j].username);
-              hosts+=data[i].host[j].username+" ";
+              hosts+=data[i].host[j].profile.fname+" "+data[i].host[j].profile.fname+" ";
             }
             
             dataToBeDisplayed+='<div class="card mx-auto" style="width: 85%"><div class="card-body"><div class="row"><div class="col-lg-4"><div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">'+data[i].start_date+'<br/>'+data[i].start_time+'<br/>  -  <br/>'+data[i].end_date+'<br/>'+data[i].end_time+'</div></div><div class="col-lg-8"><h4 class="card-title">'+data[i].title+'</h4><h6 class="card-subtitle mb-2 text-muted">By '+hosts+'</h6><p class="card-text"></p><a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#registerModal">Register</a><a href="#" class="card-link">Share</a></div></div></div></div><br/>'

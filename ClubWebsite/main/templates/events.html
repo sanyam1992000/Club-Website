@@ -129,7 +129,7 @@
                 <h5 class="card-title">{{x.title}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">By 
                 {% for y in x.host.all %}
-                <a href="/member/{{y.username}}">{{y.username}}</a>
+                <a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}}</a>
                 {% endfor %}
                 </h6>
                 <p class="card-text"></p>
@@ -184,7 +184,7 @@
                 <h5 class="card-title">{{x.title}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">By 
                 {% for y in x.host.all %}
-                <a href="/member/{{y.username}}">{{y.username}}</a>
+                <a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}}</a>
                 {% endfor %}
                 </h6>
                 <p class="card-text"></p>
