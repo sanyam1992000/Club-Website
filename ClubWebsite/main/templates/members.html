@@ -42,7 +42,7 @@
 <body style="background-color: #fff">
   <nav class="navbar fixed-top navbar-expand-lg bg-light" style="background-color: #fff;">
     <a class="navbar-brand" href="">
-      <img src="logo.png" width=250" height="50">
+      <img src="logo.png" width="250" height="50">
       <!--CodeShala-->
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,6 +77,15 @@
         <br/>
       </div>
     </div>
+    {% for x in member %}
+    <h3>{{x.batch}}</h3>
+    {% for y in x.users %}
+    <h4>{{y.username}}</h4>
+    <p>{{y.profile.fname}} {{y.profile.lname}}</p>
+    <p>{{y.profile.email}}</p>
+    {% endfor %}
+    {% endfor %}
+
     <div class="row">
       <div class="col-lg-4" style="margin-top: 10px;">
         <div class="card border-info" style="width: 20rem;">

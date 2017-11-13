@@ -117,6 +117,29 @@ def create_event(request):
 	elif request.method == 'GET':
 		return render(request,'addEvent.html',{})
 
+def member_list_view(request):
+	obj = User.objects.all()
+	m1=0
+	m2=10000
+	for x in obj:
+		if x.profile.batch>m1:
+			m1=x.profile.batch
+		if x.profile.batch<m2:
+			m2=x.profile.batch
+	print(m1,m2)
+	member = []
+	for x in range(m2,m1+1):
+		member.append({'batch':x,'users':[]})
+
+	print(member)
+	print("-----")
+	for x in obj:
+		member[x.profile.batch-m2]['users'].append(x)
+	print(member)
+	print("-----")
+	return render(request,'members.html',{'member':member})
+
+
 def event_list_view(request):
 	obj = Event.objects.all()
 	past = []
