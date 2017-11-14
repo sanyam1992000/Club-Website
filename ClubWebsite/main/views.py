@@ -127,7 +127,7 @@ def create_event(request):
 			except User.DoesNotExist:
 				pass
 		event.save()
-		return redirect('/home/')
+		return render(request,'addEvent.html',{'msg':"success"})
 	elif request.method == 'GET':
 		return render(request,'addEvent.html',{})
 
