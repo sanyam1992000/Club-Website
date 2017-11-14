@@ -1,229 +1,155 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Edit profile | Manan | Programing Club Of YMCA University, Faridabad</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "header.html" %}
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <style>
-  body{
-    font-family: "BentonSans", "Helvetica Neue", sans-serif;
-  }
-  a{
-    color: #000;
-  }
-  .txxt-head{
-    margin-bottom: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: .125em;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-  .txxt-body{
-    color:#79589F;
-    font-weight: bold;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-  .txxt-tail{
-    margin-bottom: 20px;
-    font-size: 15px;
-    letter-spacing: .125em;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-</style>
-</head>
-<body style="background-color: #fff">
-  <nav class="navbar fixed-top navbar-expand-lg bg-light" style="background-color: #fff;">
-    <a class="navbar-brand" href="/">
-      <img src="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png" width="190" height="65"><span class="badge badge-secondary">V Alpha 0.1</span>
-      
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+{% block page_title %}
+<title>Edit event detail | Manan | Programing Club Of YMCA University, Faridabad</title>
+{% endblock page_title %}
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav justify-content-end">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/members">Members</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/events/">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/projects/">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact/">Contact Us</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="container">
-    <br/><br/><br/><br/><br/><br/><br/>
-    <div class="row">
-      <div class="col-lg-4 ">
-        <p class="txxt-head">Administrators</p>
-        <h3 class="txxt-body">Toolkit</h3> 
-        <ul class="list-group">
-          <a href="/home/"><li class="list-group-item">Create new user</li></a>
-          <a href="/update_member/"><li class="list-group-item">Edit user details</li></a>
-          <a href="/create_event/"><li class="list-group-item">Create new event</li></a>
-          <a href="/update_event/"><li class="list-group-item">Edit event details</li></a>
-          <a href="/logout/"><li class="list-group-item">logout</li></a>
-        </ul><br/><br/><br/><br/><br/><br/><br/>
-      </div>  
-      <div class="col-lg-8 bg-light" style="padding:10px;">
-        <div class="row">
-          <div class="col-lg-12">
-            <p class="txxt-head text-center"><span>Your </span><span style="color:#79589F">Profile</span></p>
-            {% if err %}
-            <div class="alert alert-danger" role="alert">
-              Some error occured while updating Event + {{err}}
-            </div>
-            {% endif %}
-
-            {% if msg %}
-            <div class="alert alert-success" role="alert">
-              Event was updated!
-            </div>
-            {% endif %}
-
-            <form method="post" action="">
-              {% csrf_token %}
-              <div class="form-group">
-                <label for="exampleInputeventid1">Event Id</label>
-                <div class="row">
-                  <div class="col-lg-9">
-                    <input name="eventid" type="text" class="form-control" id="exampleInputeventid1" aria-describedby="EventHelp" placeholder="Enter Event Id">
-                  </div>
-                  <div class="col-lg-3">
-                    <button class="btn btn-primary" id="fetchEventDetailsBtn">Fetch & Render</button>
-                  </div>
-                </div>
-                
-                <small id="PhoneHelp" class="form-text text-muted"></small>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputTitle1">Title</label>
-                <input name="title" type="text" class="form-control" id="exampleInputTitle1"  placeholder="Title of event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputDescription1">Description</label>
-                <input name="description" type="text" class="form-control" id="exampleInputDescription1"  placeholder="Brief about event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputHost1">Host</label>
-                <input name="host" type="text" class="form-control" id="exampleInputHost1"  placeholder="enter host of event in space seperated format">
-              </div>
-
-              <div class="form-group">
-                <label for="exampleInputVenue1">Venue</label>
-                <input name="venue" type="text" class="form-control" id="exampleInputVenue1"  placeholder="Venue of event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputRules1">Rules</label>
-                <input name="rules" type="text" class="form-control" id="exampleInputRules1"  placeholder="Rules about event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputFee1">Fee</label>
-                <input name="fee" type="number" class="form-control" id="exampleInputFee1"  placeholder="Fee for event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputStart_date1">Start at</label>
-                <input name="start_date" type="date" class="form-control" id="exampleInputStart_date1"  placeholder="starting date of event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEnd_date1">End at</label>
-                <input name="end_date" type="date" class="form-control" id="exampleInputEnd_date1"  placeholder="ending date of event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputStart_time1">Start at</label>
-                <input name="start_time" type="time" class="form-control" id="exampleInputStart_time1"  placeholder="starting time of event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEnd_time1">End at</label>
-                <input name="end_time" type="time" class="form-control" id="exampleInputEnd_time1"  placeholder="ending time of event">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPrerequistes1">Prerequistes</label>
-                <input name="prerequistes" type="text" class="form-control" id="exampleInputPrerequistes1"  placeholder="prerequistes for event">
-              </div>
-              <button type="submit" class="btn btn-primary">Update</button>
-            </form>
-
-
+{% block page_context %}
+<div class="container">
+  <br/><br/><br/><br/><br/><br/><br/>
+  <div class="row">
+    <div class="col-lg-4 ">
+      <p class="txxt-head">Administrators</p>
+      <h3 class="txxt-body">Toolkit</h3> 
+      <ul class="list-group">
+        <a href="/home/"><li class="list-group-item">Create new user</li></a>
+        <a href="/update_member/"><li class="list-group-item">Edit user details</li></a>
+        <a href="/create_event/"><li class="list-group-item">Create new event</li></a>
+        <a href="/update_event/"><li class="list-group-item">Edit event details</li></a>
+        <a href="/logout/"><li class="list-group-item">logout</li></a>
+      </ul><br/><br/><br/><br/><br/><br/><br/>
+    </div>  
+    <div class="col-lg-8 bg-light" style="padding:10px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="txxt-head text-center"><span>Your </span><span style="color:#79589F">Profile</span></p>
+          {% if err %}
+          <div class="alert alert-danger" role="alert">
+            Some error occured while updating Event + {{err}}
           </div>
-        </div>
+          {% endif %}
 
+          {% if msg %}
+          <div class="alert alert-success" role="alert">
+            Event was updated!
+          </div>
+          {% endif %}
+
+          <form method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputeventid1">Event Id</label>
+              <div class="row">
+                <div class="col-lg-9">
+                  <input name="eventid" type="text" class="form-control" id="exampleInputeventid1" aria-describedby="EventHelp" placeholder="Enter Event Id">
+                </div>
+                <div class="col-lg-3">
+                  <button class="btn btn-primary" id="fetchEventDetailsBtn">Fetch & Render</button>
+                </div>
+              </div>
+
+              <small id="PhoneHelp" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputTitle1">Title</label>
+              <input name="title" type="text" class="form-control" id="exampleInputTitle1"  placeholder="Title of event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputDescription1">Description</label>
+              <input name="description" type="text" class="form-control" id="exampleInputDescription1"  placeholder="Brief about event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputHost1">Host</label>
+              <input name="host" type="text" class="form-control" id="exampleInputHost1"  placeholder="enter host of event in space seperated format">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputVenue1">Venue</label>
+              <input name="venue" type="text" class="form-control" id="exampleInputVenue1"  placeholder="Venue of event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputRules1">Rules</label>
+              <input name="rules" type="text" class="form-control" id="exampleInputRules1"  placeholder="Rules about event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFee1">Fee</label>
+              <input name="fee" type="number" class="form-control" id="exampleInputFee1"  placeholder="Fee for event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputStart_date1">Start at</label>
+              <input name="start_date" type="date" class="form-control" id="exampleInputStart_date1"  placeholder="starting date of event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEnd_date1">End at</label>
+              <input name="end_date" type="date" class="form-control" id="exampleInputEnd_date1"  placeholder="ending date of event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputStart_time1">Start at</label>
+              <input name="start_time" type="time" class="form-control" id="exampleInputStart_time1"  placeholder="starting time of event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEnd_time1">End at</label>
+              <input name="end_time" type="time" class="form-control" id="exampleInputEnd_time1"  placeholder="ending time of event">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPrerequistes1">Prerequistes</label>
+              <input name="prerequistes" type="text" class="form-control" id="exampleInputPrerequistes1"  placeholder="prerequistes for event">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+
+
+        </div>
       </div>
 
-
     </div>
-
-
-    <br/><br/>
-    <hr style="background-color: #79589F">
-    <br/><br/>
 
 
   </div>
+
+
   <br/><br/>
-  <footer class="txxt-tail text-center">
-    <p style="color:#79589F;padding-top: 10px;">© Manan | All Rights Reserved.</p>
+  <hr style="background-color: #79589F">
+  <br/><br/>
 
-  </footer>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  <script src="https://use.fontawesome.com/bc4369196c.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('#fetchEventDetailsBtn').click(function(e){
-        e.preventDefault();
-        var event_id=$('#exampleInputeventid1').val();
-        console.log(event_id);
-        $.ajax({
-          type: "POST",
-          url: "/api/getevent/",
-          data: {"eventid": event_id,"csrfmiddlewaretoken": '{{csrf_token}}'},
-          success: function(data)
-          { 
-            $('#exampleInputTitle1').val(data.title);
-            $('#exampleInputFee1').val(data.fee);
-            $('#exampleInputVenue1').val(data.venue);
-            $('#exampleInputDescription1').val(data.description);
-            $('#exampleInputPrerequistes1').val(data.prerequistes);
-            $('#exampleInputHost1').val(data.host);
-            $('#exampleInputRules1').val(data.rules);
-            $('#exampleInputStart_time1').val(data.start_time);
-            $('#exampleInputEnd_time1').val(data.end_time);
-            $('#exampleInputStart_date1').val(data.start_date);
-            $('#exampleInputEnd_date1').val(data.end_date);
-          },
-          error: function(jqXHR, textStatus, errorThrown)
-          {
-            console.log('err');       
-          }
-        });
-      })
+</div>
+<br/><br/>
+{% endblock page_context %}
+{% block page_scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#fetchEventDetailsBtn').click(function(e){
+      e.preventDefault();
+      var event_id=$('#exampleInputeventid1').val();
+      console.log(event_id);
+      $.ajax({
+        type: "POST",
+        url: "/api/getevent/",
+        data: {"eventid": event_id,"csrfmiddlewaretoken": '{{csrf_token}}'},
+        success: function(data)
+        { 
+          $('#exampleInputTitle1').val(data.title);
+          $('#exampleInputFee1').val(data.fee);
+          $('#exampleInputVenue1').val(data.venue);
+          $('#exampleInputDescription1').val(data.description);
+          $('#exampleInputPrerequistes1').val(data.prerequistes);
+          $('#exampleInputHost1').val(data.host);
+          $('#exampleInputRules1').val(data.rules);
+          $('#exampleInputStart_time1').val(data.start_time);
+          $('#exampleInputEnd_time1').val(data.end_time);
+          $('#exampleInputStart_date1').val(data.start_date);
+          $('#exampleInputEnd_date1').val(data.end_date);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+          console.log('err');       
+        }
+      });
     })
+  })
 
-  </script>
-</body>
-</html>
+</script>
+{% endblock page_scripts %}

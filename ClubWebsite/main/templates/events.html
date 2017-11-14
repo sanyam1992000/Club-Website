@@ -1,291 +1,202 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Manan's Events | Programing Club Of YMCA University, Faridabad</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "header.html" %}
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <style>
-  body{
-    font-family: "BentonSans", "Helvetica Neue", sans-serif;
-  }
-  a{
-    color: #000;
-  }
-  .txxt-head{
-    margin-bottom: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: .125em;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-  .txxt-body{
-    color:#79589F;
-    font-weight: bold;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-  .txxt-tail{
-    margin-bottom: 20px;
-    font-size: 15px;
-    letter-spacing: .125em;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-</style>
-<link rel="apple-touch-icon" sizes="57x57" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-16x16.png">
-<link rel="manifest" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/manifest.json">
-<meta name="msapplication-TileColor" content="#79589F">
-<meta name="msapplication-TileImage" content="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/ms-icon-144x144.png">
-<meta name="theme-color" content="#79589F">
-</head>
-<body style="background-color: #fff">
-  <nav class="navbar fixed-top navbar-expand-lg bg-light" style="background-color: #fff;">
-    <a class="navbar-brand" href="/">
-      <img src="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png" width="190" height="65"><span class="badge badge-secondary">V Alpha 0.1</span>
-      
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+{% block page_title %}
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav justify-content-end">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/members">Members</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/events/">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/projects/">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact/">Contact Us</a>
-        </li>
-      </ul>
+<title>Manan's Events | Programing Club Of YMCA University, Faridabad</title>
+{% endblock page_title %}
+
+{% block page_context %}
+<div class="container">
+  <br/><br/><br/><br/>
+  <div class="row">
+    <div class="col-lg-12"><br/>
+      <p class="txxt-head">Here are our</p>
+      <h3 class="txxt-body">Upcoming events</h3>
+      <hr style="background-color: #79589F">
+      <br/>
     </div>
-  </nav>
-
-  <div class="container">
-    <br/><br/><br/><br/>
-    <div class="row">
-      <div class="col-lg-12"><br/>
-        <p class="txxt-head">Here are our</p>
-        <h3 class="txxt-body">Upcoming events</h3>
-        <hr style="background-color: #79589F">
-        <br/>
-      </div>
-    </div>
-    
-    
-
-    
-    
-
-    
-
-
-
-    <div class="row">
-      {% for x in future %}
-
-
-      <div class="col-lg-4" style="margin-top: 10px;">
-        <div class="card border-info" style="width: 20rem;">
-          <!--<img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15f77c274ec%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15f77c274ec%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.015625%22%20y%3D%2297.2%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">-->
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="container text-center" style="padding:6px;background-color:#79589F;color:#fff;border-radius:5px; ">
-                  {{ x.start_date|date:"d M " }}{{ x.start_time|time:"H:i" }}
-                  <br/>  
-                  -  
-                  <br/>
-                  {{ x.end_date|date:"d M" }} {{ x.end_time|time:"H:i" }}
-                </div>
-              </div>
-              <div class="col-lg-8">
-                <h5 class="card-title">{{x.title}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">By 
-                {% for y in x.host.all %}
-                <a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}}</a>
-                {% endfor %}
-                </h6>
-                <p class="card-text"></p>
-                
-                <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#registerModal" data-eventid="{{x.pk}}"  data-eventname="{{x.title}}">Register</a>
-                <a href="#" class="card-link">Share</a>
-              </div>
-
-            </div>
-          </div>
-          <div class="card-footer">
-
-            <a href="/event/detail/{{x.pk}}" class=" float-right">View event details</a>
-          </div>
-        </div>
-      </div>
-
-      {% endfor %}
-    </div>
-
-    <br/>
-
-
-    <div class="row">
-      <div class="col-lg-12">
-        <p class="txxt-head">Here are our</p>
-        <h3 class="txxt-body">Past Events</h3>
-        <hr style="background-color: #79589F">
-        <br/>
-      </div>
-    </div>
-    
-    
-
-    
-
-
-    <div class="row">
-      {% for x in past %}
-
-      <div class="col-lg-4" style="margin-top: 10px;">
-        <div class="card border-info" style="width: 20rem;">
-          <!--<img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15f77c274ec%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15f77c274ec%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.015625%22%20y%3D%2297.2%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">-->
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="container text-center" style="padding:6px;background-color:#79589F;color:#fff;border-radius:5px; ">
-                  {{ x.start_date|date:"d M" }} {{ x.start_time|time:"H:i" }}<br/>  -  <br/>{{ x.end_date|date:"d M" }} {{ x.end_time|time:"H:i" }}
-                </div>
-              </div>
-              <div class="col-lg-8">
-                <h5 class="card-title">{{x.title}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">By 
-                {% for y in x.host.all %}
-                <a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}}</a>
-                {% endfor %}
-                </h6>
-                <p class="card-text"></p>
-                <a href="/event/detail/{{x.pk}}" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">Feedback or Queries</a>
-                
-              </div>
-
-            </div>
-          </div>
-          <div class="card-footer">
-
-            <a href="/event/detail/{{x.pk}}" class=" float-right">View event details</a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    <br/><br/>
-    <hr style="background-color: #79589F">
-    
-
-
   </div>
+  
+  
+
+  
+  
+
+  
+
+
+
+  <div class="row">
+    {% for x in future %}
+
+
+    <div class="col-lg-4" style="margin-top: 10px;">
+      <div class="card border-info" style="width: 20rem;">
+        <!--<img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15f77c274ec%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15f77c274ec%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.015625%22%20y%3D%2297.2%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">-->
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="container text-center" style="padding:6px;background-color:#79589F;color:#fff;border-radius:5px; ">
+                {{ x.start_date|date:"d M " }}{{ x.start_time|time:"H:i" }}
+                <br/>  
+                -  
+                <br/>
+                {{ x.end_date|date:"d M" }} {{ x.end_time|time:"H:i" }}
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <h5 class="card-title">{{x.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">By 
+                {% for y in x.host.all %}
+                <a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}}</a>
+                {% endfor %}
+              </h6>
+              <p class="card-text"></p>
+              
+              <a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#registerModal" data-eventid="{{x.pk}}"  data-eventname="{{x.title}}">Register</a>
+              <a href="#" class="card-link">Share</a>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-footer">
+
+          <a href="/event/detail/{{x.pk}}" class=" float-right">View event details</a>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+
   <br/>
-  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Registration form</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="alert alert-success" role="alert" id="register-success-msg">You have been registered successfully!</div>
-          <form id="registerPublic">
-            <input type="text" class="form-control" id="eventid" hidden>
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="register-fname" class="col-form-label">First name<span style="color:red">*</span></label>
-              <input type="text" class="form-control" id="register-fname" name="register-fname" required>
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <p class="txxt-head">Here are our</p>
+      <h3 class="txxt-body">Past Events</h3>
+      <hr style="background-color: #79589F">
+      <br/>
+    </div>
+  </div>
+  
+  
+
+  
+
+
+  <div class="row">
+    {% for x in past %}
+
+    <div class="col-lg-4" style="margin-top: 10px;">
+      <div class="card border-info" style="width: 20rem;">
+        <!--<img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15f77c274ec%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15f77c274ec%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.015625%22%20y%3D%2297.2%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">-->
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="container text-center" style="padding:6px;background-color:#79589F;color:#fff;border-radius:5px; ">
+                {{ x.start_date|date:"d M" }} {{ x.start_time|time:"H:i" }}<br/>  -  <br/>{{ x.end_date|date:"d M" }} {{ x.end_time|time:"H:i" }}
+              </div>
             </div>
-            <div class="form-group">
-              <label for="register-lname" class="col-form-label">Last name<span style="color:red">*</span></label>
-              <input type="text" class="form-control" id="register-lname" name="register-lname" required>
-            </div>
-            <div class="form-group">
-              <label for="register-email" class="col-form-label">Email<span style="color:red">*</span></label>
-              <input type="email" class="form-control" id="register-email" name="register-email" required>
-            </div>
-            <div class="form-group">
-              <label for="register-phone" class="col-form-label">Phone number<span style="color:red">*</span></label>
-              <input type="text" class="form-control" id="register-phone" name="register-phone" required>
-              <small id="emailHelp" class="form-text text-muted">Don't include country code. We might send you updates regarding this event via sms, We'll never share your phone number with anyone else.</small>
-            </div>
-            <div class="form-group">
-              <label for="register-college" class="col-form-label">College<span style="color:red">*</span></label>
-              <input type="text" class="form-control" id="register-college" name="register-college" required>
-            </div>
-            <div class="form-group">
-              <label for="register-text" class="col-form-label">Any queries/feedback:</label>
-              <textarea class="form-control" id="register-text" name="register-text"></textarea>
+            <div class="col-lg-8">
+              <h5 class="card-title">{{x.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">By 
+                {% for y in x.host.all %}
+                <a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}}</a>
+                {% endfor %}
+              </h6>
+              <p class="card-text"></p>
+              <a href="/event/detail/{{x.pk}}" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">Feedback or Queries</a>
+              
             </div>
 
-            
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" id="btn-register-public">Register</button>
-          </form>
+        </div>
+        <div class="card-footer">
+
+          <a href="/event/detail/{{x.pk}}" class=" float-right">View event details</a>
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  <footer class="txxt-tail text-center">
-    <p style="color:#79589F;padding-top: 10px;">&copy; Manan | All Rights Reserved.</p>
+  <br/><br/>
+  <hr style="background-color: #79589F">
+  
 
-  </footer>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  <script src="https://use.fontawesome.com/bc4369196c.js"></script>
-  <script>
-    $('#registerModal').on('show.bs.modal', function (event) {
+
+</div>
+<br/>
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registration form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-success" role="alert" id="register-success-msg">You have been registered successfully!</div>
+        <form id="registerPublic">
+          <input type="text" class="form-control" id="eventid" hidden>
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="register-fname" class="col-form-label">First name<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="register-fname" name="register-fname" required>
+          </div>
+          <div class="form-group">
+            <label for="register-lname" class="col-form-label">Last name<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="register-lname" name="register-lname" required>
+          </div>
+          <div class="form-group">
+            <label for="register-email" class="col-form-label">Email<span style="color:red">*</span></label>
+            <input type="email" class="form-control" id="register-email" name="register-email" required>
+          </div>
+          <div class="form-group">
+            <label for="register-phone" class="col-form-label">Phone number<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="register-phone" name="register-phone" required>
+            <small id="emailHelp" class="form-text text-muted">Don't include country code. We might send you updates regarding this event via sms, We'll never share your phone number with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="register-college" class="col-form-label">College<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="register-college" name="register-college" required>
+          </div>
+          <div class="form-group">
+            <label for="register-text" class="col-form-label">Any queries/feedback:</label>
+            <textarea class="form-control" id="register-text" name="register-text"></textarea>
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="btn-register-public">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock page_context %}
+{% block page_scripts %}
+<script>
+  $('#registerModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var modal = $(this)
   modal.find('.modal-title').text('Register for ' + button.data('eventname'))
   modal.find('#eventid').val(button.data('eventid'))
-              $('#register-success-msg').hide();
-            $('#registerPublic').show();
-            $('#btn-register-public').show();
+  $('#register-success-msg').hide();
+  $('#registerPublic').show();
+  $('#btn-register-public').show();
 })
 </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('#registerPublic').submit(function(e){
-        e.preventDefault();
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#registerPublic').submit(function(e){
+      e.preventDefault();
         //console.log(event_id);
         $.ajax({
           type: "POST",
@@ -304,8 +215,7 @@
           }
         });
       })
-    })
+  })
 
-  </script>
-</body>
-</html>
+</script>
+{% endblock page_scripts %}

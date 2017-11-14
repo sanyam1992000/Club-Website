@@ -53,13 +53,6 @@ class nearestEventsAPIView(ListAPIView):
 		return future[:3]
 		
 
-@login_required
-def index(request):
-	if not request.user.is_superuser:
-		return redirect('/profile/')
-	return render(request,'addMember.html',{})
-
-
 def login_view(request):
 	if request.method == 'POST':
 	    username = request.POST.get('username', None)
@@ -96,9 +89,11 @@ def register(request):
 		    user.save()
 		    user.profile.batch = batch
 		    user.profile.save()
-		    return redirect('/')
+		    return render(request,'addMember.html',{'msg':"success"})
 		else :
-			return redirect('/home/')
+			return render(request,'addMember.html',{'err':"User already Exist!!"})
+	else:
+		return render(request,'addMember.html',{})
 
 
 @login_required
@@ -170,9 +165,10 @@ def event_list_view(request):
 def event_detailview(request,pk):
 	obj = get_object_or_404(Event,pk=pk)
 	past =0
-	if obj.start_date < datetime.date.today() or (obj.start_date == datetime.date.today() and obj.start_time <datetime.datetime.now().time() ) :
+	counts = registration.objects.filter(eventid=obj.id).count()
+	if obj.end_date < datetime.date.today() or (obj.end_date == datetime.date.today() and obj.end_time <datetime.datetime.now().time() ) :
 		past=1
-	return render(request,'eventDetails.html',{'obj':obj,'past':past})
+	return render(request,'eventDetails.html',{'obj':obj,'past':past,'counts':counts})
 
 @login_required
 def editprofileview(request):

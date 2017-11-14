@@ -1,172 +1,98 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Edit profile | Manan | Programing Club Of YMCA University, Faridabad</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "header.html" %}
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <style>
-  body{
-    font-family: "BentonSans", "Helvetica Neue", sans-serif;
-  }
-  a{
-    color: #000;
-  }
-  .txxt-head{
-    margin-bottom: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: .125em;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-  .txxt-body{
-    color:#79589F;
-    font-weight: bold;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-  .txxt-tail{
-    margin-bottom: 20px;
-    font-size: 15px;
-    letter-spacing: .125em;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-</style>
-</head>
-<body style="background-color: #fff">
-  <nav class="navbar fixed-top navbar-expand-lg bg-light" style="background-color: #fff;">
-    <a class="navbar-brand" href="/">
-      <img src="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png" width="190" height="65"><span class="badge badge-secondary">V Alpha 0.1</span>
-      
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+{% block page_title %}
+<title>Edit profile | Manan | Programing Club Of YMCA University, Faridabad</title>
+{% endblock page_title %}
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav justify-content-end">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/members">Members</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/events/">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/projects/">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact/">Contact Us</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="container">
-    <br/><br/><br/><br/><br/><br/><br/>
-    <div class="row">
-      <div class="col-lg-4 ">
-        <p class="txxt-head">Member</p>
-        <h3 class="txxt-body">Menu</h3> 
-        <ul class="list-group">
-          <li class="list-group-item">Edit profile</li>
-          <a href="/logout/"><li class="list-group-item">Logout</li></a>
-        </ul><br/><br/><br/><br/><br/><br/><br/>
-      </div> 
-      <div class="col-lg-8 bg-light" style="padding:10px;">
-        <div class="row">
-          <div class="col-lg-12">
-            <p class="txxt-head text-center"><span>Your </span><span style="color:#79589F">Profile</span></p>
-            {% if user.is_authenticated %}
-            {% if err %}
-            <div class="alert alert-danger" role="alert">
-              Some error occured while updating your profile
-            </div>
-            {% endif %}
-            {% if msg %}
-            <div class="alert alert-success" role="alert">
-              Your profile was updated!
-            </div>
-            {% endif %}
-            <form method="post" action="/profile/">
-              {% csrf_token %}
-              <div class="form-group">
-                <label for="exampleInputPhone1">Phone number</label>
-                <input name="mobile" type="text" class="form-control" id="exampleInputPhone1" aria-describedby="PhoneHelp" placeholder="Enter Phone Number" value="{{obj.username}}" readonly>
-                <small id="PhoneHelp" class="form-text text-muted">This field is not editable.</small>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputBatch1">Batch</label>
-                <input name="batch" type="text" class="form-control" id="exampleInputBatch1" aria-describedby="BatchHelp" placeholder="Enter Batch" value="{{obj.profile.batch}}" readonly>
-                <small id="BatchHelp" class="form-text text-muted">This field is not editable.</small>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="{{obj.profile.email}}">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputfname">First name</label>
-                <input name="fname" type="text" class="form-control" id="exampleInputfname" aria-describedby="fname" placeholder="Enter first name" value="{{obj.profile.fname}}">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputlname">Last name</label>
-                <input name="lname" type="text" class="form-control" id="exampleInputlname" aria-describedby="lname" placeholder="Enter last name" value="{{obj.profile.lname}}">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputgithub">Github</label>
-                <input name="github" type="text" class="form-control" id="exampleInputgithub" aria-describedby="github" placeholder="Enter github profile link" value="{{obj.profile.github}}">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputfacebook">Facebook</label>
-                <input name="facebook" type="text" class="form-control" id="exampleInputfacebook" aria-describedby="facebook" placeholder="Enter facebook profile link" value="{{obj.profile.facebook}}">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputtwitter">Twitter</label>
-                <input name="twitter" type="text" class="form-control" id="exampleInputtwitter" aria-describedby="twitter" placeholder="Enter twitter profile link" value="{{obj.profile.twitter}}">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputlinkedin">Linkedin</label>
-                <input name="linkedin" type="text" class="form-control" id="exampleInputlinkedin" aria-describedby="linkedin" placeholder="Enter linkedin profile link" value="{{obj.profile.linkedin}}">
-              </div>
-              <button type="submit" class="btn btn-primary">Update</button>
-            </form>
-            {% else %}
-            <h1>Not logged in</h1>
-            {% endif %}
-
+{% block page_context %}
+<div class="container">
+  <br/><br/><br/><br/><br/><br/><br/>
+  <div class="row">
+    <div class="col-lg-4 ">
+      <p class="txxt-head">Member</p>
+      <h3 class="txxt-body">Menu</h3> 
+      <ul class="list-group">
+        <li class="list-group-item">Edit profile</li>
+        <a href="/logout/"><li class="list-group-item">Logout</li></a>
+      </ul><br/><br/><br/><br/><br/><br/><br/>
+    </div> 
+    <div class="col-lg-8 bg-light" style="padding:10px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="txxt-head text-center"><span>Your </span><span style="color:#79589F">Profile</span></p>
+          {% if user.is_authenticated %}
+          {% if err %}
+          <div class="alert alert-danger" role="alert">
+            Some error occured while updating your profile
           </div>
-        </div>
+          {% endif %}
+          {% if msg %}
+          <div class="alert alert-success" role="alert">
+            Your profile was updated!
+          </div>
+          {% endif %}
+          <form method="post" action="/profile/">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputPhone1">Phone number</label>
+              <input name="mobile" type="text" class="form-control" id="exampleInputPhone1" aria-describedby="PhoneHelp" placeholder="Enter Phone Number" value="{{obj.username}}" readonly>
+              <small id="PhoneHelp" class="form-text text-muted">This field is not editable.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputBatch1">Batch</label>
+              <input name="batch" type="text" class="form-control" id="exampleInputBatch1" aria-describedby="BatchHelp" placeholder="Enter Batch" value="{{obj.profile.batch}}" readonly>
+              <small id="BatchHelp" class="form-text text-muted">This field is not editable.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="{{obj.profile.email}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputfname">First name</label>
+              <input name="fname" type="text" class="form-control" id="exampleInputfname" aria-describedby="fname" placeholder="Enter first name" value="{{obj.profile.fname}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputlname">Last name</label>
+              <input name="lname" type="text" class="form-control" id="exampleInputlname" aria-describedby="lname" placeholder="Enter last name" value="{{obj.profile.lname}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputgithub">Github</label>
+              <input name="github" type="text" class="form-control" id="exampleInputgithub" aria-describedby="github" placeholder="Enter github profile link" value="{{obj.profile.github}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputfacebook">Facebook</label>
+              <input name="facebook" type="text" class="form-control" id="exampleInputfacebook" aria-describedby="facebook" placeholder="Enter facebook profile link" value="{{obj.profile.facebook}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputtwitter">Twitter</label>
+              <input name="twitter" type="text" class="form-control" id="exampleInputtwitter" aria-describedby="twitter" placeholder="Enter twitter profile link" value="{{obj.profile.twitter}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputlinkedin">Linkedin</label>
+              <input name="linkedin" type="text" class="form-control" id="exampleInputlinkedin" aria-describedby="linkedin" placeholder="Enter linkedin profile link" value="{{obj.profile.linkedin}}">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% else %}
+          <h1>Not logged in</h1>
+          {% endif %}
 
+        </div>
       </div>
 
-
     </div>
-
-
-    <br/><br/>
-    <hr style="background-color: #79589F">
-    <br/><br/>
 
 
   </div>
-  <br/><br/>
-  <footer class="txxt-tail text-center">
-    <p style="color:#79589F;padding-top: 10px;">© Manan | All Rights Reserved.</p>
 
-  </footer>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  <script src="https://use.fontawesome.com/bc4369196c.js"></script>
-</body>
-</html>
+
+  <br/><br/>
+  <hr style="background-color: #79589F">
+  <br/><br/>
+
+
+</div>
+{% endblock page_context %}
+{% block page_scripts %}
+
+{% endblock page_scripts %}
