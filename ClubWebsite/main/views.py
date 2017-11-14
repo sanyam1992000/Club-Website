@@ -155,7 +155,7 @@ def member_list_view(request):
 
 
 def event_list_view(request):
-	obj = Event.objects.all()
+	obj = Event.objects.order_by('start_date','start_time')
 	past = []
 	future = []
 	for x in obj :
