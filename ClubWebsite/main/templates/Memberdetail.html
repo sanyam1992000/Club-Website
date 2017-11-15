@@ -1,75 +1,144 @@
 {% extends "header.html" %}
 
 {% block page_title %}
-<title>{{user.profile.fname}} {{user.profile.lname}} | Member | Programing Club Of YMCA University, Faridabad</title>
+<title>{{user.profile.fname}} {{user.profile.lname}} | Member | Manan | Programing Club Of YMCA University, Faridabad</title>
 {% endblock page_title %}
 
 {% block page_context %}
-<div class="container-fluid bg-dark" style="">
-  <br/><br/><br/> 
-  <!--<img src="cover.jpg" class="img-fluid">-->
+<br/><br/><br/><br/><br/>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15fc071f8c4%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15fc071f8c4%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274%22%20y%3D%22104.8%22%3E200x200%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="..." class="img-thumbnail">
+    </div>
+    <div class="col-lg-6">
+      <h2 class="txxt-body">{{user.profile.fname}} {{user.profile.lname}}</h2>
+      <span class="badge badge-secondary">Secretary</span>
+      <p>
+        <small class="text-muted">
+          <i class="fa fa-briefcase"></i>&nbsp;Samsung R&D<br/>
+          <i class="fa fa-graduation-cap"></i>&nbsp;{{user.profile.batch}}<br/>
+          <i class="fa fa-phone"></i>&nbsp;&nbsp;+91-{{user.username}}<br/>
+          <i class="fa fa-envelope"></i>&nbsp;&nbsp;{{user.email}}
+        </small>
+      </p>
+    </div>
+    <div class="col-lg-3">
+      <small class="text-muted">
+        <p>Bio</p>
+        <hr>
+      </small>
+      <p style="line-height: 1.1;font-size:80%">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.</p>
+      <small class="text-muted">
+        <p>Social Links</p>
+        <hr>
+        <a href="" target="_new"><i class="fa fa-globe fa-2x"></i></a>&nbsp;
+        <a href="{{user.profile.facebook}}" target="_new"><i class="fa fa-facebook-official fa-2x"></i></a>&nbsp;
+        <a href="mailto:{{user.profile.email}}" target="_new"><i class="fa fa-envelope fa-2x"></i></a>&nbsp;
+        <a href="{{user.profile.github}}" target="_new"><i class="fa fa-github fa-2x"></i></a>&nbsp;
+        <a href="{{user.profile.linkedin}}" target="_new"><i class="fa fa-linkedin fa-2x"></i></a>&nbsp;
+        <a href="{{user.profile.twitter}}" target="_new"><i class="fa fa-twitter fa-2x"></i></a>&nbsp;
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3"><br/>
+      <p class="txxt-head">Profile</p>
+      <h3 class="txxt-body">Menu</h3> 
+      <ul class="list-group">
+        <a href="#Detailed_Profile"><li class="list-group-item">Detailed Profile</li></a>
+        <a href="#Competitive_Coding"><li class="list-group-item">Competitive Coding</li></a>
+        <a href="#Open_source"><li class="list-group-item">Open source</li></a>
+        <a href="#Projects"><li class="list-group-item">Projects</li></a></a>
+        <a href="#Achievements"><li class="list-group-item">Achievements</li></a>
+        <a href="#Events_Hosted"><li class="list-group-item">Events Hosted</li></a>
+      </ul>
+    </div>
+    <div class="col-lg-9" style="background-color: #fff">
+      <small class="text-muted" id="Detailed_Profile">
+        <br/><br/><br/>
+        <br/>
+        <p class="txxt-body">Detailed Profile</p>
+        <hr>
+      </small>
+      <p class="txxt-head">Languages:</p>
+
+      <p class="txxt-head">Frameworks & Libraries:</p>
+
+      <p class="txxt-head">Knows about: </p>
+      <small class="text-muted"  id="Competitive_Coding">
+        <br/><br/><br/><br/>
+        <p class="txxt-body">Competitive Coding</p>
+        <hr>
+      </small>
+      <p class="txxt-head">Hackerearth:</p>
+
+      <p class="txxt-head">Spoj:</p>
+
+      <small class="text-muted" id="Open_source">
+        <br/><br/><br/><br/>
+        <p class="txxt-body">Open_Source</p>
+        <hr>
+      </small>
+      <p class="txxt-head">Github:</p>
+
+      <small class="text-muted" id="Projects">
+        <br/><br/><br/><br/>
+        <p class="txxt-body">Projects</p>
+        <hr>
+      </small>
+      <div class="row">
+        <div class="col-lg-4" style="margin-top: 10px;">
+          <div class="card border-primary" style="width: 20rem;">
+            <!--<img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15f77c274ec%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15f77c274ec%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.015625%22%20y%3D%2297.2%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">-->
+            <div class="card-header">
+              Project Title
+            </div>
+            <div class="card-body">
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    Description
+                  </h6>
+                  <p class="card-text">Technologies used:</p>
+                
+            </div>
+            <div class="card-footer">
+              <a href="#" class="float-right">View Source</a>
+              <span class="float-right">&nbsp; | &nbsp;</span> 
+              <a href="#" class="float-right">View Demo</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <small class="text-muted" id="Achievements">
+        <br/><br/><br/><br/>
+        <p class="txxt-body">Achievements</p>
+        <hr>
+      </small>
+      <p>
+        <ul>
+          <li>...</li>
+          <li>...</li>
+        </ul>
+      </p>
+      <small class="text-muted" id="Events_Hosted">
+        <br/>
+        <p class="txxt-body">Events Hosted</p>
+        <hr>
+      </small>
+      <p>
+        <ul>
+          <li>...</li>
+          <li>...</li>
+        </ul>
+      </p>
+    </div>
+  </div>
 </div>
 
-<div class="container-fluid" style="background-color: #d1d1dd">
-  <div class="container">
-    <h2 class="text-center" style="padding:10px;"><b>{{user.profile.fname}}&nbsp;{{user.profile.lname}}</b>
-      <h6 class="text-center card-subtitle mb-2" style="color:#79589F;">{{user.profile.batch}}</h2>
-        <h4>{{user.username}}</h4>
-        <p>{{user.profile.github}}
-        {{user.profile.facebook}}</p>
-      </div>
+<br/><br/>
+{% endblock page_context %}
+{% block page_scripts %}
 
-    </div>
-
-    <div class="container">
-     <div class="row" style="padding:10px;">
-      <div class="col-lg-3 txxt-body">
-        Start time:  
-      </div>
-      <div class="col-lg-3 txxt-body">
-        End time: 
-      </div>
-      <div class="col-lg-3 txxt-body">
-        Venue: 
-      </div>
-
-      <div class="col-lg-3">
-        <a href="#" class="card-link"  style="padding:15px;background-color:#79589F;color:#fff;border-radius:5px; ">Register Now</a>
-      </div>
-
-    </div>
-  </div>
-  <hr>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-        <p class="txxt-head">Event</p>
-        <h3 class="txxt-body">Menu</h3> 
-        <ul class="list-group">
-          <li class="list-group-item">Event Description</li>
-          <li class="list-group-item">Prerequisite</li>
-          <li class="list-group-item">Pictures</li>
-          <li class="list-group-item">Feedbacks and Queries</li>
-        </ul>
-      </div>
-      <div class="col-lg-9" style="background-color: #f3f3f3"><br/>
-        <h3 class="txxt-body">Event Description</h3>
-        <p></p>
-        <hr style="background-color: #79589F">
-        <h3 class="txxt-body">Prerequisite</h3>
-        <p></p>
-        <hr style="background-color: #79589F">
-        <h3 class="txxt-body">Rules</h3>
-        <p></p>
-        <hr style="background-color: #79589F">
-        <h3 class="txxt-body">Feedbacks and Queries</h3>
-        <hr style="background-color: #79589F">
-      </div>
-    </div>
-  </div>
-
-  <br/><br/>
-  {% endblock page_context %}
-  {% block page_scripts %}
-
-  {% endblock page_scripts %}
+{% endblock page_scripts %}
