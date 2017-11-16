@@ -15,6 +15,20 @@ class Profile(models.Model):
     facebook = models.CharField(max_length=100, blank=True)
     linkedin = models.CharField(max_length=100, blank=True)
     twitter = models.CharField(max_length=100, blank=True)
+    bio = models.TextField(blank=True, null=True)
+    lable = models.CharField(max_length=100 , blank=True)
+    company = models.CharField(max_length=100, blank=True)
+    location = models.CharField(max_length=100,blank=True)
+    frameworks = models.CharField(max_length=500,blank=True)
+    languages = models.CharField(max_length=500,blank=True)
+    achivements = models.CharField(max_length=1000,blank=True)
+    he_profile = models.CharField(max_length=100,blank=True)
+    spoj_profile = models.CharField(max_length=100,blank=True)
+    he_ques = models.IntegerField(default=0)
+    spoj_ques = models.IntegerField(default=0)
+    git_repos = models.IntegerField(default=0)
+    my_website = models.CharField(max_length=100,blank=True)
+    
     def __str__(self):
         return self.fname
 
