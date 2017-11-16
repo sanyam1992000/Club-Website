@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer,CharField,IntegerField
 from .models import Profile,Event,registration
 from django.contrib.auth.models import User
+from rest_framework.validators import UniqueTogetherValidator
 
 class profileSerializer(ModelSerializer):
 	username = CharField(max_length=100)
@@ -100,3 +101,9 @@ class registrationSerializer(ModelSerializer):
 		'query',
 		'College',
 		]
+		validators = [
+            UniqueTogetherValidator(
+                queryset=registration.objects.all(),
+                fields=('mobile', 'eventid')
+            )
+        ]
