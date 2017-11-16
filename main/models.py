@@ -16,7 +16,7 @@ class Profile(models.Model):
     linkedin = models.CharField(max_length=100, blank=True)
     twitter = models.CharField(max_length=100, blank=True)
     bio = models.TextField(blank=True, null=True)
-    lable = models.CharField(max_length=100 , blank=True)
+    label = models.CharField(max_length=100 , blank=True)
     company = models.CharField(max_length=100, blank=True)
     location = models.CharField(max_length=100,blank=True)
     frameworks = models.CharField(max_length=500,blank=True)
@@ -28,7 +28,7 @@ class Profile(models.Model):
     spoj_ques = models.IntegerField(default=0)
     git_repos = models.IntegerField(default=0)
     my_website = models.CharField(max_length=100,blank=True)
-    
+
     def __str__(self):
         return self.fname
 
