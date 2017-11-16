@@ -181,6 +181,20 @@ def editprofileview(request):
 		facebook = request.POST.get('facebook', None)
 		linkedin = request.POST.get('linkedin', None)
 		twitter = request.POST.get('twitter', None)
+		frameworks = request.POST.get('frameworks', None)
+		bio = request.POST.get('bio', None)
+		label = request.POST.get('label', None)
+		location = request.POST.get('location', None)
+		achivements = request.POST.get('achivements', None)
+		company = request.POST.get('company', None)
+		languages = request.POST.get('languages', None)
+		he_profile = request.POST.get('he_profile', None)
+		he_ques = request.POST.get('he_ques', None)
+		spoj_ques = request.POST.get('spoj_ques', None)
+		spoj_profile = request.POST.get('spoj_profile', None)
+		git_repos = request.POST.get('git_repos', None)
+		my_website = request.POST.get('my_website', None)
+
 		try:
 			user=User.objects.get(username=username)
 		except User.DoesNotExist :
@@ -192,6 +206,19 @@ def editprofileview(request):
 		user.profile.facebook = facebook
 		user.profile.twitter = twitter
 		user.profile.linkedin = linkedin
+		user.profile.my_website = my_website
+		user.profile.git_repos = git_repos
+		user.profile.spoj_profile = spoj_profile
+		user.profile.spoj_ques = spoj_ques
+		user.profile.he_ques = he_ques
+		user.profile.he_profile = he_profile
+		user.profile.languages = languages
+		user.profile.frameworks = frameworks
+		user.profile.achivements = achivements
+		user.profile.bio = bio
+		user.profile.label = label
+		user.profile.company = company
+		user.profile.location = location
 		user.profile.save()
 		return render(request,'myprofile.html',{'msg':"profile is saved",'obj':user})
 	else :
@@ -258,6 +285,19 @@ def editmemberprofileview(request):
 		facebook = request.POST.get('facebook', None)
 		linkedin = request.POST.get('linkedin', None)
 		twitter = request.POST.get('twitter', None)
+		frameworks = request.POST.get('frameworks', None)
+		bio = request.POST.get('bio', None)
+		label = request.POST.get('label', None)
+		location = request.POST.get('location', None)
+		achivements = request.POST.get('achivements', None)
+		company = request.POST.get('company', None)
+		languages = request.POST.get('languages', None)
+		he_profile = request.POST.get('he_profile', None)
+		he_ques = request.POST.get('he_ques', None)
+		spoj_ques = request.POST.get('spoj_ques', None)
+		spoj_profile = request.POST.get('spoj_profile', None)
+		git_repos = request.POST.get('git_repos', None)
+		my_website = request.POST.get('my_website', None)
 		try:
 			user=User.objects.get(username=username)
 		except User.DoesNotExist :
@@ -269,6 +309,19 @@ def editmemberprofileview(request):
 		user.profile.facebook = facebook
 		user.profile.twitter = twitter
 		user.profile.linkedin = linkedin
+		user.profile.my_website = my_website
+		user.profile.git_repos = git_repos
+		user.profile.spoj_profile = spoj_profile
+		user.profile.spoj_ques = spoj_ques
+		user.profile.he_ques = he_ques
+		user.profile.he_profile = he_profile
+		user.profile.languages = languages
+		user.profile.frameworks = frameworks
+		user.profile.achivements = achivements
+		user.profile.bio = bio
+		user.profile.label = label
+		user.profile.company = company
+		user.profile.location = location
 		user.profile.save()
 		return render(request,'editMemberDetailsByAdmin.html',{'msg':"profile is saved",'obj':user})
 	else :
@@ -294,6 +347,19 @@ class getprofile_apiview(APIView):
 		'linkedin':user.profile.linkedin,
 		'twitter':user.profile.twitter,
 		'email':user.profile.email,
+		'bio':user.profile.bio,
+		'label':user.profile.label,
+		'location':user.profile.location,
+		'he_profile':user.profile.he_profile,
+		'company':user.profile.company,
+		'spoj_profile':user.profile.spoj_profile,
+		'he_ques':user.profile.he_ques,
+		'spoj_ques':user.profile.spoj_ques,
+		'git_repos':user.profile.git_repos,
+		'my_website':user.profile.my_website,
+		'languages':user.profile.languages,
+		'frameworks':user.profile.frameworks,
+		'achivements':user.profile.achivements,
 		}
 		serializer = profileSerializer(data=data)
 		if serializer.is_valid():

@@ -16,6 +16,19 @@ class profileSerializer(ModelSerializer):
 		'linkedin',
 		'twitter',
 		'email',
+		'bio',
+		'label',
+		'location',
+		'he_profile',
+		'company',
+		'spoj_profile',
+		'he_ques',
+		'spoj_ques',
+		'git_repos',
+		'my_website',
+		'languages',
+		'frameworks',
+		'achivements',
 		]
 
 class hostSerializer(ModelSerializer):
