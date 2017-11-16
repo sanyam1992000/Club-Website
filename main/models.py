@@ -76,3 +76,14 @@ class feedback(models.Model):
 
     def __str__(self):
         return str(self.star) +" "+ self.name 
+
+class project(models.Model):
+    description = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=500)
+    owner = models.ManyToManyField(User)
+    demo_link = models.CharField(max_length=100,blank=True)
+    source = models.CharField(max_length=100)
+    technologies = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.title

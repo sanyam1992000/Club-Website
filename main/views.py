@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Profile,Event,registration,feedback
+from .models import Profile,Event,registration,feedback,project
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -37,6 +37,7 @@ def eventfeedbacksView(request,pk):
 	event=get_object_or_404(Event,pk=pk)
 	obj = feedback.objects.filter(eventid=pk)
 	return render(request,'eventfeedbacks.html',{'obj':obj,'event':event})
+
 def home(request):
 
 	return render(request,'index.html',{})
@@ -159,6 +160,10 @@ def member_list_view(request):
 	print("-----")
 	return render(request,'members.html',{'member':member})
 
+
+def project_list_view(request):
+	obj = project.objects.all()
+	return render(request,'projects.html',{'obj':obj})
 
 def event_list_view(request):
 	obj = Event.objects.order_by('start_date','start_time')
@@ -413,3 +418,26 @@ class getevent_apiview(APIView):
 def memberprofileview(request,username):
 	user = get_object_or_404(User,username=username)
 	return render(request,'Memberdetail.html',{'user':user})
+
+@login_required
+def add_project(request):
+	if request.method == 'POST':
+		title = request.POST.get('title', None)
+		description = request.POST.get('description', None)
+		owner = request.POST.get('owner', None)
+		demo_link = request.POST.get('demo_link', None)
+		source = request.POST.get('source', None)
+		technologies = request.POST.get('technologies', None)
+		proj = project.objects.create(title=title,description=description,demo_link=demo_link,source=source,technologies=technologies)
+		proj.save()
+		a=owner.split()
+		for x in a:
+			try:
+				user=User.objects.get(username=x)
+				proj.owner.add(user)
+			except User.DoesNotExist:
+				pass
+		proj.save()
+		return render(request,'addProject.html',{'msg':"success"})
+	elif request.method == 'GET':
+		return render(request,'addProject.html',{})

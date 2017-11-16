@@ -1,0 +1,11 @@
+{% for x in obj %}
+<h3>{{x.title}}</h3>
+<p>{{x.description}}</p>
+{% for y in x.owner.all %}
+{{y.profile.fname}} {{y.profile.lname}}
+{% endfor %}
+<p>
+{{x.technologies}}
+</p>
+<hr>
+{% endfor %}
