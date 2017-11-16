@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer,CharField,IntegerField
-from .models import Profile,Event,registration
+from .models import Profile,Event,registration,feedback
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueTogetherValidator
 
@@ -107,3 +107,13 @@ class registrationSerializer(ModelSerializer):
                 fields=('mobile', 'eventid')
             )
         ]
+
+class feedbackSerializer(ModelSerializer):
+	class Meta :
+		model = feedback
+		fields = [
+		'eventid',
+		'name',
+		'comment',
+		'star',
+		]

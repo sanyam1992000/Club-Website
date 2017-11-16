@@ -68,3 +68,11 @@ class registration(models.Model):
     def __str__(self):
         return self.fname + str(self.eventid)
 
+class feedback(models.Model):
+    eventid = models.IntegerField()
+    name = models.CharField(max_length=100,blank=True)
+    comment = models.TextField()
+    star = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.star) +" "+ self.name 

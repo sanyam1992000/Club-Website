@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Profile,Event,registration
+from .models import Profile,Event,registration,feedback
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -9,7 +9,7 @@ import datetime
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializers import Event1Serializer,profileSerializer,EventSerializer,registrationSerializer
+from .serializers import feedbackSerializer,Event1Serializer,profileSerializer,EventSerializer,registrationSerializer
 from rest_framework.generics import RetrieveAPIView,ListAPIView,CreateAPIView
 
 
@@ -17,6 +17,10 @@ from rest_framework.generics import RetrieveAPIView,ListAPIView,CreateAPIView
 class RegistrationAPIView(CreateAPIView):
 	queryset = registration.objects.all()
 	serializer_class = registrationSerializer
+
+class FeedbackAPIView(CreateAPIView):
+	queryset = feedback.objects.all()
+	serializer_class = feedbackSerializer
 
 @login_required
 def eventregistrationsView(request,pk):
@@ -26,6 +30,13 @@ def eventregistrationsView(request,pk):
 	obj = registration.objects.filter(eventid=pk)
 	return render(request,'eventregistrations.html',{'obj':obj,'event':event})
 
+@login_required
+def eventfeedbacksView(request,pk):
+	if not request.user.is_superuser:
+		return redirect('/profile/')
+	event=get_object_or_404(Event,pk=pk)
+	obj = feedback.objects.filter(eventid=pk)
+	return render(request,'eventfeedbacks.html',{'obj':obj,'event':event})
 def home(request):
 
 	return render(request,'index.html',{})
