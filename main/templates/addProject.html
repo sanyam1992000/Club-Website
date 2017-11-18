@@ -12,18 +12,20 @@
       <p class="txxt-head">Member</p>
       <h3 class="txxt-body">Menu</h3> 
       <ul class="list-group">
-        <li class="list-group-item">Edit profile</li>
+        <a href="/profile/"><li class="list-group-item">Edit profile</li></a>
+        <a href="/add_project/"><li class="list-group-item">Add project</li></a>
         <a href="/logout/"><li class="list-group-item">Logout</li></a>
+
       </ul><br/><br/><br/><br/><br/><br/><br/>
     </div> 
     <div class="col-lg-8 bg-light" style="padding:10px;">
       <div class="row">
         <div class="col-lg-12">
-          <p class="txxt-head text-center"><span>Your </span><span style="color:#79589F">Profile</span></p>
+          <p class="txxt-head text-center"><span>Add </span><span style="color:#79589F">Project</span></p>
           {% if user.is_authenticated %}
           {% if err %}
           <div class="alert alert-danger" role="alert">
-            Some error occured while updating your profile
+            Some error occured while adding your project
           </div>
           {% endif %}
           {% if msg %}

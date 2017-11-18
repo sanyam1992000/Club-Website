@@ -2,7 +2,7 @@
 from django.conf.urls import url,include
 from django.contrib.auth.views import logout
 from django.conf import settings
-from .views import project_list_view,add_project,eventfeedbacksView,FeedbackAPIView,edit_event,getevent_apiview,eventregistrationsView,editmemberprofileview,member_list_view,RegistrationAPIView,memberprofileview,nearestEventsAPIView,EventlistAPIView,getprofile_apiview,editprofileview,home,register,create_event,login_view,event_list_view,event_detailview
+from .views import contactus,project_list_view,add_project,eventfeedbacksView,FeedbackAPIView,edit_event,getevent_apiview,eventregistrationsView,editmemberprofileview,member_list_view,RegistrationAPIView,memberprofileview,nearestEventsAPIView,EventlistAPIView,getprofile_apiview,editprofileview,home,register,create_event,login_view,event_list_view,event_detailview
 
 urlpatterns = [
     url(r'^$',home,name='home'),
@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^event/detail/(?P<pk>(\d+)+)/$',event_detailview,name="detailview-event"),
     url(R'^update_event/$',edit_event,name="update_event"),
     url(r'^update_member/$',editmemberprofileview,name="update_member"),
+    url(r'^contactus/$',contactus,name='contactus'),
 ]

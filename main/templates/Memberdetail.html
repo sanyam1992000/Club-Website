@@ -5,7 +5,7 @@
 {% endblock page_title %}
 
 {% block page_context %}
-<br/><br/><br/><br/><br/>
+<br/><br/>
 
 <div class="container">
   <div class="row">
@@ -14,10 +14,10 @@
     </div>
     <div class="col-lg-6">
       <h2 class="txxt-body">{{user.profile.fname}} {{user.profile.lname}}</h2>
-      <span class="badge badge-secondary">Secretary</span>
+      <span class="badge badge-secondary">{{user.profile.label}}</span>
       <p>
         <small class="text-muted">
-          <i class="fa fa-briefcase"></i>&nbsp;Samsung R&D<br/>
+          <i class="fa fa-briefcase"></i>&nbsp;{{user.profile.company}}<br/>
           <i class="fa fa-graduation-cap"></i>&nbsp;{{user.profile.batch}}<br/>
           <i class="fa fa-phone"></i>&nbsp;&nbsp;+91-{{user.username}}<br/>
           <i class="fa fa-envelope"></i>&nbsp;&nbsp;{{user.email}}
@@ -29,11 +29,11 @@
         <p>Bio</p>
         <hr>
       </small>
-      <p style="line-height: 1.1;font-size:80%">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.</p>
+      <p style="line-height: 1.1;font-size:80%">{{user.profile.bio}}</p>
       <small class="text-muted">
         <p>Social Links</p>
         <hr>
-        <a href="" target="_new"><i class="fa fa-globe fa-2x"></i></a>&nbsp;
+        <a href="{{user.profile.my_website}}" target="_new"><i class="fa fa-globe fa-2x"></i></a>&nbsp;
         <a href="{{user.profile.facebook}}" target="_new"><i class="fa fa-facebook-official fa-2x"></i></a>&nbsp;
         <a href="mailto:{{user.profile.email}}" target="_new"><i class="fa fa-envelope fa-2x"></i></a>&nbsp;
         <a href="{{user.profile.github}}" target="_new"><i class="fa fa-github fa-2x"></i></a>&nbsp;
@@ -59,29 +59,28 @@
       <small class="text-muted" id="Detailed_Profile">
         <br/><br/><br/>
         <br/>
-        <p class="txxt-body">Detailed Profile</p>
+        <p class="txxt-body">Detailed Profile:</p>
         <hr>
       </small>
-      <p class="txxt-head">Languages:</p>
+      <p class="txxt-head">Languages: {{user.profile.languages}}</p>
 
-      <p class="txxt-head">Frameworks & Libraries:</p>
+      <p class="txxt-head">Frameworks & Libraries: {{user.profile.frameworks}}</p>
 
-      <p class="txxt-head">Knows about: </p>
       <small class="text-muted"  id="Competitive_Coding">
         <br/><br/><br/><br/>
         <p class="txxt-body">Competitive Coding</p>
         <hr>
       </small>
-      <p class="txxt-head">Hackerearth:</p>
+      <p class="txxt-head"><a href=" {{user.profile.he_profile}}">Hackerearth</a>: {{user.profile.he_quest}} </p>
 
-      <p class="txxt-head">Spoj:</p>
+      <p class="txxt-head"><a href=" {{user.profile.spoj_profile}}">Spoj</a>: {{user.profile.spoj_quest}}</p>
 
       <small class="text-muted" id="Open_source">
         <br/><br/><br/><br/>
         <p class="txxt-body">Open_Source</p>
         <hr>
       </small>
-      <p class="txxt-head">Github:</p>
+      <p class="txxt-head"><a href=" {{user.profile.github}}">Github</a>: {{user.profile.git_repos}}</p>
 
       <small class="text-muted" id="Projects">
         <br/><br/><br/><br/>
@@ -118,8 +117,7 @@
       </small>
       <p>
         <ul>
-          <li>...</li>
-          <li>...</li>
+          {{user.profile.achivements}}
         </ul>
       </p>
       <small class="text-muted" id="Events_Hosted">

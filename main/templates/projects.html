@@ -1,11 +1,165 @@
-{% for x in obj %}
-<h3>{{x.title}}</h3>
-<p>{{x.description}}</p>
-{% for y in x.owner.all %}
-{{y.profile.fname}} {{y.profile.lname}}
+{% extends "header.html" %}
+
+{% block page_title %}
+
+<title>Projects | Manan | Programing Club Of YMCA University, Faridabad</title>
+{% endblock page_title %}
+
+{% block page_context %}
+<div class="container">
+  <br/><br/>
+  <div class="row">
+    <div class="col-lg-12"><br/>
+      <p class="txxt-head">Here are our</p>
+      <h3 class="txxt-body">Projects</h3>
+      <hr style="background-color: #79589F">
+      <br/>
+    </div>
+  </div>
+  
+  
+
+  
+  
+
+  
+
+
+
+  <div class="row">
+    {% for x in obj %}
+
+
+    <div class="col-lg-4" style="margin-top: 10px;">
+     <div class="card border-primary" style="width: 20rem;">
+
+      <div class="card-header">
+       {{x.title}}
+     </div>
+     <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">
+      By {% for y in x.owner.all %}
+      {{y.profile.fname}} {{y.profile.lname}}
+      {% endfor %}        
+      </h6>
+      <small>{{x.description}}</small>
+
+      <p class="card-text"><span class="text-muted">Technologies used:</span>{{x.technologies}}</p>
+
+    </div>
+    <div class="card-footer">
+      <a href="{{x.source}}" class="float-right">View Source</a>
+      <span class="float-right">&nbsp; | &nbsp;</span> 
+      <a href="{{x.demo_link}}" class="float-right">View Demo</a>
+    </div>
+  </div>
+</div>
+
 {% endfor %}
-<p>
-{{x.technologies}}
-</p>
-<hr>
-{% endfor %}
+</div>
+
+<br/>
+
+
+
+
+
+
+<br/><br/>
+<hr style="background-color: #79589F">
+
+
+
+</div>
+
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registration form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-success" role="alert" id="register-success-msg">You have been registered successfully!</div>
+        <form id="registerPublic">
+          <input type="text" class="form-control" id="eventid" hidden>
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="register-fname" class="col-form-label">First name<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="register-fname" name="register-fname" required>
+          </div>
+          <div class="form-group">
+            <label for="register-lname" class="col-form-label">Last name<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="register-lname" name="register-lname" required>
+          </div>
+          <div class="form-group">
+            <label for="register-email" class="col-form-label">Email<span style="color:red">*</span></label>
+            <input type="email" class="form-control" id="register-email" name="register-email" required>
+          </div>
+          <div class="form-group">
+            <label for="register-phone" class="col-form-label">Phone number<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="register-phone" name="register-phone" required>
+            <small id="emailHelp" class="form-text text-muted">Don't include country code. We might send you updates regarding this event via sms, We'll never share your phone number with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="register-college" class="col-form-label">College<span style="color:red">*</span></label>
+            <input type="text" class="form-control" id="register-college" name="register-college" required>
+          </div>
+          <div class="form-group">
+            <label for="register-text" class="col-form-label">Any queries/feedback:</label>
+            <textarea class="form-control" id="register-text" name="register-text"></textarea>
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="btn-register-public">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock page_context %}
+{% block page_scripts %}
+<script>
+  $('#registerModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var modal = $(this)
+  modal.find('.modal-title').text('Register for ' + button.data('eventname'))
+  modal.find('#eventid').val(button.data('eventid'))
+  $('#register-success-msg').hide();
+  $('#registerPublic').show();
+  $('#btn-register-public').show();
+})
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#registerPublic').submit(function(e){
+      e.preventDefault();
+        //console.log(event_id);
+        $.ajax({
+          type: "POST",
+          url: "/api/event/register/",
+          data: {"csrfmiddlewaretoken": '{{csrf_token}}',"eventid": $('#eventid').val(),"fname": $('#register-fname').val(),"lname": $('#register-lname').val(),"email":$('#register-email').val(),"College":$('#register-college').val(),"query":$('#register-text').val(),"mobile":$('#register-phone').val()},
+          success: function(data)
+          { 
+            //console.log('Done'+data);
+            $('#register-success-msg').show();
+            $('#registerPublic').hide();
+            $('#btn-register-public').hide();
+          },
+          error: function(jqXHR, textStatus, errorThrown)
+          {
+            console.log('err');       
+          }
+        });
+      })
+  })
+
+</script>
+{% endblock page_scripts %}

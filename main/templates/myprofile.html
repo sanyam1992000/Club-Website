@@ -12,7 +12,8 @@
       <p class="txxt-head">Member</p>
       <h3 class="txxt-body">Menu</h3> 
       <ul class="list-group">
-        <li class="list-group-item">Edit profile</li>
+        <a href="/profile/"><li class="list-group-item">Edit profile</li></a>
+        <a href="/add_project/"><li class="list-group-item">Add project</li></a>
         <a href="/logout/"><li class="list-group-item">Logout</li></a>
       </ul><br/><br/><br/><br/><br/><br/><br/>
     </div> 
@@ -70,6 +71,47 @@
             <div class="form-group">
               <label for="exampleInputlinkedin">Linkedin</label>
               <input name="linkedin" type="text" class="form-control" id="exampleInputlinkedin" aria-describedby="linkedin" placeholder="Enter linkedin profile link" value="{{obj.profile.linkedin}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputframeworks">Frameworks</label>
+              <input name="frameworks" type="text" class="form-control" id="exampleInputframeworks" aria-describedby="frameworks" placeholder="Enter all the frameworks you know about" value="{{obj.profile.frameworks}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputbio">Bio</label>
+              <input name="bio" type="text" class="form-control" id="exampleInputbio" aria-describedby="bio" placeholder="Your short bio" value="{{obj.profile.bio}}" maxlength="300">
+              <small id="BioHelp" class="form-text text-muted">Maximum allowed characters is 300.</small>
+
+            </div>
+            <div class="form-group">
+              <label for="exampleInputlocation">Your current location</label>
+              <input name="location" type="text" class="form-control" id="exampleInputlocation" aria-describedby="location" placeholder="Your current location" value="{{obj.profile.location}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputachivements">Achivements</label>
+              <input name="achivements" type="text" class="form-control" id="exampleInputachivements" aria-describedby="achivements" placeholder="Enter all of your achivements" value="{{obj.profile.achivements}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputcompany">Company</label>
+              <input name="company" type="text" class="form-control" id="exampleInputcompany" aria-describedby="company" placeholder="Enter the company you work in" value="{{obj.profile.company}}">
+              <small id="BioHelp" class="form-text text-muted">Leave this blank if you are still a student.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputlanguages">Languages</label>
+              <input name="languages" type="text" class="form-control" id="exampleInputlanguages" aria-describedby="languages" placeholder="Enter all programing languages you work on" value="{{obj.profile.languages}}">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputhe_profile">Your hackerearth profile link</label>
+              <input name="he_profile" type="text" class="form-control" id="exampleInputhe_profile" aria-describedby="he_profile" placeholder="Your hackerearth profile link" value="{{obj.profile.he_profile}}">
+              <small id="BioHelp" class="form-text text-muted">We will automatically fetch the count of questions solved.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputspoj_profile">Your spoj profile link</label>
+              <input name="spoj_profile" type="text" class="form-control" id="exampleInputspoj_profile" aria-describedby="spoj_profile" placeholder="Your spoj profile link" value="{{obj.profile.spoj_profile}}">
+              <small id="BioHelp" class="form-text text-muted">We will automatically fetch the count of questions solved.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputmy_website">Your personal website</label>
+              <input name="my_website" type="text" class="form-control" id="exampleInputmy_website" aria-describedby="my_website" placeholder="Your website url" value="{{obj.profile.my_website}}">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
           </form>

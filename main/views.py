@@ -43,6 +43,10 @@ def home(request):
 	return render(request,'index.html',{})
 
 
+def contactus(request):
+
+	return render(request,'contactus.html',{})
+
 class EventlistAPIView(ListAPIView):
 	queryset = Event.objects.order_by('start_date','start_time')
 	serializer_class = EventSerializer
@@ -149,7 +153,7 @@ def member_list_view(request):
 			m2=x.profile.batch
 	print(m1,m2)
 	member = []
-	for x in range(m2,m1+1):
+	for x in range(m1,m2-1,-1):
 		member.append({'batch':x,'users':[]})
 
 	print(member)
@@ -169,14 +173,15 @@ def event_list_view(request):
 	obj = Event.objects.order_by('start_date','start_time')
 	past = []
 	future = []
+	live = []
 	for x in obj :
 		if x.end_date <datetime.date.today():
 			past.append(x)
 		elif x.end_date ==datetime.date.today() and x.end_time < datetime.datetime.now().time():
-			past.append(x)
+			live.append(x)
 		else :
 			future.append(x)
-	return render(request,'events.html',{'past':past,'future':future})
+	return render(request,'events.html',{'past':past,'future':future,'live':live})
 
 def event_detailview(request,pk):
 	obj = get_object_or_404(Event,pk=pk)
@@ -199,16 +204,12 @@ def editprofileview(request):
 		twitter = request.POST.get('twitter', None)
 		frameworks = request.POST.get('frameworks', None)
 		bio = request.POST.get('bio', None)
-		label = request.POST.get('label', None)
 		location = request.POST.get('location', None)
 		achivements = request.POST.get('achivements', None)
 		company = request.POST.get('company', None)
 		languages = request.POST.get('languages', None)
 		he_profile = request.POST.get('he_profile', None)
-		he_ques = request.POST.get('he_ques', None)
-		spoj_ques = request.POST.get('spoj_ques', None)
 		spoj_profile = request.POST.get('spoj_profile', None)
-		git_repos = request.POST.get('git_repos', None)
 		my_website = request.POST.get('my_website', None)
 
 		try:
@@ -223,16 +224,12 @@ def editprofileview(request):
 		user.profile.twitter = twitter
 		user.profile.linkedin = linkedin
 		user.profile.my_website = my_website
-		user.profile.git_repos = git_repos
 		user.profile.spoj_profile = spoj_profile
-		user.profile.spoj_ques = spoj_ques
-		user.profile.he_ques = he_ques
 		user.profile.he_profile = he_profile
 		user.profile.languages = languages
 		user.profile.frameworks = frameworks
 		user.profile.achivements = achivements
 		user.profile.bio = bio
-		user.profile.label = label
 		user.profile.company = company
 		user.profile.location = location
 		user.profile.save()
@@ -309,10 +306,7 @@ def editmemberprofileview(request):
 		company = request.POST.get('company', None)
 		languages = request.POST.get('languages', None)
 		he_profile = request.POST.get('he_profile', None)
-		he_ques = request.POST.get('he_ques', None)
-		spoj_ques = request.POST.get('spoj_ques', None)
 		spoj_profile = request.POST.get('spoj_profile', None)
-		git_repos = request.POST.get('git_repos', None)
 		my_website = request.POST.get('my_website', None)
 		try:
 			user=User.objects.get(username=username)
@@ -326,10 +320,7 @@ def editmemberprofileview(request):
 		user.profile.twitter = twitter
 		user.profile.linkedin = linkedin
 		user.profile.my_website = my_website
-		user.profile.git_repos = git_repos
 		user.profile.spoj_profile = spoj_profile
-		user.profile.spoj_ques = spoj_ques
-		user.profile.he_ques = he_ques
 		user.profile.he_profile = he_profile
 		user.profile.languages = languages
 		user.profile.frameworks = frameworks
