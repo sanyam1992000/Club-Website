@@ -1,1 +1,194 @@
-contact
+{% extends "header.html" %}
+
+{% block page_title %}
+<title>Contact Manan | Programing Club Of YMCA University, Faridabad</title>
+{% endblock page_title %}
+
+{% block page_context %}
+
+<div class="container">
+	<br/><br/>
+	<div class="row">
+		<div class="col-lg-6">
+			<h3 class="txxt-body">Contact Us</h3> 
+
+			<p class="txxt-head">We are always ready to listen to you and we are always happy to help.<br/>You can contact us for any of the reasons below</p>
+			<p class="txxt-head">
+				~ Any kind of doubt regarding to any technical, coding, computer related topic
+			</p>
+			<p class="txxt-head">
+				~ Enquiries regarding any of our session or workshop
+			</p>
+			<p class="txxt-head">
+				~ Request a workshop, handson session or a private session
+			</p>
+			<p class="txxt-head">
+				~ General questions like, How should i start? What should i start? When should i start?
+			</p>
+			<p class="txxt-head">
+				~ Any kind of query related to manan and its working and about members
+			</p>
+
+		</p>
+
+		<br/><br/><br/><br/>
+	</div> 
+	<div class="col-lg-6">
+		<div class="row">
+			<div class="col-lg-12">
+				<p class="txxt-head text-center"><span>How to </span><span style="color:#79589F">Contact</span></p><br/>
+				<p class="txxt-head text-center">Email: contact@manantechnosurge.com</p><br/>
+				<p class="txxt-head text-center"><span>Reach out to our </span><span style="color:#79589F">Joint Secretaries</span></p><br/>
+				<p class="txxt-head text-center">Gaurav : +91 8860449388</p>
+				<p class="txxt-head text-center">Naman : +91 8222831183</p>
+				<p class="txxt-head text-center">Hemant : +91 8930572630</p><br/>
+				<p class="txxt-head text-center"><span>Reach out to our </span><span style="color:#79589F">Secretaries</span></p><br/>
+				<p class="txxt-head text-center">Ayushi : +91 9911208281</p>
+				<p class="txxt-head text-center">Sameer : +91 9068718241</p>
+				<p class="txxt-head text-center">Vipin : +91 9643763712</p>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<hr style="background-color: #79589F">
+
+
+
+</div>
+
+
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Registration form</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-success" role="alert" id="register-success-msg">You have been registered successfully!</div>
+				<form id="registerPublic">
+					<input type="text" class="form-control" id="eventid" hidden>
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="register-fname" class="col-form-label">First name<span style="color:red">*</span></label>
+						<input type="text" class="form-control" id="register-fname" name="register-fname" required>
+					</div>
+					<div class="form-group">
+						<label for="register-lname" class="col-form-label">Last name<span style="color:red">*</span></label>
+						<input type="text" class="form-control" id="register-lname" name="register-lname" required>
+					</div>
+					<div class="form-group">
+						<label for="register-email" class="col-form-label">Email<span style="color:red">*</span></label>
+						<input type="email" class="form-control" id="register-email" name="register-email" required>
+					</div>
+					<div class="form-group">
+						<label for="register-phone" class="col-form-label">Phone number<span style="color:red">*</span></label>
+						<input type="text" class="form-control" id="register-phone" name="register-phone" required>
+						<small id="emailHelp" class="form-text text-muted">Don't include country code. We might send you updates regarding this event via sms, We'll never share your phone number with anyone else.</small>
+					</div>
+					<div class="form-group">
+						<label for="register-college" class="col-form-label">College<span style="color:red">*</span></label>
+						<input type="text" class="form-control" id="register-college" name="register-college" required>
+					</div>
+					<div class="form-group">
+						<label for="register-text" class="col-form-label">Any queries/feedback:</label>
+						<textarea class="form-control" id="register-text" name="register-text"></textarea>
+					</div>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" id="btn-register-public">Register</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock page_context %}
+{% block page_scripts %}
+<script>
+	$('#registerModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var modal = $(this)
+        console.log(button.data('eventname'));
+        modal.find('.modal-title').text('Register for ' + button.data('eventname'))
+        modal.find('#eventid').val(button.data('eventid'))
+        $('#register-success-msg').hide();
+        $('#registerPublic').show();
+        $('#btn-register-public').show();
+    })
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+	dataToBeDisplayed='';
+
+	$(document).ready(function(){
+		$.ajax({
+			type: "GET",
+			url: "/api/nearevents/",
+			data: {},
+			success: function(data)
+			{ 
+
+          //data=JSON.stringify(data);
+          console.log(data);
+          for(var i=0;i<data.length;i++){
+          	hosts='';
+            //console.log(data[i]);
+            for(var j=0;j<data[i].host.length;j++){
+              //console.log(data[i].host[j].username);
+              hosts+=data[i].host[j].profile.fname;
+              if(j!=data[i].host.length-1){
+              	hosts+=", ";
+              }
+          }
+
+          dataToBeDisplayed+='<div class="card mx-auto" style="width: 85%"><div class="card-body"><div class="row"><div class="col-lg-4"><div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">'+data[i].start_date+'<br/>'+data[i].start_time+'<br/>  -  <br/>'+data[i].end_date+'<br/>'+data[i].end_time+'</div></div><div class="col-lg-8"><a href="/event/detail/'+data[i].pk+'/"><h4 class="card-title">'+data[i].title+'</h4></a><h6 class="card-subtitle mb-2 text-muted">By '+hosts+'</h6><p class="card-text"></p><a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#registerModal" data-eventid="'+data[i].pk+'"  data-eventname="'+data[i].title+'">Register</a><a href="/event/detail/'+data[i].pk+'/" class="card-link">Know more</a></div></div></div></div><br/>'
+      }
+      $('#UpcomingEventsView').html(dataToBeDisplayed);
+  },
+  error: function(data)
+  {
+  	console.log('error');       
+  }
+});
+
+	})
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#registerPublic').submit(function(e){
+			e.preventDefault();
+			var event_id=$('#exampleInputeventid1').val();
+        //console.log(event_id);
+        $.ajax({
+        	type: "POST",
+        	url: "/api/event/register/",
+        	data: {"csrfmiddlewaretoken": '{{csrf_token}}',"eventid": $('#eventid').val(),"fname": $('#register-fname').val(),"lname": $('#register-lname').val(),"email":$('#register-email').val(),"College":$('#register-college').val(),"query":$('#register-text').val(),"mobile":$('#register-phone').val()},
+        	success: function(data)
+        	{ 
+            //console.log('Done'+data);
+            $('#register-success-msg').show();
+            $('#registerPublic').hide();
+            $('#btn-register-public').hide();
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+        	console.log('err');       
+        }
+    });
+    })
+	})
+
+</script>
+
+
+
+{% endblock page_scripts %}
