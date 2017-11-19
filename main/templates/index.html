@@ -118,7 +118,10 @@
 
           //data=JSON.stringify(data);
           console.log(data);
-          for(var i=0;i<data.length;i++){
+          if(data.length==0){
+            dataToBeDisplayed='<h3 class="txxt-body">Hang On!</h3><h5>We will be back with some amazing events soon.</h5>';
+          }else{
+            for(var i=0;i<data.length;i++){
             hosts='';
             //console.log(data[i]);
             for(var j=0;j<data[i].host.length;j++){
@@ -130,6 +133,8 @@
             }
             
             dataToBeDisplayed+='<div class="card mx-auto" style="width: 85%"><div class="card-body"><div class="row"><div class="col-lg-4"><div class="container text-center" style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; ">'+data[i].start_date+'<br/>'+data[i].start_time+'<br/>  -  <br/>'+data[i].end_date+'<br/>'+data[i].end_time+'</div></div><div class="col-lg-8"><a href="/event/detail/'+data[i].pk+'/"><h4 class="card-title">'+data[i].title+'</h4></a><h6 class="card-subtitle mb-2 text-muted">By '+hosts+'</h6><p class="card-text"></p><a href="#" class="card-link"  style="padding:10px;background-color:#79589F;color:#fff;border-radius:5px; " data-toggle="modal" data-target="#registerModal" data-eventid="'+data[i].pk+'"  data-eventname="'+data[i].title+'">Register</a><a href="/event/detail/'+data[i].pk+'/" class="card-link">Know more</a></div></div></div></div><br/>'
+          }
+          
           }
           $('#UpcomingEventsView').html(dataToBeDisplayed);
         },
