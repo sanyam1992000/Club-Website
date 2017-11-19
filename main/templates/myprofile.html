@@ -2,11 +2,16 @@
 
 {% block page_title %}
 <title>Edit profile | Manan | Programing Club Of YMCA University, Faridabad</title>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
 {% endblock page_title %}
 
 {% block page_context %}
 <div class="container">
-  <br/><br/><br/><br/><br/><br/><br/>
+  <br/><br/>
   <div class="row">
     <div class="col-lg-4 ">
       <p class="txxt-head">Member</p>
@@ -46,49 +51,94 @@
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="{{obj.profile.email}}">
+              <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="{{obj.profile.email}}" required>
             </div>
             <div class="form-group">
               <label for="exampleInputfname">First name</label>
-              <input name="fname" type="text" class="form-control" id="exampleInputfname" aria-describedby="fname" placeholder="Enter first name" value="{{obj.profile.fname}}">
+              <input name="fname" type="text" class="form-control" id="exampleInputfname" aria-describedby="fname" placeholder="Enter first name" value="{{obj.profile.fname}}" required>
             </div>
             <div class="form-group">
               <label for="exampleInputlname">Last name</label>
-              <input name="lname" type="text" class="form-control" id="exampleInputlname" aria-describedby="lname" placeholder="Enter last name" value="{{obj.profile.lname}}">
+              <input name="lname" type="text" class="form-control" id="exampleInputlname" aria-describedby="lname" placeholder="Enter last name" value="{{obj.profile.lname}}" required>
             </div>
             <div class="form-group">
               <label for="exampleInputgithub">Github</label>
-              <input name="github" type="text" class="form-control" id="exampleInputgithub" aria-describedby="github" placeholder="Enter github profile link" value="{{obj.profile.github}}">
+              <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">https://github.com/</div>
+                <input name="github" type="text" class="form-control" id="exampleInputgithub" aria-describedby="github" placeholder="Enter github profile link" value="{{obj.profile.github}}" required>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleInputfacebook">Facebook</label>
-              <input name="facebook" type="text" class="form-control" id="exampleInputfacebook" aria-describedby="facebook" placeholder="Enter facebook profile link" value="{{obj.profile.facebook}}">
+              <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">https://facebook.com/</div>
+                <input name="facebook" type="text" class="form-control" id="exampleInputfacebook" aria-describedby="facebook" placeholder="Enter facebook profile link" value="{{obj.profile.facebook}}" required>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleInputtwitter">Twitter</label>
-              <input name="twitter" type="text" class="form-control" id="exampleInputtwitter" aria-describedby="twitter" placeholder="Enter twitter profile link" value="{{obj.profile.twitter}}">
+              <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">https://twitter.com/</div>
+                <input name="twitter" type="text" class="form-control" id="exampleInputtwitter" aria-describedby="twitter" placeholder="Enter twitter profile link" value="{{obj.profile.twitter}}" required>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleInputlinkedin">Linkedin</label>
-              <input name="linkedin" type="text" class="form-control" id="exampleInputlinkedin" aria-describedby="linkedin" placeholder="Enter linkedin profile link" value="{{obj.profile.linkedin}}">
+              <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">https://linkedin.com/in/</div>
+                <input name="linkedin" type="text" class="form-control" id="exampleInputlinkedin" aria-describedby="linkedin" placeholder="Enter linkedin profile link" value="{{obj.profile.linkedin}}" required>
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleInputframeworks">Frameworks</label>
-              <input name="frameworks" type="text" class="form-control" id="exampleInputframeworks" aria-describedby="frameworks" placeholder="Enter all the frameworks you know about" value="{{obj.profile.frameworks}}">
+              <input  name="frameworks" type="text" id="input-tags" class="demo-default" value="{{obj.profile.frameworks}}">
+              <small id="BioHelp" class="form-text text-muted">Use comma ',' to add a new framework</small>
+              <script>
+                $('#input-tags').selectize({
+                  plugins: ['remove_button'],
+                  delimiter: ',',
+                  persist: false,
+                  createOnBlur: true,
+                  create: function(input) {
+                    return {
+                      value: input,
+                      text: input
+                    }
+                  }
+                });
+              </script>
+
             </div>
             <div class="form-group">
               <label for="exampleInputbio">Bio</label>
-              <input name="bio" type="text" class="form-control" id="exampleInputbio" aria-describedby="bio" placeholder="Your short bio" value="{{obj.profile.bio}}" maxlength="300">
+              <textarea name="bio" class="form-control" id="exampleInputbio" aria-describedby="bio" placeholder="Your short bio" maxlength="300" required>{{obj.profile.bio}}</textarea>
               <small id="BioHelp" class="form-text text-muted">Maximum allowed characters is 300.</small>
 
             </div>
             <div class="form-group">
               <label for="exampleInputlocation">Your current location</label>
-              <input name="location" type="text" class="form-control" id="exampleInputlocation" aria-describedby="location" placeholder="Your current location" value="{{obj.profile.location}}">
+              <input name="location" type="text" class="form-control" id="exampleInputlocation" aria-describedby="location" placeholder="Your current location" value="{{obj.profile.location}}" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputachivements">Achivements</label>
-              <input name="achivements" type="text" class="form-control" id="exampleInputachivements" aria-describedby="achivements" placeholder="Enter all of your achivements" value="{{obj.profile.achivements}}">
+              <label for="exampleInputachivements">Achievements</label>
+              <input  name="achivements" type="text" id="input-tags-achievements" class="demo-default" value="{{obj.profile.achivements}}">
+              <small id="BioHelp" class="form-text text-muted">Press add to add a new achievements</small>
+
+              <script>
+                $('#input-tags-achievements').selectize({
+                  plugins: ['remove_button'],
+                  delimiter: '--',
+                  persist: false,
+                  createOnBlur: true,
+                  create: function(input) {
+                    return {
+                      value: input,
+                      text: input
+                    }
+                  }
+                });
+              </script>
+
             </div>
             <div class="form-group">
               <label for="exampleInputcompany">Company</label>
@@ -97,21 +147,43 @@
             </div>
             <div class="form-group">
               <label for="exampleInputlanguages">Languages</label>
-              <input name="languages" type="text" class="form-control" id="exampleInputlanguages" aria-describedby="languages" placeholder="Enter all programing languages you work on" value="{{obj.profile.languages}}">
+              <input  name="languages" type="text" id="input-tags-languages" class="demo-default" value="{{obj.profile.languages}}" required>
+              <small id="BioHelp" class="form-text text-muted">Use comma ',' to add a new language</small>
+
+              <script>
+                $('#input-tags-languages').selectize({
+                  plugins: ['remove_button'],
+                  delimiter: ',',
+                  persist: false,
+                  createOnBlur: true,
+                  create: function(input) {
+                    return {
+                      value: input,
+                      text: input
+                    }
+                  }
+                });
+              </script>
             </div>
             <div class="form-group">
               <label for="exampleInputhe_profile">Your hackerearth profile link</label>
-              <input name="he_profile" type="text" class="form-control" id="exampleInputhe_profile" aria-describedby="he_profile" placeholder="Your hackerearth profile link" value="{{obj.profile.he_profile}}">
+              <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">https://hackerearth.com/@</div>
+                <input name="he_profile" type="text" class="form-control" id="exampleInputhe_profile" aria-describedby="he_profile" placeholder="Your hackerearth profile link" value="{{obj.profile.he_profile}}" required>
+              </div>
               <small id="BioHelp" class="form-text text-muted">We will automatically fetch the count of questions solved.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputspoj_profile">Your spoj profile link</label>
-              <input name="spoj_profile" type="text" class="form-control" id="exampleInputspoj_profile" aria-describedby="spoj_profile" placeholder="Your spoj profile link" value="{{obj.profile.spoj_profile}}">
+              <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">http://spoj.com/users/</div>
+                <input name="spoj_profile" type="text" class="form-control" id="exampleInputspoj_profile" aria-describedby="spoj_profile" placeholder="Your spoj profile link" value="{{obj.profile.spoj_profile}}" required>
+              </div>
               <small id="BioHelp" class="form-text text-muted">We will automatically fetch the count of questions solved.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputmy_website">Your personal website</label>
-              <input name="my_website" type="text" class="form-control" id="exampleInputmy_website" aria-describedby="my_website" placeholder="Your website url" value="{{obj.profile.my_website}}">
+              <input name="my_website" type="url" class="form-control" id="exampleInputmy_website" aria-describedby="my_website" placeholder="Your website url" value="{{obj.profile.my_website}}">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
           </form>

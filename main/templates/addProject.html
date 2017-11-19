@@ -2,11 +2,14 @@
 
 {% block page_title %}
 <title>Edit profile | Manan | Programing Club Of YMCA University, Faridabad</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
 {% endblock page_title %}
 
 {% block page_context %}
 <div class="container">
-  <br/><br/><br/><br/><br/><br/><br/>
+  <br/><br/>
   <div class="row">
     <div class="col-lg-4 ">
       <p class="txxt-head">Member</p>
@@ -37,27 +40,57 @@
             
             <div class="form-group">
               <label for="exampleInputTitle1">Title</label>
-              <input name="title" type="text" class="form-control" id="exampleInputTitle1" aria-describedby="titleHelp" placeholder="Enter Title of Project" value="">
+              <input name="title" type="text" class="form-control" id="exampleInputTitle1" aria-describedby="titleHelp" placeholder="Enter Title of Project" required>
             </div>
             <div class="form-group">
               <label for="exampleInputdescription">Description</label>
-              <input name="description" type="text" class="form-control" id="exampleInputdescription" aria-describedby="description" placeholder="Enter Description" value="">
+              <textarea name="description" class="form-control" id="exampleInputdescription" aria-describedby="description" placeholder="Enter Description" required></textarea>
             </div>
             <div class="form-group">
               <label for="exampleInputowner">Team Members</label>
-              <input name="owner" type="text" class="form-control" id="exampleInputowner" aria-describedby="owner" placeholder="Enter Team Members in space seperated format" value="">
+              <input  name="owner" type="text" id="input-tags" class="demo-default">
+              <small id="BioHelp" class="form-text text-muted">Use comma ',' to add a new team member</small>
+              <script>
+                $('#input-tags').selectize({
+                  plugins: ['remove_button'],
+                  delimiter: ',',
+                  persist: false,
+                  createOnBlur: true,
+                  create: function(input) {
+                    return {
+                      value: input,
+                      text: input
+                    }
+                  }
+                });
+              </script>
             </div>
             <div class="form-group">
               <label for="exampleInputdemo">Demo Link</label>
-              <input name="demo_link" type="text" class="form-control" id="exampleInputdemo" aria-describedby="demo_link" placeholder="Enter Demo link" value="">
+              <input name="demo_link" type="url" class="form-control" id="exampleInputdemo" aria-describedby="demo_link" placeholder="Enter Demo link" value="">
             </div>
             <div class="form-group">
               <label for="exampleInputsource">Source</label>
-              <input name="source" type="text" class="form-control" id="exampleInputsource" aria-describedby="source" placeholder="Enter source code link" value="">
+              <input name="source" type="url" class="form-control" id="exampleInputsource" aria-describedby="source" placeholder="Enter source code link" value="">
             </div>
             <div class="form-group">
               <label for="exampleInputtwitter">Technologies Used</label>
-              <input name="technologies" type="text" class="form-control" id="exampleInputtwitter" aria-describedby="technologies" placeholder="Enter technologies used in space seperated format" value="">
+              <input  name="technologies" type="text" id="input-tags-tech" class="demo-default" required>
+              <small id="BioHelp" class="form-text text-muted">Use comma ',' to add a new technology</small>
+              <script>
+                $('#input-tags-tech').selectize({
+                  plugins: ['remove_button'],
+                  delimiter: ',',
+                  persist: false,
+                  createOnBlur: true,
+                  create: function(input) {
+                    return {
+                      value: input,
+                      text: input
+                    }
+                  }
+                });
+              </script>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
           </form>
