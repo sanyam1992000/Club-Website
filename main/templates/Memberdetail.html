@@ -82,6 +82,7 @@
       </small>
       <p class="txxt-head"><a href="https://github.com/{{member.profile.github}}">Github</a><span id="git_repos">: Loading Data...</span></p>
 
+      {% if member.project_set.all %}
       <small class="text-muted" id="Projects">
         <br/><br/><br/><br/>
         <p class="txxt-body">Projects</p>
@@ -112,8 +113,9 @@
         </div>
         {% endfor %}
       </div>
+      {% endif %}
       
-
+      {% if member.profile.achivements %}
       <small class="text-muted" id="Achievements">
         <br/><br/><br/><br/>
         <p class="txxt-body">Achievements</p>
@@ -126,6 +128,8 @@
           </li>
         </ul>
       </p>
+      {% endif %}
+      {% if member.event_set.all %}
       <small class="text-muted" id="Events_Hosted">
         <br/>
         <p class="txxt-body">Events Hosted</p>
@@ -138,6 +142,7 @@
           {% endfor %}
         </ul>
       </p>
+      {% endif %}
     </div>
   </div>
 </div>
