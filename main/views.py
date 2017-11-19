@@ -178,9 +178,11 @@ def event_list_view(request):
 		if x.end_date <datetime.date.today():
 			past.append(x)
 		elif x.end_date ==datetime.date.today() and x.end_time < datetime.datetime.now().time():
-			live.append(x)
-		else :
+			past.append(x)
+		elif x.start_date > datetime.date.today() or (x.start_date == datetime.date.today() and x.start_time > datetime.datetime.now().time()):
 			future.append(x)
+		else :
+			live.append(x)
 	return render(request,'events.html',{'past':past,'future':future,'live':live})
 
 def event_detailview(request,pk):
@@ -408,7 +410,7 @@ class getevent_apiview(APIView):
 
 def memberprofileview(request,username):
 	user = get_object_or_404(User,username=username)
-	return render(request,'Memberdetail.html',{'user':user})
+	return render(request,'Memberdetail.html',{'member':user})
 
 @login_required
 def add_project(request):
@@ -422,6 +424,7 @@ def add_project(request):
 		proj = project.objects.create(title=title,description=description,demo_link=demo_link,source=source,technologies=technologies)
 		proj.save()
 		a=owner.split()
+		proj.owner.add(request.user)
 		for x in a:
 			try:
 				user=User.objects.get(username=x)

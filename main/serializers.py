@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer,CharField,IntegerField
+from rest_framework.serializers import ModelSerializer,CharField,IntegerField,DateField
 from .models import Profile,Event,registration,feedback
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueTogetherValidator
@@ -52,6 +52,8 @@ class UserSerializer(ModelSerializer):
 class Event1Serializer(ModelSerializer):
 	host = CharField(max_length=1000)
 	eventid = IntegerField()
+	start_date = DateField(format="%d %b %Y")
+	end_date = DateField(format="%d %b %Y")
 	class Meta :
 		model = Event
 		fields = [
@@ -72,6 +74,8 @@ class Event1Serializer(ModelSerializer):
 
 class EventSerializer(ModelSerializer):
 	host = UserSerializer(many=True ,read_only=True)
+	start_date = DateField(format="%d %b %Y")
+	end_date = DateField(format="%d %b %Y")
 	class Meta :
 		model = Event
 		fields = [
