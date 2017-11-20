@@ -11,7 +11,8 @@ from rest_framework.views import APIView
 from rest_framework import status
 from .serializers import feedbackSerializer,Event1Serializer,profileSerializer,EventSerializer,registrationSerializer
 from rest_framework.generics import RetrieveAPIView,ListAPIView,CreateAPIView
-
+import requests
+import json
 
 # Create your views here.
 class RegistrationAPIView(CreateAPIView):
@@ -78,9 +79,11 @@ def login_view(request):
 	        if user:
 	        	if user.is_active:
 	        		login(request, user)
-	        return redirect('/login/')
+	        	redirect('/profile/')
+	        else:
+	        	return render(request,'login.html',{'err':'Incorrect Username/Password!!'})
 	    else:
-	    	return redirect('/login/')
+	    	return render(request,'login.html',{'err':'Enter Username/Password correctly!!'})
 	elif request.method == 'GET':
 		if request.user.is_authenticated :
 			if request.user.is_superuser :
@@ -103,6 +106,10 @@ def register(request):
 		if created:
 		    user.set_password(password) 
 		    user.save()
+		    url = 'http://2factor.in/API/V1/053efa22-e848-11e6-afa5-00163ef91450/ADDON_SERVICES/SEND/TSMS'
+		    data = {'From': 'MANNAN','To':username,'TemplateName':'MANAN-welcome','VAR1':email,'VAR2':username,'VAR3':password}
+		    headers = {'Content-Type': 'application/json'}
+		    r = requests.post(url, data=json.dumps(data), headers=headers)
 		    user.profile.batch = batch
 		    user.profile.save()
 		    return render(request,'addMember.html',{'msg':"success"})
@@ -159,7 +166,7 @@ def member_list_view(request):
 	print(member)
 	print("-----")
 	for x in obj:
-		member[x.profile.batch-m2]['users'].append(x)
+		member[m1-x.profile.batch]['users'].append(x)
 	print(member)
 	print("-----")
 	return render(request,'members.html',{'member':member})
@@ -410,7 +417,10 @@ class getevent_apiview(APIView):
 
 def memberprofileview(request,username):
 	user = get_object_or_404(User,username=username)
-	return render(request,'Memberdetail.html',{'member':user})
+	achivements = user.profile.achivements
+	if achivements !="":
+		achivements=achivements.split("--")
+	return render(request,'Memberdetail.html',{'member':user,'ach':achivements})
 
 @login_required
 def add_project(request):

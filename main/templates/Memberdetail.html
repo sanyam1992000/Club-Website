@@ -73,7 +73,7 @@
       </small>
       <p class="txxt-head"><a href="https://www.codechef.com/users/{{member.profile.he_profile}}">Codechef</a>: <span id="he_quest">Loading Data...</span> </p>
 
-      <p class="txxt-head"><a href="http://spoj.com/users/{{user.profile.spoj_profile}}">Spoj</a>: <span id="spoj_quest">Loading Data...</span></p>
+      <p class="txxt-head"><a href="http://spoj.com/users/{{member.profile.spoj_profile}}">Spoj</a>: <span id="spoj_quest">Loading Data...</span></p>
 
       <small class="text-muted" id="Open_source">
         <br/><br/><br/><br/>
@@ -82,6 +82,7 @@
       </small>
       <p class="txxt-head"><a href="https://github.com/{{member.profile.github}}">Github</a><span id="git_repos">: Loading Data...</span></p>
 
+      {% if member.project_set.all %}
       <small class="text-muted" id="Projects">
         <br/><br/><br/><br/>
         <p class="txxt-body">Projects</p>
@@ -112,8 +113,9 @@
         </div>
         {% endfor %}
       </div>
+      {% endif %}
       
-
+      {% if ach %}
       <small class="text-muted" id="Achievements">
         <br/><br/><br/><br/>
         <p class="txxt-body">Achievements</p>
@@ -121,11 +123,13 @@
       </small>
       <p>
         <ul>
-          <li>
-            {{member.profile.achivements}}
-          </li>
+        {% for x in ach %}
+          <li>{{x}}</li>
+        {% endfor %}
         </ul>
       </p>
+      {% endif %}
+      {% if member.event_set.all %}
       <small class="text-muted" id="Events_Hosted">
         <br/>
         <p class="txxt-body">Events Hosted</p>
@@ -138,6 +142,7 @@
           {% endfor %}
         </ul>
       </p>
+      {% endif %}
     </div>
   </div>
 </div>

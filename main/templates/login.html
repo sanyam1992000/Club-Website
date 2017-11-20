@@ -24,7 +24,11 @@
           logged in .</h1>
           {% else %}
           <small class="form-text text-muted text-center">Please login using the credentials recieved by you.</small>
-
+          {% if err %}
+          <div class="alert alert-danger" role="alert">
+            {{err}}
+          </div>
+          {% endif %}
           <form method="post" action="/login/">
             {% csrf_token %}
             <div class="form-group">
