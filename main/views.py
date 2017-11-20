@@ -166,7 +166,7 @@ def member_list_view(request):
 	print(member)
 	print("-----")
 	for x in obj:
-		member[x.profile.batch-m2]['users'].append(x)
+		member[m1-x.profile.batch]['users'].append(x)
 	print(member)
 	print("-----")
 	return render(request,'members.html',{'member':member})
