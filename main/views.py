@@ -418,7 +418,8 @@ class getevent_apiview(APIView):
 def memberprofileview(request,username):
 	user = get_object_or_404(User,username=username)
 	achivements = user.profile.achivements
-	achivements=achivements.split("--")
+	if achivements !="":
+		achivements=achivements.split("--")
 	return render(request,'Memberdetail.html',{'member':user,'ach':achivements})
 
 @login_required
