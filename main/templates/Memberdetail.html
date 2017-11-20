@@ -11,52 +11,53 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
-       <img data-name="{{member.profile.fname}} {{member.profile.lname}}"  data-char-count="2" class="profile img-thumbnail" width="200px" height="200px"/> 
-    </div>
-    <div class="col-lg-6">
-      <h2 class="txxt-body">{{member.profile.fname}} {{member.profile.lname}}</h2>
-      <span class="badge badge-secondary">{{member.profile.label}}</span>
-      <p>
-        <small class="text-muted">
-          <i class="fa fa-briefcase"></i>&nbsp;{{member.profile.company}}<br/>
-          <i class="fa fa-graduation-cap"></i>&nbsp;{{member.profile.batch}}<br/>
-          <i class="fa fa-phone"></i>&nbsp;&nbsp;+91-{{member.username}}<br/>
-          <i class="fa fa-envelope"></i>&nbsp;&nbsp;{{member.email}}
-        </small>
-      </p>
-    </div>
-    <div class="col-lg-3">
+     <img data-name="{{member.profile.fname}} {{member.profile.lname}}"  data-char-count="2" class="profile img-thumbnail" width="200px" height="200px"/> 
+   </div>
+   <div class="col-lg-6">
+    <h2 class="txxt-body">{{member.profile.fname}} {{member.profile.lname}}</h2>
+    <span class="badge badge-secondary">{{member.profile.label}}</span>
+    <p>
       <small class="text-muted">
-        <p>Bio</p>
-        <hr>
+        <i class="fa fa-briefcase"></i>&nbsp;{{member.profile.company}}<br/>
+        <i class="fa fa-graduation-cap"></i>&nbsp;{{member.profile.batch}}<br/>
+        <i class="fa fa-phone"></i>&nbsp;&nbsp;+91-{{member.username}}<br/>
+        <i class="fa fa-envelope"></i>&nbsp;&nbsp;{{member.email}}
       </small>
-      <p style="line-height: 1.1;font-size:80%">{{member.profile.bio}}</p>
-      <small class="text-muted">
-        <p>Social Links</p>
-        <hr>
-        <a href="{{member.profile.my_website}}" target="_new"><i class="fa fa-globe fa-2x"></i></a>&nbsp;
-        <a href="https://facebook.com/{{member.profile.facebook}}" target="_new"><i class="fa fa-facebook-official fa-2x"></i></a>&nbsp;
-        <a href="mailto:{{member.profile.email}}" target="_new"><i class="fa fa-envelope fa-2x"></i></a>&nbsp;
-        <a href="https://github.com/{{member.profile.github}}" target="_new"><i class="fa fa-github fa-2x"></i></a>&nbsp;
-        <a href="https://linkedin.com/in/{{member.profile.linkedin}}" target="_new"><i class="fa fa-linkedin fa-2x"></i></a>&nbsp;
-        <a href="https://twitter.com/{{member.profile.twitter}}" target="_new"><i class="fa fa-twitter fa-2x"></i></a>&nbsp;
-      </small>
-    </div>
+    </p>
   </div>
-  <div class="row">
-    <div class="col-lg-3"><br/>
-      <p class="txxt-head">Profile</p>
-      <h3 class="txxt-body">Menu</h3> 
-      <ul class="list-group">
-        <a href="#Detailed_Profile"><li class="list-group-item">Detailed Profile</li></a>
-        <a href="#Competitive_Coding"><li class="list-group-item">Competitive Coding</li></a>
-        <a href="#Open_source"><li class="list-group-item">Open source</li></a>
-        <a href="#Projects"><li class="list-group-item">Projects</li></a></a>
-        <a href="#Achievements"><li class="list-group-item">Achievements</li></a>
-        <a href="#Events_Hosted"><li class="list-group-item">Events Hosted</li></a>
-      </ul>
-    </div>
-    <div class="col-lg-9" style="background-color: #fff">
+  <div class="col-lg-3">
+    <small class="text-muted">
+      <p>Bio</p>
+      <hr>
+    </small>
+    <p style="line-height: 1.1;font-size:80%">{{member.profile.bio}}</p>
+    <small class="text-muted">
+      <p>Social Links</p>
+      <hr>
+      <a href="{{member.profile.my_website}}" target="_new"><i class="fa fa-globe fa-2x"></i></a>&nbsp;
+      <a href="https://facebook.com/{{member.profile.facebook}}" target="_new"><i class="fa fa-facebook-official fa-2x"></i></a>&nbsp;
+      <a href="mailto:{{member.profile.email}}" target="_new"><i class="fa fa-envelope fa-2x"></i></a>&nbsp;
+      <a href="https://github.com/{{member.profile.github}}" target="_new"><i class="fa fa-github fa-2x"></i></a>&nbsp;
+      <a href="https://linkedin.com/in/{{member.profile.linkedin}}" target="_new"><i class="fa fa-linkedin fa-2x"></i></a>&nbsp;
+      <a href="https://twitter.com/{{member.profile.twitter}}" target="_new"><i class="fa fa-twitter fa-2x"></i></a>&nbsp;
+    </small>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-3"><br/>
+    <p class="txxt-head">Profile</p>
+    <h3 class="txxt-body">Menu</h3> 
+    <ul class="list-group">
+      <a href="#Detailed_Profile"><li class="list-group-item">Detailed Profile</li></a>
+      <a href="#Competitive_Coding"><li class="list-group-item">Competitive Coding</li></a>
+      <a href="#Open_source"><li class="list-group-item">Open source</li></a>
+      <a href="#Projects"><li class="list-group-item">Projects</li></a></a>
+      <a href="#Achievements"><li class="list-group-item">Achievements</li></a>
+      <a href="#Events_Hosted"><li class="list-group-item">Events Hosted</li></a>
+    </ul>
+  </div>
+  <div class="col-lg-9" style="background-color: #fff">
+    <div class="container">
       <small class="text-muted" id="Detailed_Profile">
         <br/><br/><br/>
         <br/>
@@ -66,86 +67,86 @@
       <p class="txxt-head">Languages: {{member.profile.languages}}</p>
 
       <p class="txxt-head">Frameworks & Libraries: {{member.profile.frameworks}}</p>
+    </div>
+    <small class="text-muted"  id="Competitive_Coding">
+      <br/><br/><br/><br/>
+      <p class="txxt-body">Competitive Coding</p>
+      <hr>
+    </small>
+    <p class="txxt-head"><a href="https://www.codechef.com/users/{{member.profile.he_profile}}">Codechef</a>: <span id="he_quest">Loading Data...</span> </p>
 
-      <small class="text-muted"  id="Competitive_Coding">
-        <br/><br/><br/><br/>
-        <p class="txxt-body">Competitive Coding</p>
-        <hr>
-      </small>
-      <p class="txxt-head"><a href="https://www.codechef.com/users/{{member.profile.he_profile}}">Codechef</a>: <span id="he_quest">Loading Data...</span> </p>
+    <p class="txxt-head"><a href="http://spoj.com/users/{{member.profile.spoj_profile}}">Spoj</a>: <span id="spoj_quest">Loading Data...</span></p>
 
-      <p class="txxt-head"><a href="http://spoj.com/users/{{member.profile.spoj_profile}}">Spoj</a>: <span id="spoj_quest">Loading Data...</span></p>
+    <small class="text-muted" id="Open_source">
+      <br/><br/><br/><br/>
+      <p class="txxt-body">Open Source</p>
+      <hr>
+    </small>
+    <p class="txxt-head"><a href="https://github.com/{{member.profile.github}}">Github</a><span id="git_repos">: Loading Data...</span></p>
 
-      <small class="text-muted" id="Open_source">
-        <br/><br/><br/><br/>
-        <p class="txxt-body">Open Source</p>
-        <hr>
-      </small>
-      <p class="txxt-head"><a href="https://github.com/{{member.profile.github}}">Github</a><span id="git_repos">: Loading Data...</span></p>
+    {% if member.project_set.all %}
+    <small class="text-muted" id="Projects">
+      <br/><br/><br/><br/>
+      <p class="txxt-body">Projects</p>
+      <hr>
+    </small>
+    <div class="row">
+      {% for x in member.project_set.all %}
 
-      {% if member.project_set.all %}
-      <small class="text-muted" id="Projects">
-        <br/><br/><br/><br/>
-        <p class="txxt-body">Projects</p>
-        <hr>
-      </small>
-      <div class="row">
-        {% for x in member.project_set.all %}
+      <div class="col-lg-4" style="margin-top: 10px;">
+        <div class="card border-primary">
+          <!--<img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15f77c274ec%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15f77c274ec%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.015625%22%20y%3D%2297.2%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">-->
+          <div class="card-header">
+            {{x.title}}
+          </div>
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{x.description}}
+            </h6>
+            <p class="card-text">Technologies used:{{x.technologies}} </p>
 
-        <div class="col-lg-4" style="margin-top: 10px;">
-          <div class="card border-primary">
-            <!--<img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15f77c274ec%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15f77c274ec%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.015625%22%20y%3D%2297.2%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">-->
-            <div class="card-header">
-              {{x.title}}
-            </div>
-            <div class="card-body">
-              <h6 class="card-subtitle mb-2 text-muted">
-                {{x.description}}
-              </h6>
-              <p class="card-text">Technologies used:{{x.technologies}} </p>
-
-            </div>
-            <div class="card-footer">
-              <a href="{{x.source}}" class="float-right">View Source</a>
-              <span class="float-right">&nbsp; | &nbsp;</span> 
-              <a href="{{x.demo_link}}" class="float-right">View Demo</a>
-            </div>
+          </div>
+          <div class="card-footer">
+            <a href="{{x.source}}" class="float-right">View Source</a>
+            <span class="float-right">&nbsp; | &nbsp;</span> 
+            <a href="{{x.demo_link}}" class="float-right">View Demo</a>
           </div>
         </div>
-        {% endfor %}
       </div>
-      {% endif %}
-      
-      {% if ach %}
-      <small class="text-muted" id="Achievements">
-        <br/><br/><br/><br/>
-        <p class="txxt-body">Achievements</p>
-        <hr>
-      </small>
-      <p>
-        <ul>
-        {% for x in ach %}
-          <li>{{x}}</li>
-        {% endfor %}
-        </ul>
-      </p>
-      {% endif %}
-      {% if member.event_set.all %}
-      <small class="text-muted" id="Events_Hosted">
-        <br/>
-        <p class="txxt-body">Events Hosted</p>
-        <hr>
-      </small>
-      <p>
-        <ul>
-          {% for x in member.event_set.all %}
-          <a href="/event/detail/{{x.pk}}"><li>{{x.title}}</li></a>
-          {% endfor %}
-        </ul>
-      </p>
-      {% endif %}
+      {% endfor %}
     </div>
+    {% endif %}
+    
+    {% if ach %}
+    <small class="text-muted" id="Achievements">
+      <br/><br/><br/><br/>
+      <p class="txxt-body">Achievements</p>
+      <hr>
+    </small>
+    <p>
+      <ul>
+        {% for x in ach %}
+        <li>{{x}}</li>
+        {% endfor %}
+      </ul>
+    </p>
+    {% endif %}
+    {% if member.event_set.all %}
+    <small class="text-muted" id="Events_Hosted">
+      <br/>
+      <p class="txxt-body">Events Hosted</p>
+      <hr>
+    </small>
+    <p>
+      <ul>
+        {% for x in member.event_set.all %}
+        <a href="/event/detail/{{x.pk}}"><li>{{x.title}}</li></a>
+        {% endfor %}
+      </ul>
+    </p>
+    {% endif %}
   </div>
+</div>
 </div>
 
 <br/><br/>
