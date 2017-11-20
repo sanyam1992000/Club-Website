@@ -18,7 +18,7 @@
     <span class="badge badge-secondary">{{member.profile.label}}</span>
     <p>
       <small class="text-muted">
-        <i class="fa fa-briefcase"></i>&nbsp;{{member.profile.company}}<br/>
+        {% if member.profile.company %}<i class="fa fa-briefcase"></i>&nbsp;{{member.profile.company}}<br/>{% endif %}
         <i class="fa fa-graduation-cap"></i>&nbsp;{{member.profile.batch}}<br/>
         <i class="fa fa-phone"></i>&nbsp;&nbsp;+91-{{member.username}}<br/>
         <i class="fa fa-envelope"></i>&nbsp;&nbsp;{{member.email}}
@@ -51,9 +51,9 @@
       <a href="#Detailed_Profile"><li class="list-group-item">Detailed Profile</li></a>
       <a href="#Competitive_Coding"><li class="list-group-item">Competitive Coding</li></a>
       <a href="#Open_source"><li class="list-group-item">Open source</li></a>
-      <a href="#Projects"><li class="list-group-item">Projects</li></a></a>
-      <a href="#Achievements"><li class="list-group-item">Achievements</li></a>
-      <a href="#Events_Hosted"><li class="list-group-item">Events Hosted</li></a>
+      {% if member.project_set.all %}<a href="#Projects"><li class="list-group-item">Projects</li></a></a>{% endif %}
+      {% if ach %}<a href="#Achievements"><li class="list-group-item">Achievements</li></a>{% endif %}
+      {% if member.event_set.all %}<a href="#Events_Hosted"><li class="list-group-item">Events Hosted</li></a>{% endif %}
     </ul>
   </div>
   <div class="col-lg-9" style="background-color: #fff">
