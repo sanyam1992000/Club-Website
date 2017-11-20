@@ -115,7 +115,7 @@
       </div>
       {% endif %}
       
-      {% if member.profile.achivements %}
+      {% if ach %}
       <small class="text-muted" id="Achievements">
         <br/><br/><br/><br/>
         <p class="txxt-body">Achievements</p>
@@ -123,9 +123,9 @@
       </small>
       <p>
         <ul>
-          <li>
-            {{member.profile.achivements}}
-          </li>
+        {% for x in ach %}
+          <li>{{x}}</li>
+        {% endfor %}
         </ul>
       </p>
       {% endif %}
