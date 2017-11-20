@@ -2,6 +2,9 @@
 
 {% block page_title %}
 <title>Edit event detail | Manan | Programing Club Of YMCA University, Faridabad</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
 {% endblock page_title %}
 
 {% block page_context %}
@@ -50,51 +53,115 @@
 
               <small id="PhoneHelp" class="form-text text-muted"></small>
             </div>
-            <div class="form-group">
-              <label for="exampleInputTitle1">Title</label>
-              <input name="title" type="text" class="form-control" id="exampleInputTitle1"  placeholder="Title of event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputDescription1">Description</label>
-              <input name="description" type="text" class="form-control" id="exampleInputDescription1"  placeholder="Brief about event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputHost1">Host</label>
-              <input name="host" type="text" class="form-control" id="exampleInputHost1"  placeholder="enter host of event in space seperated format">
-            </div>
+          <div class="form-group">
+            <label for="exampleInputPhone1">Title</label>
+            <input name="title" type="text" class="form-control" id="exampleInputTitle1"  placeholder="Title of event" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputBatch1">Description</label>
+            <textarea name="description" class="form-control" id="exampleInputDescription1"  placeholder="Brief about event" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputBatch1">Host</label>
+            <input name="host" type="text" id="exampleInputHost1" class="demo-default" placeholder="Enter host of event in space seperated format" required>
+            <small id="BioHelp" class="form-text text-muted">Use comma ',' to add a new host</small>
+            <script>
+              var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+              '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
 
-            <div class="form-group">
-              <label for="exampleInputVenue1">Venue</label>
-              <input name="venue" type="text" class="form-control" id="exampleInputVenue1"  placeholder="Venue of event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputRules1">Rules</label>
-              <input name="rules" type="text" class="form-control" id="exampleInputRules1"  placeholder="Rules about event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputFee1">Fee</label>
-              <input name="fee" type="number" class="form-control" id="exampleInputFee1"  placeholder="Fee for event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputStart_date1">Start at</label>
-              <input name="start_date" type="date" class="form-control" id="exampleInputStart_date1"  placeholder="starting date of event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEnd_date1">End at</label>
-              <input name="end_date" type="date" class="form-control" id="exampleInputEnd_date1"  placeholder="ending date of event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputStart_time1">Start at</label>
-              <input name="start_time" type="time" class="form-control" id="exampleInputStart_time1"  placeholder="starting time of event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEnd_time1">End at</label>
-              <input name="end_time" type="time" class="form-control" id="exampleInputEnd_time1"  placeholder="ending time of event">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPrerequistes1">Prerequistes</label>
-              <input name="prerequistes" type="text" class="form-control" id="exampleInputPrerequistes1"  placeholder="prerequistes for event">
-            </div>
+              $('#exampleInputHost1').selectize({
+                persist: false,
+                plugins: ['remove_button'],
+                maxItems: null,
+                valueField: 'email',
+                labelField: 'name',
+                searchField: ['name', 'email'],
+                options: [
+                {email: 'brian@thirdroute.com', name: 'Brian Reavis'},
+                {email: 'nikola@tesla.com', name: 'Nikola Tesla'},
+                {email: 'someone@gmail.com'}
+                ],
+                render: {
+                  item: function(item, escape) {
+                    return '<div>' +
+                    (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+                    (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                    '</div>';
+                  },
+                  option: function(item, escape) {
+                    var label = item.name || item.email;
+                    var caption = item.name ? item.email : null;
+                    return '<div>' +
+                    '<span class="label">' + escape(label) + '</span>' +
+                    (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+                    '</div>';
+                  }
+                },
+                createFilter: function(input) {
+                  var match, regex;
+
+                  // email@address.com
+                  regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                  match = input.match(regex);
+                  if (match) return !this.options.hasOwnProperty(match[0]);
+
+                  // name <email@address.com>
+                  regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                  match = input.match(regex);
+                  if (match) return !this.options.hasOwnProperty(match[2]);
+
+                  return false;
+                },
+                create: function(input) {
+                  if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                    return {email: input};
+                  }
+                  var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                  if (match) {
+                    return {
+                      email : match[2],
+                      name  : $.trim(match[1])
+                    };
+                  }
+                  alert('Invalid email address.');
+                  return false;
+                }
+              });
+            </script>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPhone1">Venue</label>
+            <input name="venue" type="text" class="form-control" id="exampleInputVenue1"  placeholder="Venue of event" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputBatch1">Rules</label>
+            <textarea name="rules" class="form-control" id="exampleInputRules1"  placeholder="Rules about event"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPhone1">Fee</label>
+            <input name="fee" type="number" class="form-control" id="exampleInputFee1"  placeholder="Fee for event">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputBatch1">Start at</label>
+            <input name="start_date" type="date" class="form-control" id="exampleInputStart_date1"  placeholder="starting date of event" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPhone1">End at</label>
+            <input name="end_date" type="date" class="form-control" id="exampleInputEnd_date1"  placeholder="ending date of event" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputBatch1">Start at</label>
+            <input name="start_time" type="time" class="form-control" id="exampleInputStart_time1"  placeholder="starting time of event" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPhone1">End at</label>
+            <input name="end_time" type="time" class="form-control" id="exampleInputEnd_time1"  placeholder="ending time of event" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputBatch1">Prerequistes</label>
+            <textarea name="prerequistes" class="form-control" id="exampleInputPrerequistes1"  placeholder="prerequistes for event"></textarea>
+          </div>
             <button type="submit" class="btn btn-primary">Update</button>
           </form>
 
