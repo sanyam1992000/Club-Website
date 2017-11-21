@@ -11,6 +11,7 @@ class Profile(models.Model):
     fname = models.CharField(max_length=100, blank=True)
     lname = models.CharField(max_length=100, blank=True)
     github = models.CharField(max_length=100, blank=True)
+    dp = models.CharField(max_length=1000, blank=True)
     batch = models.IntegerField(default=2017)
     facebook = models.CharField(max_length=100, blank=True)
     linkedin = models.CharField(max_length=100, blank=True)

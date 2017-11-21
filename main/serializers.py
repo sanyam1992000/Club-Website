@@ -121,3 +121,12 @@ class feedbackSerializer(ModelSerializer):
 		'comment',
 		'star',
 		]
+
+class projecthostSerializer(ModelSerializer):
+	class Meta :
+		model = Profile
+		fields = [
+		'username',
+		'fname',
+		'lname',
+		]

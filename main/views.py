@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Profile,Event,registration,feedback,project
 from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
@@ -9,7 +12,7 @@ import datetime
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializers import feedbackSerializer,Event1Serializer,profileSerializer,EventSerializer,registrationSerializer
+from .serializers import projecthostSerializer,feedbackSerializer,Event1Serializer,profileSerializer,EventSerializer,registrationSerializer,UserSerializer
 from rest_framework.generics import RetrieveAPIView,ListAPIView,CreateAPIView
 import requests
 import json
@@ -47,6 +50,10 @@ def home(request):
 def contactus(request):
 
 	return render(request,'contactus.html',{})
+
+class ProjectHostAPIView(ListAPIView):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
 
 class EventlistAPIView(ListAPIView):
 	queryset = Event.objects.order_by('start_date','start_time')
@@ -343,6 +350,22 @@ def editmemberprofileview(request):
 	else :
 		return render(request,'editMemberDetailsByAdmin.html',{})
 
+class dp_APIview(APIView):
+	def post(self,request,*args,**kwargs):
+		username = request.data.get('username')
+		dp = request.data.get('dp')
+		try :
+			user = User.objects.get(username=mobile)
+		except User.DoesNotExist:
+			content = {'please move along': 'nothing to see here'}
+			return Response(content, status=status.HTTP_404_NOT_FOUND)
+		user.profile.dp = dp
+		user.profile.save()
+		user.save()
+		content = {'msg':'success'}
+		return Response(content,status=status.HTTP_200_OK)
+
+
 class getprofile_apiview(APIView):
 	serializer_class = profileSerializer
 	def post(self,request,*args,**kwargs):
@@ -421,6 +444,21 @@ def memberprofileview(request,username):
 	if achivements !="":
 		achivements=achivements.split("--")
 	return render(request,'Memberdetail.html',{'member':user,'ach':achivements})
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {
+        'form': form
+    })
 
 @login_required
 def add_project(request):
