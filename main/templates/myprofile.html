@@ -48,7 +48,12 @@
   <br/><br/>
   <div class="row">
     <div class="col-lg-4 ">
-      <img data-name="{{obj.profile.fname}}"  data-char-count="2" class="profile img-thumbnail" width="200px" height="200px" id="user-display-image"/> <br/><br/>
+      {% if obj.profile.dp %}
+      <img src="{{obj.profile.dp}}" class="img-thumbnail" width="200px" height="200px"/> 
+      {% else %}
+      <img data-name="{{obj.profile.fname}}"  data-char-count="2" class="profile img-thumbnail" width="200px" height="200px" id="user-display-image"/> 
+      {% endif %}
+      <br/><br/>
       <div class="input-file">
         <input type="file" id="display_picture" name="display_picture" required />
         <label for="display_picture">Change Picture</label><br/>
