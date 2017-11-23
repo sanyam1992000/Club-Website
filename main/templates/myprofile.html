@@ -62,6 +62,8 @@
       <ul class="list-group">
         <a href="/profile/"><li class="list-group-item">Edit profile</li></a>
         <a href="/add_project/"><li class="list-group-item">Add project</li></a>
+        <a href="/myprojects/"><li class="list-group-item">My Projects</li></a>
+        <a href="/password/"><li class="list-group-item">Change Password</li></a>
         <a href="/logout/"><li class="list-group-item">Logout</li></a>
       </ul><br/><br/><br/><br/><br/><br/><br/>
     </div> 
@@ -217,6 +219,14 @@
               <small id="BioHelp" class="form-text text-muted">We will automatically fetch the count of questions solved.</small>
             </div>
             <div class="form-group">
+              <label for="exampleInputcc_profile">Your codechef profile link</label>
+              <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">https://www.codechef.com/users/</div>
+                <input name="codechef_profile" type="text" class="form-control" id="exampleInputcc_profile" aria-describedby="cc_profile" placeholder="Your codechef profile link" value="{{obj.profile.codechef_profile}}" required>
+              </div>
+              <small id="BioHelp" class="form-text text-muted">We will automatically fetch the count of questions solved.</small>
+            </div>
+            <div class="form-group">
               <label for="exampleInputspoj_profile">Your spoj profile link</label>
               <div class="input-group mb-2 mb-sm-0">
                 <div class="input-group-addon">http://spoj.com/users/</div>
@@ -255,6 +265,8 @@
   !function(e){var t=function(e,t){var a,n=e.charCodeAt(t);return 55296>n||n>56319||e.length<=t+1||(a=e.charCodeAt(t+1),56320>a||a>57343)?e[t]:e.substring(t,t+2)},a=function(e,a,n){for(var i,r="",o=0,c=0,d=e.length;d>o;)i=t(e,o),c>=a&&n>c&&(r+=i),o+=i.length,c+=1;return r};e.fn.initial=function(t){var n,i=["#1abc9c","#16a085","#f1c40f","#f39c12","#2ecc71","#27ae60","#e67e22","#d35400","#3498db","#2980b9","#e74c3c","#c0392b","#9b59b6","#8e44ad","#bdc3c7","#34495e","#2c3e50","#95a5a6","#7f8c8d","#ec87bf","#d870ad","#f69785","#9ba37e","#b49255","#b49255","#a94136"];return this.each(function(){var r=e(this),o=e.extend({name:"Name",color:null,seed:0,charCount:1,textColor:"#ffffff",height:100,width:100,fontSize:60,fontWeight:400,fontFamily:"HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica, Arial,Lucida Grande, sans-serif",radius:0},t);o=e.extend(o,r.data());var c=a(o.name,0,o.charCount).toUpperCase(),d=e('<text text-anchor="middle"></text>').attr({y:"50%",x:"50%",dy:"0.35em","pointer-events":"auto",fill:o.textColor,"font-family":o.fontFamily}).html(c).css({"font-weight":o.fontWeight,"font-size":o.fontSize+"px"});if(null==o.color){var h=Math.floor((c.charCodeAt(0)+o.seed)%i.length);n=i[h]}else n=o.color;var f=e("<svg></svg>").attr({xmlns:"http://www.w3.org/2000/svg","pointer-events":"none",width:o.width,height:o.height}).css({"background-color":n,width:o.width+"px",height:o.height+"px","border-radius":o.radius+"px","-moz-border-radius":o.radius+"px"});f.append(d);var l=window.btoa(unescape(encodeURIComponent(e("<div>").append(f.clone()).html())));r.attr("src","data:image/svg+xml;base64,"+l)})}}(jQuery);
 </script>
 <script> $('.profile').initial(); </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 
   var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png"]; 
@@ -304,20 +316,47 @@
     $('#dp_upload_progress_bar').attr('aria-valuenow', 0).css('width','0%');
     $('#uploading-text').html('Uploaded '+'0%');
     if(Validate(file.name)&&parseFloat(tmp.toFixed(2))<=parseFloat(_validFileSize)){
-        var task = storageRef.put(file);
-        task.on('state_changed', function progress(snapshot) {
-          var percentage = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
-          $('#dp_upload_progress_bar').attr('aria-valuenow', percentage).css('width',percentage+'%');
-          $('#uploading-text').html('Uploaded '+percentage+'%');
-        }, function error(err) {
-          $('#div-progress-dp').html('<div class="alert alert-danger" role="alert" id="register-success-msg">We encountered some error, Please try again!</div>');
-        },function complete() {
-          $('#div-progress-dp').html('<div class="alert alert-success" role="alert" id="register-success-msg">Your picture has been updated successfully!</div>');
-          var storageRef = firebase.storage().ref('');
-          var starsRef = storageRef.child('dp/'+file.name);
-          starsRef.getDownloadURL().then(function(url) {
-            //console.log(url);
-            $('#user-display-image').attr('src',url);
+      var task = storageRef.put(file);
+      task.on('state_changed', function progress(snapshot) {
+        var percentage = Math.round((snapshot.bytesTransferred/snapshot.totalBytes)*100);
+        $('#dp_upload_progress_bar').attr('aria-valuenow', percentage).css('width',percentage+'%');
+        $('#uploading-text').html('Uploaded '+percentage+'%');
+      }, function error(err) {
+        $('#div-progress-dp').html('<div class="alert alert-danger" role="alert" id="register-success-msg">We encountered some error, Please try again!</div>');
+      },function complete() {
+        $('#div-progress-dp').html('<div class="alert alert-success" role="alert" id="register-success-msg">Your picture has been updated successfully!</div>');
+        var storageRef = firebase.storage().ref('');
+        var starsRef = storageRef.child('dp/'+file.name);
+        starsRef.getDownloadURL().then(function(url) {
+          console.log(url);
+
+            //AJAX start
+
+
+
+            //AJAX end
+
+
+            return url;
+
+
+          }).then(function(url){
+            console.log('done dna done!!'+url)
+            $(document).ready(function(){
+              $.ajax({
+                type: "POST",
+                url: "/api/UpdateProfilePicture/",
+                data: {"csrfmiddlewaretoken": '{{csrf_token}}','username':'{{obj.username}}','dp':url},
+                success: function(data){ 
+                  console.log(data);
+                  $('#user-display-image').attr('src',url);
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                  console.log('err'+errorThrown);       
+                }
+              });
+            })
           }).catch(function(error) {
             switch (error.code) {
               case 'storage/object_not_found':
@@ -339,11 +378,11 @@
                 }
               });
         });
-      }else if(parseFloat(tmp.toFixed(2))>parseFloat(_validFileSize)){
-        $('#div-progress-dp').html('<div class="alert alert-danger" role="alert" id="register-success-msg">You exceeded maximum file size, maximum image file size is '+_validFileSize+'MB. </div>');
-      }else{
-        $('#div-progress-dp').html('<div class="alert alert-danger" role="alert" id="register-success-msg">Invalid file type! Please upload only .jpg, .jpeg, .bmp, .gif, .png</div>');
-      }
+    }else if(parseFloat(tmp.toFixed(2))>parseFloat(_validFileSize)){
+      $('#div-progress-dp').html('<div class="alert alert-danger" role="alert" id="register-success-msg">You exceeded maximum file size, maximum image file size is '+_validFileSize+'MB. </div>');
+    }else{
+      $('#div-progress-dp').html('<div class="alert alert-danger" role="alert" id="register-success-msg">Invalid file type! Please upload only .jpg, .jpeg, .bmp, .gif, .png</div>');
+    }
   });  
 
   
