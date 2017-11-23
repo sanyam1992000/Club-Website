@@ -128,7 +128,11 @@ def register(request):
 
 @login_required
 def create_event(request):
-	obj = User.objects.all()
+	obj1 = User.objects.all()
+	obj=[]
+	for x in obj1:
+		obj.append({'mobile':x.username,'name':x.profile.fname +" "+ x.profile.lname })
+	obj = json.dumps(obj)
 	if not request.user.is_superuser:
 			return redirect('/profile/')
 	elif request.method == 'POST':
@@ -257,7 +261,11 @@ def editprofileview(request):
 		return render(request,'myprofile.html',{'obj':request.user})
 @login_required
 def edit_event(request):
-	obj = User.objects.all()
+	obj1 = User.objects.all()
+	obj=[]
+	for x in obj1:
+		obj.append({'mobile':x.username,'name':x.profile.fname +" "+ x.profile.lname })
+	obj = json.dumps(obj)
 	if not request.user.is_superuser:
 		return redirect('/profile/')
 	elif request.method == 'POST':
@@ -469,7 +477,11 @@ def change_password(request):
 
 @login_required
 def add_project(request):
-	obj = User.objects.all()
+	obj1 = User.objects.all()
+	obj=[]
+	for x in obj1:
+		obj.append({'mobile':x.username,'name':x.profile.fname +" "+ x.profile.lname })
+	obj = json.dumps(obj)
 	if request.method == 'POST':
 		title = request.POST.get('title', None)
 		description = request.POST.get('description', None)
