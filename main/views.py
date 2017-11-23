@@ -369,7 +369,7 @@ class dp_APIview(APIView):
 		username = request.data.get('username')
 		dp = request.data.get('dp')
 		try :
-			user = User.objects.get(username=mobile)
+			user = User.objects.get(username=username)
 		except User.DoesNotExist:
 			content = {'please move along': 'nothing to see here'}
 			return Response(content, status=status.HTTP_404_NOT_FOUND)
