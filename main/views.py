@@ -128,6 +128,7 @@ def register(request):
 
 @login_required
 def create_event(request):
+	obj = User.objects.all()
 	if not request.user.is_superuser:
 			return redirect('/profile/')
 	elif request.method == 'POST':
@@ -152,9 +153,9 @@ def create_event(request):
 			except User.DoesNotExist:
 				pass
 		event.save()
-		return render(request,'addEvent.html',{'msg':"success"})
+		return render(request,'addEvent.html',{'msg':"success",'obj':obj})
 	elif request.method == 'GET':
-		return render(request,'addEvent.html',{})
+		return render(request,'addEvent.html',{'obj':obj})
 
 def member_list_view(request):
 	obj = User.objects.all()
@@ -256,6 +257,7 @@ def editprofileview(request):
 		return render(request,'myprofile.html',{'obj':request.user})
 @login_required
 def edit_event(request):
+	obj = User.objects.all()
 	if not request.user.is_superuser:
 		return redirect('/profile/')
 	elif request.method == 'POST':
@@ -275,7 +277,7 @@ def edit_event(request):
 		try:
 			event=Event.objects.get(pk=eventid)
 		except Event.DoesNotExist:
-			return render(request,'editEventDetailByadmin.html',{'err':"Event id is not correct"})
+			return render(request,'editEventDetailByadmin.html',{'obj':obj,'err':"Event id is not correct"})
 		a=host.split()
 		b=event.host.all()
 		event.title=title
@@ -296,9 +298,9 @@ def edit_event(request):
 			except User.DoesNotExist:
 				pass
 		event.save()
-		return render(request,'editEventDetailByadmin.html',{'msg':"successfull updated!!"})
+		return render(request,'editEventDetailByadmin.html',{'obj':obj,'msg':"successfull updated!!"})
 	elif request.method == 'GET':
-		return render(request,'editEventDetailByadmin.html',{})
+		return render(request,'editEventDetailByadmin.html',{'obj':obj})
 
 
 
@@ -467,6 +469,7 @@ def change_password(request):
 
 @login_required
 def add_project(request):
+	obj = User.objects.all()
 	if request.method == 'POST':
 		title = request.POST.get('title', None)
 		description = request.POST.get('description', None)
@@ -485,9 +488,9 @@ def add_project(request):
 			except User.DoesNotExist:
 				pass
 		proj.save()
-		return render(request,'addProject.html',{'msg':"success"})
+		return render(request,'addProject.html',{'msg':"success",'obj':obj})
 	elif request.method == 'GET':
-		return render(request,'addProject.html',{})
+		return render(request,'addProject.html',{'obj':obj})
 
 @login_required
 def myproject_deleteview(request,pk):
