@@ -162,5 +162,8 @@
 </div>
 {% endblock page_context %}
 {% block page_scripts %}
-
+<script>
+    var jsonObject = JSON.parse('{{ obj | escapejs }}');
+    console.log(jsonObject);
+</script>
 {% endblock page_scripts %}
