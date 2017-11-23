@@ -24,6 +24,8 @@ class profileSerializer(ModelSerializer):
 		'company',
 		'spoj_profile',
 		'he_ques',
+		'codechef_ques',
+		'codechef_profile',
 		'spoj_ques',
 		'git_repos',
 		'my_website',

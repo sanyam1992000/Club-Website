@@ -225,6 +225,7 @@ def editprofileview(request):
 		company = request.POST.get('company', None)
 		languages = request.POST.get('languages', None)
 		he_profile = request.POST.get('he_profile', None)
+		codechef_profile = request.POST.get('codechef_profile', None)
 		spoj_profile = request.POST.get('spoj_profile', None)
 		my_website = request.POST.get('my_website', None)
 
@@ -241,6 +242,7 @@ def editprofileview(request):
 		user.profile.linkedin = linkedin
 		user.profile.my_website = my_website
 		user.profile.spoj_profile = spoj_profile
+		user.profile.codechef_profile = codechef_profile
 		user.profile.he_profile = he_profile
 		user.profile.languages = languages
 		user.profile.frameworks = frameworks
@@ -323,6 +325,7 @@ def editmemberprofileview(request):
 		languages = request.POST.get('languages', None)
 		he_profile = request.POST.get('he_profile', None)
 		spoj_profile = request.POST.get('spoj_profile', None)
+		codechef_profile = request.POST.get('codechef_profile', None)
 		my_website = request.POST.get('my_website', None)
 		try:
 			user=User.objects.get(username=username)
@@ -345,6 +348,7 @@ def editmemberprofileview(request):
 		user.profile.label = label
 		user.profile.company = company
 		user.profile.location = location
+		user.profile.codechef_profile=codechef_profile
 		user.profile.save()
 		return render(request,'editMemberDetailsByAdmin.html',{'msg':"profile is saved",'obj':user})
 	else :
@@ -395,6 +399,7 @@ class getprofile_apiview(APIView):
 		'he_ques':user.profile.he_ques,
 		'spoj_ques':user.profile.spoj_ques,
 		'git_repos':user.profile.git_repos,
+		'codechef_profile':user.profile.codechef_profile,
 		'my_website':user.profile.my_website,
 		'languages':user.profile.languages,
 		'frameworks':user.profile.frameworks,
@@ -483,3 +488,51 @@ def add_project(request):
 		return render(request,'addProject.html',{'msg':"success"})
 	elif request.method == 'GET':
 		return render(request,'addProject.html',{})
+
+@login_required
+def myproject_deleteview(request,pk):
+	proj =get_object_or_404(project,pk=pk)
+
+	if request.user in proj.owner.all() or request.user.is_superuser:
+		proj.delete()
+	return redirect('/myprojects/')
+
+@login_required
+def myproject_editview(request,pk):
+	proj =get_object_or_404(project,pk=pk)
+
+	if request.user in proj.owner.all() or request.user.is_superuser:
+		if request.method =='POST':
+			title = request.POST.get('title', None)
+			description = request.POST.get('description', None)
+			owner = request.POST.get('owner', None)
+			demo_link = request.POST.get('demo_link', None)
+			source = request.POST.get('source', None)
+			technologies = request.POST.get('technologies', None)
+			a=owner.split()
+			b=proj.owner.all()
+			for x in b:
+				proj.owner.remove(x)
+			proj.owner.add(request.user)
+			for x in a:
+				try:
+					user=User.objects.get(username=x)
+					proj.owner.add(user)
+				except User.DoesNotExist:
+					pass
+			proj.title=title
+			proj.description=description
+			proj.demo_link=demo_link
+			proj.source=source
+			proj.technologies=technologies
+			proj.save()
+			return render(request,'editproject.html',{'proj':proj,'msg':"success"})
+		else:
+			return render(request,'editproject.html',{'proj':proj})
+	return redirect('/myprojects/')
+
+@login_required
+def myprojects_view(request):
+	user = request.user
+	projects = user.project_set.all()
+	return render(request,'myproject.html',{'member':user,'projects':projects})

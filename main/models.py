@@ -26,6 +26,8 @@ class Profile(models.Model):
     he_profile = models.CharField(max_length=100,blank=True)
     spoj_profile = models.CharField(max_length=100,blank=True)
     he_ques = models.IntegerField(default=0)
+    codechef_profile = models.CharField(max_length=100,blank=True)
+    codechef_ques = models.IntegerField(default=0)
     spoj_ques = models.IntegerField(default=0)
     git_repos = models.IntegerField(default=0)
     my_website = models.CharField(max_length=100,blank=True)

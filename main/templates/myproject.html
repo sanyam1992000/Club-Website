@@ -10,7 +10,6 @@
   <br/><br/>
   <div class="row">
     <div class="col-lg-12"><br/>
-      <p class="txxt-head">Here are our</p>
       <h3 class="txxt-body">Projects</h3>
       <hr style="background-color: #79589F">
       <br/>
@@ -27,7 +26,7 @@
 
 
   <div class="row">
-    {% for x in obj %}
+    {% for x in projects %}
 
 
     <div class="col-lg-4" style="margin-top: 10px;">
@@ -37,28 +36,19 @@
        {{x.title}}
      </div>
      <div class="card-body">
-      <h6 class="card-subtitle mb-2 text-muted">
-      By {% for y in x.owner.all %}
-      {{y.profile.fname}} {{y.profile.lname}}
-      {% endfor %}        
-      </h6>
       <small>{{x.description}}</small>
-
       <p class="card-text"><span class="text-muted">Technologies used:</span>{{x.technologies}}</p>
-
     </div>
     <div class="card-footer">
       <a href="{{x.source}}" class="float-right">View Source</a>
       <span class="float-right">&nbsp; | &nbsp;</span> 
       <a href="{{x.demo_link}}" class="float-right">View Demo</a>
     </div>
-    {% if request.user.is_superuser %}
     <div class="card-footer">
       <a href="/projects/edit/{{x.id}}/" class="float-right">Edit</a>
       <span class="float-right">&nbsp; | &nbsp;</span> 
       <a href="/projects/delete/{{x.id}}/" class="float-right">Delete</a>
     </div>
-    {% endif %}
   </div>
 </div>
 

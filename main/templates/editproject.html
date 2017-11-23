@@ -1,0 +1,168 @@
+{% extends "header.html" %}
+
+{% block page_title %}
+<title>Edit profile | Manan | Programing Club Of YMCA University, Faridabad</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
+{% endblock page_title %}
+
+{% block page_context %}
+<div class="container">
+  <br/><br/>
+  <div class="row">
+    <div class="col-lg-4 ">
+      <p class="txxt-head">Member</p>
+      <h3 class="txxt-body">Menu</h3> 
+      <ul class="list-group">
+        <a href="/profile/"><li class="list-group-item">Edit profile</li></a>
+        <a href="/add_project/"><li class="list-group-item">Add project</li></a>
+        <a href="/logout/"><li class="list-group-item">Logout</li></a>
+
+      </ul><br/><br/><br/><br/><br/><br/><br/>
+    </div> 
+    <div class="col-lg-8 bg-light" style="padding:10px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="txxt-head text-center"><span>Edit </span><span style="color:#79589F">Project</span></p>
+          {% if user.is_authenticated %}
+          {% if err %}
+          <div class="alert alert-danger" role="alert">
+            Some error occured while adding your project
+          </div>
+          {% endif %}
+          {% if msg %}
+          <div class="alert alert-success" role="alert">
+          {{msg}}          </div>
+          {% endif %}
+          <form method="post" action="">
+            {% csrf_token %}
+            
+            <div class="form-group">
+              <label for="exampleInputTitle1">Title</label>
+              <input name="title" type="text" class="form-control" id="exampleInputTitle1" aria-describedby="titleHelp" placeholder="Enter Title of Project" value="{{proj.title}}" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputdescription">Description</label>
+              <textarea name="description" class="form-control" id="exampleInputdescription" aria-describedby="description" placeholder="Enter Description"  required>{{proj.description}}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputowner">Team Members</label>
+              <input  name="owner" type="text" id="select-to" value="{{proj.owner.all}}" class="demo-default">
+              <small id="BioHelp" class="form-text text-muted">Use comma ',' to add a new team member</small>
+              <script>
+                var REGEX_EMAIL = '([a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@' +
+                '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)';
+
+                $('#select-to').selectize({
+                  persist: false,
+                  plugins: ['remove_button'],
+                  maxItems: null,
+                  valueField: 'email',
+                  labelField: 'name',
+                  searchField: ['name', 'email'],
+                  options: [
+                  {email: 'brian@thirdroute.com', name: 'Brian Reavis'},
+                  {email: 'nikola@tesla.com', name: 'Nikola Tesla'},
+                  {email: 'someone@gmail.com'}
+                  ],
+                  render: {
+                    item: function(item, escape) {
+                      return '<div>' +
+                      (item.name ? '<span class="name">' + escape(item.name) + '</span>' : '') +
+                      (item.email ? '<span class="email">' + escape(item.email) + '</span>' : '') +
+                      '</div>';
+                    },
+                    option: function(item, escape) {
+                      var label = item.name || item.email;
+                      var caption = item.name ? item.email : null;
+                      return '<div>' +
+                      '<span class="label">' + escape(label) + '</span>' +
+                      (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+                      '</div>';
+                    }
+                  },
+                  createFilter: function(input) {
+                    var match, regex;
+
+                  // email@address.com
+                  regex = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                  match = input.match(regex);
+                  if (match) return !this.options.hasOwnProperty(match[0]);
+
+                  // name <email@address.com>
+                  regex = new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i');
+                  match = input.match(regex);
+                  if (match) return !this.options.hasOwnProperty(match[2]);
+
+                  return false;
+                },
+                create: function(input) {
+                  if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
+                    return {email: input};
+                  }
+                  var match = input.match(new RegExp('^([^<]*)\<' + REGEX_EMAIL + '\>$', 'i'));
+                  if (match) {
+                    return {
+                      email : match[2],
+                      name  : $.trim(match[1])
+                    };
+                  }
+                  alert('Invalid email address.');
+                  return false;
+                }
+              });
+  </script>
+</div>
+<div class="form-group">
+  <label for="exampleInputdemo">Demo Link</label>
+  <input name="demo_link" type="url" class="form-control" id="exampleInputdemo" aria-describedby="demo_link" placeholder="Enter Demo link" value="{{proj.demo_link}}">
+</div>
+<div class="form-group">
+  <label for="exampleInputsource">Source</label>
+  <input name="source" type="url" class="form-control" id="exampleInputsource" aria-describedby="source" placeholder="Enter source code link" value="{{proj.source}}">
+</div>
+<div class="form-group">
+  <label for="exampleInputtwitter">Technologies Used</label>
+  <input  name="technologies" type="text" id="input-tags-tech" value="{{proj.technologies}}" class="demo-default" required>
+  <small id="BioHelp" class="form-text text-muted">Use comma ',' to add a new technology</small>
+  <script>
+    $('#input-tags-tech').selectize({
+      plugins: ['remove_button'],
+      delimiter: ',',
+      persist: false,
+      createOnBlur: true,
+      create: function(input) {
+        return {
+          value: input,
+          text: input
+        }
+      }
+    });
+  </script>
+</div>
+<button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% else %}
+<h1>Not logged in</h1>
+{% endif %}
+
+</div>
+</div>
+
+</div>
+
+
+</div>
+
+
+<br/><br/>
+<hr style="background-color: #79589F">
+<br/><br/>
+
+
+</div>
+{% endblock page_context %}
+{% block page_scripts %}
+
+{% endblock page_scripts %}
