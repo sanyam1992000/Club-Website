@@ -1,0 +1,16 @@
+{% if err %}
+<div class="alert alert-danger" role="alert">
+{{err}}
+</div>
+{% endif %}
+{% if msg %}
+<div class="alert alert-success" role="alert">
+{{msg}}          </div>
+{% endif %}
+
+<form method="post" action="">
+{% csrf_token %}
+Time:<input type="text" name="time" placeholder="enter time of meeting">
+Venue:<input type="text" name="venue" placeholder="enter venue of meeting">
+<button type="submit">Send</button>
+</form>

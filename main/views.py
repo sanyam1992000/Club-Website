@@ -551,3 +551,20 @@ def myprojects_view(request):
 	user = request.user
 	projects = user.project_set.all()
 	return render(request,'myproject.html',{'member':user,'projects':projects})
+
+@login_required
+def meeting_alert(request):
+	if request.method =='POST':
+		url = 'http://2factor.in/API/V1/053efa22-e848-11e6-afa5-00163ef91450/ADDON_SERVICES/SEND/TSMS'
+		time = request.POST.get('time', None)
+		venue = request.POST.get('venue', None)
+		if not time or not venue:
+			return render(request,'send_notifications.html',{'err':"enter time and venue properly"})
+		headers = {'Content-Type': 'application/json'}
+		x=User.objects.all()
+		for y in x:
+			data = {'From': 'MANNAN','To':y.username,'TemplateName':'MANAN-clubMeet','VAR1':time,'VAR2':venue}
+			r = requests.post(url, data=json.dumps(data), headers=headers)
+		return render(request,'send_notifications.html',{'msg':"msg is sent to all members :)"})
+	else :
+		return render(request,'send_notifications.html',{})
