@@ -27,16 +27,21 @@
 
         <div class="card-body">
           <div class="row">
+            
             <div class="col-lg-4">
               {% if y.profile.dp %}
-              <img src="{{y.profile.dp}}" class="img-thumbnail" width="200px" height="200px"/> 
+              <a href="/member/{{y.username}}"><img src="{{y.profile.dp}}" class="img-thumbnail" width="200px" height="200px"/></a>
               {% else %}
-              <img data-name="{{y.profile.fname}}"  data-char-count="2" class="profile img-thumbnail mx-auto" width="100%" height="200%"/> 
+              <a href="/member/{{y.username}}"><img data-name="{{y.profile.fname}}"  data-char-count="2" class="profile img-thumbnail mx-auto" width="100%" height="200%"/> </a>
               {% endif %}
             </div>
+
             <div class="col-lg-8">
-              <h4 class="card-title">{{y.profile.fname}} {{y.profile.lname}} </h4>
-              <p class="card-text"><small class="text-muted">Email: {{y.profile.email}}</small><br/><small class="text-muted">Phone: +91-{{y.username}}</small></p>
+              <h4 class="card-title"><a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}} </a></h4>
+            
+            <p class="card-text">
+              <small class="text-muted"><i class="fa fa-envelope"></i> {{y.profile.email}}</small><br/>
+              <small class="text-muted"><i class="fa fa-phone-square"></i> +91-{{y.username}}</small></p>
             </div>
           </div>
           
