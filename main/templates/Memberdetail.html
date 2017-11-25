@@ -168,7 +168,7 @@
   $(document).ready(function(){
     $.ajax({
       type: "GET",
-      url: "http://spojapi.herokuapp.com/getuser/get_user/?spojuser={{member.profile.spoj_profile}}",
+      url: "https://manan-scrappers.herokuapp.com/competitive/spoj/?user={{member.profile.spoj_profile}}",
       success: function(data)
       { 
           //data=JSON.stringify(data);
@@ -177,7 +177,8 @@
         },
         error: function(data)
         {
-          console.log('error');       
+          console.log('error'); 
+          $('#spoj_quest').html("Failed to load data");      
         }
       });
 
@@ -187,7 +188,7 @@
   $(document).ready(function(){
     $.ajax({
       type: "GET",
-      url: "https://hackerearthapi.herokuapp.com/getuser/get_user/?hackerearth={{member.profile.he_profile}}",
+      url: "https://manan-scrappers.herokuapp.com/competitive/hackerearth/?user={{member.profile.he_profile}}",
       success: function(data)
       { 
           //data=JSON.stringify(data);
@@ -207,12 +208,12 @@
   $(document).ready(function(){
     $.ajax({
       type: "GET",
-      url: "https://codechef.herokuapp.com/getuser/get_user/?codechef={{member.profile.he_profile}}",
+      url: "https://manan-scrappers.herokuapp.com/competitive/codechef/?user={{member.profile.codechef_profile}}",
       success: function(data)
       { 
           //data=JSON.stringify(data);
           console.log(data);
-          $('#codechef_quest').html(data.codechef.problemssolved);
+          $('#codechef_quest').html(data.problemssolved);
         },
         error: function(data)
         {
