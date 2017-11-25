@@ -11,7 +11,11 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-3">
-     <img data-name="{{member.profile.fname}} {{member.profile.lname}}"  data-char-count="2" class="profile img-thumbnail" width="200px" height="200px"/> 
+     {% if member.profile.dp %}
+      <img src="{{member.profile.dp}}" class="img-thumbnail" width="200px" height="200px"/> 
+      {% else %}
+      <img data-name="{member.profile.fname}}"  data-char-count="2" class="profile img-thumbnail" width="200px" height="200px" id="user-display-image"/> 
+      {% endif %}
    </div>
    <div class="col-lg-6">
     <h2 class="txxt-body">{{member.profile.fname}} {{member.profile.lname}}</h2>
