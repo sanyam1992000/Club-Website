@@ -173,7 +173,11 @@
       { 
           //data=JSON.stringify(data);
           console.log(data);
-          $('#spoj_quest').html(data.problemssolved);
+          if(data.error){
+            $('#spoj_quest').html("Invalid User"); 
+          }else{
+            $('#spoj_quest').html(data.problemssolved);
+          }
         },
         error: function(data)
         {
@@ -193,7 +197,11 @@
       { 
           //data=JSON.stringify(data);
           console.log(data);
-          $('#he_quest').html(data.problemssolved);
+          if(data.error){
+            $('#he_quest').html("Invalid User"); 
+          }else{
+            $('#he_quest').html(data.problemssolved);
+          }
         },
         error: function(data)
         {
@@ -213,12 +221,18 @@
       { 
           //data=JSON.stringify(data);
           console.log(data);
-          $('#codechef_quest').html(data.problemssolved);
+          if(data.error){
+            $('#codechef_quest').html("Invalid User"); 
+          }else{
+            $('#codechef_quest').html(data.problemssolved);
+          }
         },
         error: function(data)
         {
           console.log('error'); 
-          $('#codechef_quest').html("Failed to load data");       
+          
+          $('#codechef_quest').html("Failed to load data"); 
+          
         }
       });
 
