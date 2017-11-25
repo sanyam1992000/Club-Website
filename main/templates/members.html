@@ -30,18 +30,22 @@
             
             <div class="col-lg-4">
               {% if y.profile.dp %}
-              <a href="/member/{{y.username}}"><img src="{{y.profile.dp}}" class="img-thumbnail" width="200px" height="200px"/></a>
+              <a href="/member/{{y.username}}"><img src="{{y.profile.dp}}" class="img-thumbnail" width="100px" height="100px" style="max-height: 100px;max-width:100px;"/></a>
               {% else %}
-              <a href="/member/{{y.username}}"><img data-name="{{y.profile.fname}}"  data-char-count="2" class="profile img-thumbnail mx-auto" width="100%" height="200%"/> </a>
+              <a href="/member/{{y.username}}"><img data-name="{{y.profile.fname}}"  data-char-count="2" class="profile img-thumbnail mx-auto" width="100px" height="100px" style="max-height: 100px;max-width:100px;"/> </a>
               {% endif %}
             </div>
 
             <div class="col-lg-8">
-              <h4 class="card-title"><a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}} </a></h4>
+              <h4 class="card-title" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"><a href="/member/{{y.username}}">{{y.profile.fname}} {{y.profile.lname}} </a></h4>
             
             <p class="card-text">
+              {% if y.profile.label %}
+              <small class="text-muted"><i class="fa fa-id-card-o"></i> {{y.profile.label}}</small><br/>
+              {% endif %}
               <small class="text-muted"><i class="fa fa-envelope"></i> {{y.profile.email}}</small><br/>
-              <small class="text-muted"><i class="fa fa-phone-square"></i> +91-{{y.username}}</small></p>
+              <small class="text-muted"><i class="fa fa-phone-square"></i> +91{{y.username}}</small></small>
+            </p>
             </div>
           </div>
           
@@ -52,7 +56,7 @@
             <a href="https://github.com/{{y.profile.github}}" target="_new"><i class="fa fa-github fa-2x"></i></a>&nbsp;
             <a href="https://linkedin.com/in/{{y.profile.linkedin}}" target="_new"><i class="fa fa-linkedin fa-2x"></i></a>&nbsp;
           </small>
-          <a href="/member/{{y.username}}" class=" float-right">View complete profile</a>
+          <a href="/member/{{y.username}}" class=" float-right">View complete profile <i class="fa fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
