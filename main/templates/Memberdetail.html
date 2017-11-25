@@ -12,10 +12,10 @@
   <div class="row">
     <div class="col-lg-3">
      {% if member.profile.dp %}
-      <img src="{{member.profile.dp}}" class="img-thumbnail" width="200px" height="200px"/> 
-      {% else %}
-      <img data-name="{member.profile.fname}}"  data-char-count="2" class="profile img-thumbnail" width="200px" height="200px" id="user-display-image"/> 
-      {% endif %}
+     <img src="{{member.profile.dp}}" class="img-thumbnail" width="200px" height="200px"/> 
+     {% else %}
+     <img data-name="{member.profile.fname}}"  data-char-count="2" class="profile img-thumbnail" width="200px" height="200px" id="user-display-image"/> 
+     {% endif %}
    </div>
    <div class="col-lg-6">
     <h2 class="txxt-body">{{member.profile.fname}} {{member.profile.lname}}</h2>
@@ -77,7 +77,9 @@
       <p class="txxt-body">Competitive Coding</p>
       <hr>
     </small>
-    <p class="txxt-head"><a href="https://www.codechef.com/users/{{member.profile.he_profile}}">Codechef</a>: <span id="he_quest">Loading Data...</span> </p>
+    <p class="txxt-head"><a href="https://www.hackerearth.com/@{{member.profile.he_profile}}">Hackerearth</a>: <span id="he_quest">Loading Data...</span> </p>
+
+    <p class="txxt-head"><a href="https://www.codechef.com/users/{{member.profile.codechef_profile}}">Codechef</a>: <span id="codechef_quest">Loading Data...</span> </p>
 
     <p class="txxt-head"><a href="http://spoj.com/users/{{member.profile.spoj_profile}}">Spoj</a>: <span id="spoj_quest">Loading Data...</span></p>
 
@@ -185,7 +187,7 @@
   $(document).ready(function(){
     $.ajax({
       type: "GET",
-      url: "https://codechef.herokuapp.com/getuser/get_user/?codechef={{member.profile.he_profile}}",
+      url: "https://hackerearthapi.herokuapp.com/getuser/get_user/?hackerearth={{member.profile.he_profile}}",
       success: function(data)
       { 
           //data=JSON.stringify(data);
@@ -194,7 +196,28 @@
         },
         error: function(data)
         {
-          console.log('error');       
+          console.log('error');   
+          $('#he_quest').html("Failed to load data");    
+        }
+      });
+
+  })
+</script>
+<script>
+  $(document).ready(function(){
+    $.ajax({
+      type: "GET",
+      url: "https://codechef.herokuapp.com/getuser/get_user/?codechef={{member.profile.he_profile}}",
+      success: function(data)
+      { 
+          //data=JSON.stringify(data);
+          console.log(data);
+          $('#codechef_quest').html(data.problemssolved);
+        },
+        error: function(data)
+        {
+          console.log('error'); 
+          $('#codechef_quest').html("Failed to load data");       
         }
       });
 
@@ -213,7 +236,8 @@
         },
         error: function(data)
         {
-          console.log('error');       
+          console.log('error');  
+          $('#git_repos').html("Failed to load data");    
         }
       });
 
