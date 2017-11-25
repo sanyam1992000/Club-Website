@@ -1,16 +1,81 @@
-{% if err %}
-<div class="alert alert-danger" role="alert">
-{{err}}
-</div>
-{% endif %}
-{% if msg %}
-<div class="alert alert-success" role="alert">
-{{msg}}          </div>
-{% endif %}
+{% extends "header.html" %}
 
-<form method="post" action="">
-{% csrf_token %}
-Time:<input type="text" name="time" placeholder="enter time of meeting">
-Venue:<input type="text" name="venue" placeholder="enter venue of meeting">
-<button type="submit">Send</button>
-</form>
+{% block page_title %}
+<title>Send SMS | Manan | Programing Club Of YMCA University, Faridabad</title>
+{% endblock page_title %}
+
+{% block page_context %}
+<div class="container">
+  <br/><br/><br/><br/><br/><br/><br/>
+  <div class="row">
+    <div class="col-lg-4 ">
+      <p class="txxt-head">Administrators</p>
+      <h3 class="txxt-body">Toolkit</h3> 
+      <ul class="list-group">
+        <a href="/home/"><li class="list-group-item">Create new user</li></a>
+        <a href="/update_member/"><li class="list-group-item">Edit user details</li></a>
+        <a href="/create_event/"><li class="list-group-item">Create new event</li></a>
+        <a href="/update_event/"><li class="list-group-item">Edit event details</li></a>
+        <a href="/send_notifications/"><li class="list-group-item">Send sms to members</li></a>
+        <a href="/logout/"><li class="list-group-item">logout</li></a>
+      </ul><br/><br/><br/><br/><br/><br/><br/>
+    </div> 
+    <div class="col-lg-8 bg-light" style="padding:10px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <p class="txxt-head text-center"><span>Send </span><span style="color:#79589F">SMS</span></p>
+          
+          {% if err %}
+          <div class="alert alert-danger" role="alert">
+            {{err}}
+          </div>
+          {% endif %}
+          {% if msg %}
+          <div class="alert alert-success" role="alert">
+          {{msg}}          </div>
+          {% endif %}
+          <code>Template:
+          <small id="PhoneHelp" class="form-text text-muted">Manan Meeting Alert,<br/>
+                Time: #VAR1#<br/>
+                Venue: #VAR2#<br/>
+              Be there on time :)<br/>
+            </small>
+          </code>
+          <form method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputPhone1">Time:</label>
+
+              <input name="time" type="text" class="form-control" id="exampleInputPhone1" aria-describedby="PhoneHelp" placeholder="enter time of meeting" maxlength="10" minlength="10" required>
+              
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPhone1">Venue:</label>
+              
+              <input name="venue" type="text" class="form-control" id="exampleInputPhone1" aria-describedby="PhoneHelp" placeholder="enter venue of meeting" maxlength="10" minlength="10" required>
+              
+
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+
+          </form>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <br/><br/>
+  <hr style="background-color: #79589F">
+  <br/><br/>
+
+
+</div>
+<br/><br/>
+{% endblock page_context %}
+{% block page_scripts %}
+
+{% endblock page_scripts %}
