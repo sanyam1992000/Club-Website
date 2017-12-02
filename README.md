@@ -2,10 +2,10 @@
 
 For details:  [Read Our Wiki](https://github.com/Manan-YMCA/Club-Website/wiki/Website-of-Manan,-the-Technical-Society-of-YMCA-University-of-Science-and-Technology)
 
-# Wanna Contribute? Wanna know how to install this website on your computer? 
+### Wanna Contribute? Wanna know how to install this website on your computer? 
 [Read Our Installing and Contributing Procedure and Guidelines](https://github.com/Manan-YMCA/Club-Website/blob/master/CONTRIBUTING.md)
 
-Gear up! Solve our bugs, create new features for us for your love for coding or if you love surprise swags and gifts.
+### Gear up! Solve our bugs, create new features for us for your love for coding or if you love surprise swags and gifts.
 [Visit our issues](https://github.com/Manan-YMCA/Club-Website/issues)
 
 # Features!
@@ -42,6 +42,7 @@ Without these people this project would never have been a reality.
 | [@vipinkhushu](https://github.com/vipinkhushu/) |
 | [@princebatra2315](https://github.com/princebatra2315) |
 | [@niharrs](https://github.com/niharrs) |
+| [@namitpasrija](https://github.com/namitpasrija) |
 
 
 # License
