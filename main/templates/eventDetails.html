@@ -254,4 +254,30 @@ h1 { font-size: 1.5em; margin: 10px; }
 	})
 
 </script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#registerPublic').submit(function(e){
+      e.preventDefault();
+        //console.log(event_id);
+        $.ajax({
+          type: "POST",
+          url: "/api/event/register/",
+          data: {"csrfmiddlewaretoken": '{{csrf_token}}',"eventid": $('#eventid').val(),"fname": $('#register-fname').val(),"lname": $('#register-lname').val(),"email":$('#register-email').val(),"College":$('#register-college').val(),"query":$('#register-text').val(),"mobile":$('#register-phone').val()},
+          success: function(data)
+          { 
+            //console.log('Done'+data);
+            $('#register-success-msg').show();
+            $('#registerPublic').hide();
+            $('#btn-register-public').hide();
+          },
+          error: function(jqXHR, textStatus, errorThrown)
+          {
+            console.log('err');       
+          }
+        });
+      })
+  })
+
+</script>
 {% endblock page_scripts %}
