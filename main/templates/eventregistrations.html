@@ -47,6 +47,10 @@
 
 				{% if user.is_superuser %}
 				<li class="list-group-item"><a href="/event/{{event.pk}}/registrations/">Registrations</a></li>
+				<li class="list-group-item"><a href="/event/{{event.pk}}/feedbacks/">Feedbacks</a></li>
+				{% elif user in event.host.all %}
+				<li class="list-group-item"><a href="/event/{{event.pk}}/registrations/">Registrations</a></li>
+				<li class="list-group-item"><a href="/event/{{event.pk}}/feedbacks/">Feedbacks</a></li>
 				{% endif %}
 			</ul>
 		</div>
