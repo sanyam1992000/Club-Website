@@ -145,10 +145,7 @@ h1 { font-size: 1.5em; margin: 10px; }
 				<a href="#pre"><li class="list-group-item">Prerequisite</li></a>
 				<a href="#rules"><li class="list-group-item">Rules</li></a>
 				<a href="#feedback"><li class="list-group-item">Feedbacks and Queries</li></a>
-				{% if user.is_superuser %}
-				<li class="list-group-item"><a href="/event/{{obj.pk}}/registrations/">Registrations</a></li>
-				<li class="list-group-item"><a href="/event/{{obj.pk}}/feedbacks/">Feedbacks</a></li>
-				{% elif user in event.host.all %}
+				{% if host %}
 				<li class="list-group-item"><a href="/event/{{obj.pk}}/registrations/">Registrations</a></li>
 				<li class="list-group-item"><a href="/event/{{obj.pk}}/feedbacks/">Feedbacks</a></li>
 				{% endif %}

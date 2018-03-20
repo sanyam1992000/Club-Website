@@ -28,17 +28,17 @@ class FeedbackAPIView(CreateAPIView):
 
 @login_required
 def eventregistrationsView(request,pk):
-	if not request.user.is_superuser:
-		return redirect('/profile/')
 	event=get_object_or_404(Event,pk=pk)
+	if not request.user.is_superuser and request.user not in event.host.all():
+		return redirect('/profile/')
 	obj = registration.objects.filter(eventid=pk)
 	return render(request,'eventregistrations.html',{'obj':obj,'event':event})
 
 @login_required
 def eventfeedbacksView(request,pk):
-	if not request.user.is_superuser:
-		return redirect('/profile/')
 	event=get_object_or_404(Event,pk=pk)
+	if not request.user.is_superuser and request.user not in event.host.all():
+		return redirect('/profile/')
 	obj = feedback.objects.filter(eventid=pk)
 	return render(request,'eventfeedbacks.html',{'obj':obj,'event':event})
 
@@ -202,15 +202,17 @@ def event_list_view(request):
 			future.append(x)
 		else :
 			live.append(x)
+	past =past[::-1]
 	return render(request,'events.html',{'past':past,'future':future,'live':live})
 
 def event_detailview(request,pk):
 	obj = get_object_or_404(Event,pk=pk)
 	past =0
 	counts = registration.objects.filter(eventid=obj.id).count()
+	IsHost = True if request.user.is_superuser or request.user in obj.host.all() else False
 	if obj.end_date < datetime.date.today() or (obj.end_date == datetime.date.today() and obj.end_time <datetime.datetime.now().time() ) :
 		past=1
-	return render(request,'eventDetails.html',{'obj':obj,'past':past,'counts':counts})
+	return render(request,'eventDetails.html',{'obj':obj,'past':past,'counts':counts,'host':IsHost})
 
 @login_required
 def editprofileview(request):
