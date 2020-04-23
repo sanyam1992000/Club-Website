@@ -1,6 +1,6 @@
 
 from django.conf.urls import url,include
-from django.contrib.auth.views import logout
+from django.contrib.auth import logout
 from django.conf import settings
 from .views import meeting_alert,myproject_editview,myproject_deleteview,myprojects_view,dp_APIview,ProjectHostAPIView,change_password,contactus,project_list_view,add_project,eventfeedbacksView,FeedbackAPIView,edit_event,getevent_apiview,eventregistrationsView,editmemberprofileview,member_list_view,RegistrationAPIView,memberprofileview,nearestEventsAPIView,EventlistAPIView,getprofile_apiview,editprofileview,home,register,create_event,login_view,event_list_view,event_detailview
 
