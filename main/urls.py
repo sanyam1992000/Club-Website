@@ -2,7 +2,7 @@
 from django.conf.urls import url,include
 from django.contrib.auth import logout
 from django.conf import settings
-from .views import meeting_alert,myproject_editview,myproject_deleteview,myprojects_view,dp_APIview,ProjectHostAPIView,change_password,contactus,project_list_view,add_project,eventfeedbacksView,FeedbackAPIView,edit_event,getevent_apiview,eventregistrationsView,editmemberprofileview,member_list_view,RegistrationAPIView,memberprofileview,nearestEventsAPIView,EventlistAPIView,getprofile_apiview,editprofileview,home,register,create_event,login_view,event_list_view,event_detailview
+from .views import meeting_alert,myproject_editview,myproject_deleteview,myprojects_view,dp_APIview,ProjectHostAPIView,change_password,contactus,project_list_view,add_project,eventfeedbacksView,FeedbackAPIView,edit_event,getevent_apiview,eventregistrationsView,editmemberprofileview,member_list_view,RegistrationAPIView,memberprofileview,nearestEventsAPIView,EventlistAPIView,getprofile_apiview,editprofileview,home,register,create_event,login_view,event_list_view,event_detailview,logout_user
 
 urlpatterns = [
     url(r'^$',home,name='home'),
@@ -26,13 +26,14 @@ urlpatterns = [
     url(r'^api/hosts/$',ProjectHostAPIView.as_view(),name="get-projecthosts"),
     url(r'^api/UpdateProfilePicture/$',dp_APIview.as_view(),name="post-dp"),
     url(r'^api/getprofile/$',getprofile_apiview.as_view(),name="get-userprofile"),
-    url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    # url(r'^logout/$', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'), #removed when updated to django==3
+    url(r'^logout/$', logout_user, name='logout'),
     url(r'^event/detail/(?P<pk>(\d+)+)/$',event_detailview,name="detailview-event"),
     url(r'^update_event/$',edit_event,name="update_event"),
     url(r'^update_member/$',editmemberprofileview,name="update_member"),
     url(r'^myprojects/$',myprojects_view,name="myprojects"),
     url(r'^contactus/$',contactus,name='contactus'),
-    url(r'^send_notifications/$',meeting_alert,name="send-meeting_alert"),
+    url(r'^send_notifications/$', meeting_alert,name="send-meeting_alert"),
     url(r'^projects/edit/(?P<pk>(\d+)+)/$',myproject_editview,name="edit-project"),
     url(r'^projects/delete/(?P<pk>(\d+)+)/$',myproject_deleteview,name="delete-project"),
 ]
