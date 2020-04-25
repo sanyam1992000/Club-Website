@@ -163,7 +163,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -173,5 +173,9 @@ LOGIN_REDIRECT_URL=reverse_lazy('profile')
 LOGIN_URL=reverse_lazy('login_view')
 LOGOUT_URL=reverse_lazy('logout')
 LOGOUT_REDIRECT_URL=reverse_lazy('login_view')
+
+ADMINS = (
+    ('Sanyam', 'sanyam19092000@gmail.com'),
+)
 
 django_heroku.settings(locals())
