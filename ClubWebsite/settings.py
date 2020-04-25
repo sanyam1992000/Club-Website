@@ -28,10 +28,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 
-
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['clubwebsite.herokuapp.com', 'manantechnosurge.com']
 
@@ -93,7 +91,6 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -175,7 +172,17 @@ LOGOUT_URL=reverse_lazy('logout')
 LOGOUT_REDIRECT_URL=reverse_lazy('login_view')
 
 ADMINS = (
-    ('Sanyam', 'sanyam19092000@gmail.com'),
+    ('Sanyam', 'sanyam1992000@gmail.com'),
+    ('Sanyam', 'sanyam30dav@gmail.com'),
 )
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config('EMAIL')
+EMAIL_HOST_PASSWORD = config('PASSWORD')
+
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 django_heroku.settings(locals())
