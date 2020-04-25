@@ -9,13 +9,13 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
-import django_heroku
 from django.urls import reverse, reverse_lazy
 import os
 from decouple import config
 from django.conf import settings
 from django.conf.urls.static import static
 import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,7 +31,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -93,7 +93,6 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
-
 
 
 # Password validation
