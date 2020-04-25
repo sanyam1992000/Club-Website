@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
+import django_heroku
 from django.urls import reverse, reverse_lazy
 import os
 from decouple import config
@@ -25,6 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+
 
 
 
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # add whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -90,6 +93,7 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
+
 
 
 # Password validation
@@ -170,3 +174,5 @@ LOGIN_REDIRECT_URL=reverse_lazy('profile')
 LOGIN_URL=reverse_lazy('login_view')
 LOGOUT_URL=reverse_lazy('logout')
 LOGOUT_REDIRECT_URL=reverse_lazy('login_view')
+
+django_heroku.settings(locals())
