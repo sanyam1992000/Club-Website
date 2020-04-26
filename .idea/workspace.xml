@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fbfbe57b-da88-4e57-a647-ed0da5ea5577" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClubWebsite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClubWebsite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClubWebsite/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClubWebsite/wsgi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +34,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="ClubWebsite.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -63,6 +66,8 @@
       <workItem from="1587602471832" duration="7470000" />
       <workItem from="1587798556988" duration="2698000" />
       <workItem from="1587830203917" duration="1625000" />
+      <workItem from="1587864063769" duration="2272000" />
+      <workItem from="1587869942825" duration="17000" />
     </task>
     <servers />
   </component>
@@ -70,6 +75,22 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="877" height="275" key="GridCell.Tab.0.bottom" timestamp="1587868947588">
+      <screen x="0" y="27" width="1866" height="1053" />
+    </state>
+    <state width="877" height="275" key="GridCell.Tab.0.bottom/0.27.1866.1053@0.27.1866.1053" timestamp="1587868947588" />
+    <state width="877" height="275" key="GridCell.Tab.0.center" timestamp="1587868947585">
+      <screen x="0" y="27" width="1866" height="1053" />
+    </state>
+    <state width="877" height="275" key="GridCell.Tab.0.center/0.27.1866.1053@0.27.1866.1053" timestamp="1587868947585" />
+    <state width="877" height="275" key="GridCell.Tab.0.left" timestamp="1587868947583">
+      <screen x="0" y="27" width="1866" height="1053" />
+    </state>
+    <state width="877" height="275" key="GridCell.Tab.0.left/0.27.1866.1053@0.27.1866.1053" timestamp="1587868947583" />
+    <state width="877" height="275" key="GridCell.Tab.0.right" timestamp="1587868947586">
+      <screen x="0" y="27" width="1866" height="1053" />
+    </state>
+    <state width="877" height="275" key="GridCell.Tab.0.right/0.27.1866.1053@0.27.1866.1053" timestamp="1587868947586" />
     <state x="624" y="268" width="736" height="596" key="find.popup" timestamp="1587602713385">
       <screen x="0" y="27" width="1866" height="1053" />
     </state>
