@@ -1,260 +1,414 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    {% block page_title %} {% endblock page_title %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-  {% block page_title %}
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        font-family: 'BentonSans', 'Helvetica Neue', sans-serif;
+      }
+      a {
+        color: #000;
+      }
+      .txxt-head {
+        margin-bottom: 21px;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.125em;
+        margin: 0 0 0.5em 0;
+        line-height: 1.2;
+      }
+      .txxt-body {
+        color: #79589f;
+        font-weight: bold;
+        margin: 0 0 0.5em 0;
+        line-height: 1.2;
+      }
+      .logo img {
+        margin-right: 11px;
+        float: left;
+      }
+      .logo h1,
+      h3 {
+        color: #000;
+        font-weight: bold;
+      }
+      .txxt-tail {
+        margin-bottom: 20px;
+        font-size: 15px;
+        letter-spacing: 0.125em;
+        margin: 0 0 0.5em 0;
+        line-height: 1.2;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+    <style>
+      .pace {
+        -webkit-pointer-events: none;
+        pointer-events: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-  {% endblock page_title %}
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      .pace-inactive {
+        display: none;
+      }
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <style>
-  body{
-    font-family: "BentonSans", "Helvetica Neue", sans-serif;
-  }
-  a{
-    color: #000;
-  }
-  .txxt-head{
-    margin-bottom: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: .125em;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-  .txxt-body{
-    color:#79589F;
-    font-weight: bold;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-  .logo img{
-  margin-right: 10px;
-  float: left;
-  }
- .logo h1,h3{
-  color:#000;
-  font-weight: bold;
-  }
-  .txxt-tail{
-    margin-bottom: 20px;
-    font-size: 15px;
-    letter-spacing: .125em;
-    margin: 0 0 .5em 0;
-    line-height: 1.2;
-  }
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
-<style>
-.pace {
-  -webkit-pointer-events: none;
-  pointer-events: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
+      .pace .pace-progress {
+        background: #29d;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        right: 100%;
+        width: 100%;
+        height: 2px;
+      }
 
-.pace-inactive {
-  display: none;
-}
+      .pace .pace-progress-inner {
+        display: block;
+        position: absolute;
+        right: 0px;
+        width: 100px;
+        height: 100%;
+        box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+        opacity: 1;
+        -webkit-transform: rotate(3deg) translate(0px, -4px);
+        -moz-transform: rotate(3deg) translate(0px, -4px);
+        -ms-transform: rotate(3deg) translate(0px, -4px);
+        -o-transform: rotate(3deg) translate(0px, -4px);
+        transform: rotate(3deg) translate(0px, -4px);
+      }
 
-.pace .pace-progress {
-  background: #29d;
-  position: fixed;
-  z-index: 2000;
-  top: 0;
-  right: 100%;
-  width: 100%;
-  height: 2px;
-}
+      .pace .pace-activity {
+        display: block;
+        position: fixed;
+        z-index: 2000;
+        top: 15px;
+        right: 15px;
+        width: 14px;
+        height: 14px;
+        border: solid 2px transparent;
+        border-top-color: #29d;
+        border-left-color: #29d;
+        border-radius: 10px;
+        -webkit-animation: pace-spinner 400ms linear infinite;
+        -moz-animation: pace-spinner 400ms linear infinite;
+        -ms-animation: pace-spinner 400ms linear infinite;
+        -o-animation: pace-spinner 400ms linear infinite;
+        animation: pace-spinner 400ms linear infinite;
+      }
 
-.pace .pace-progress-inner {
-  display: block;
-  position: absolute;
-  right: 0px;
-  width: 100px;
-  height: 100%;
-  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
-  opacity: 1.0;
-  -webkit-transform: rotate(3deg) translate(0px, -4px);
-  -moz-transform: rotate(3deg) translate(0px, -4px);
-  -ms-transform: rotate(3deg) translate(0px, -4px);
-  -o-transform: rotate(3deg) translate(0px, -4px);
-  transform: rotate(3deg) translate(0px, -4px);
-}
+      @-webkit-keyframes pace-spinner {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @-moz-keyframes pace-spinner {
+        0% {
+          -moz-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -moz-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @-o-keyframes pace-spinner {
+        0% {
+          -o-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -o-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @-ms-keyframes pace-spinner {
+        0% {
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes pace-spinner {
+        0% {
+          transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <link
+      rel="apple-touch-icon"
+      sizes="56x56"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-16x16.png"
+    />
+    <link
+      rel="manifest"
+      href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/manifest.json"
+    />
+    <meta name="msapplication-TileColor" content="#79589F" />
+    <meta
+      name="msapplication-TileImage"
+      content="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#79589F" />
+    <!--Meta Data-->
+    <!-- for Google -->
+    {% if member.profile.bio %}
+    <meta name="description" content="{{member.profile.bio}}" />
+    {% else %}
+    <meta
+      name="description"
+      content="We are unstoppable enthusiast and passionate Programers, Developers & Designers. Manan, the Technical Society of YMCA University of Science and Technology, believes in rising by the means of learning ever so more. The word Manan comes from Sanskrit and it means deep thought, contemplation, or profound reflection and that’s why each member in the society believes in practical implementation of the technology learned. We are proud of our culture wherein we share our knowledge between people to gather more perspective towards things. That’s why we organise, and also take part in tech-talks, workshops, hackathons, coding contests, gaming events and much more.By sticking to our beliefs, a couple of companies have recognised us and have started sponsoring us like; Codeshala, Hackerearth, Codechef, Hackerrank. With the help of these organisations we are able to conduct series of coding contests like ‘Code For YMCA’ which promotes coding culture in our university so that students take part in ICPC and competitions like those, ‘Code Cadet’ which encourages newbies to code more, ‘Code Relay’ which focuses on data structures and algorithms topic-by-topic. Apart from this, during our University’s annual fest we develop online games like ‘Xunbao’, ‘Hackon’.Every year we enrol new members by conducting a test known as ‘Manthan’ where we test a candidate’s programming skills, technical aptitude. We conduct annual hackathon ‘Zenith’ which is sponsored by companies like Digitalocean, Dot Tech, Jetbrains, Mozilla, cCdeshala, sapphire engine, sticker mule. We aim to make each and every member self-capable of creating projects to help solve agendas of a hackathon. This is why we keep ourselves updated of the new technology that comes in the industry. We have members who work on Machine Learning, Virtual Reality, Web Technologies like NodeJS, Angular, Django and the list goes on. And finally, after all the hard work we put in it pays off. We are the winners of several national and international hackathons such as 'Angel Hacks', 'Code for India' and many more. We reached till India finals in ACM ICPC. We are so proud to say today that our alumni are presently working with the leading tech companies like Amazon, Samsung, Adobe, BookMyShow, Thought Works, EMC2, Squadrun, Mediatek, Sapient, STC, Libsys, ST. Every day, we do something that takes us closer to where we want to be. We are unstoppable. We are Manan."
+    />
+    {% endif %}
+    <meta
+      name="keywords"
+      content="Manan A Techno Surge the Technical Society of YMCA University of Science and Technology"
+    />
+    <meta name="author" content="manantechnosurge.com" />
+    <meta name="copyright" content="contact@manantechnosurge.com" />
+    <meta name="application-name" content="Manan" />
+    <!-- for Facebook -->
+    <meta property="og:url" content="http://manantechnosurge.com" />
+    <meta property="og:type" content="website" />
+    {% if member.profile.fname %}
+    <meta
+      property="og:title"
+      content="{{member.profile.fname}} {{member.profile.lname}} | Manan"
+    />
+    {% else %}
+    <meta
+      property="og:title"
+      content="Manan, the Technical Society of YMCA University of Science and Technology"
+    />
+    {% endif %} {% if member.profile.bio %}
+    <meta property="og:description" content="{{member.profile.bio}}" />
+    {% else %}
+    <meta
+      property="og:description"
+      content="We are unstoppable enthusiast and passionate Programers, Developers & Designers. Manan, the Technical Society of YMCA University of Science and Technology, believes in rising by the means of learning ever so more. The word Manan comes from Sanskrit and it means deep thought, contemplation, or profound reflection and that’s why each member in the society believes in practical implementation of the technology learned. We are proud of our culture wherein we share our knowledge between people to gather more perspective towards things. That’s why we organise, and also take part in tech-talks, workshops, hackathons, coding contests, gaming events and much more.By sticking to our beliefs, a couple of companies have recognised us and have started sponsoring us like; Codeshala, Hackerearth, Codechef, Hackerrank. With the help of these organisations we are able to conduct series of coding contests like ‘Code For YMCA’ which promotes coding culture in our university so that students take part in ICPC and competitions like those, ‘Code Cadet’ which encourages newbies to code more, ‘Code Relay’ which focuses on data structures and algorithms topic-by-topic. Apart from this, during our University’s annual fest we develop online games like ‘Xunbao’, ‘Hackon’.Every year we enrol new members by conducting a test known as ‘Manthan’ where we test a candidate’s programming skills, technical aptitude. We conduct annual hackathon ‘Zenith’ which is sponsored by companies like Digitalocean, Dot Tech, Jetbrains, Mozilla, cCdeshala, sapphire engine, sticker mule. We aim to make each and every member self-capable of creating projects to help solve agendas of a hackathon. This is why we keep ourselves updated of the new technology that comes in the industry. We have members who work on Machine Learning, Virtual Reality, Web Technologies like NodeJS, Angular, Django and the list goes on. And finally, after all the hard work we put in it pays off. We are the winners of several national and international hackathons such as 'Angel Hacks', 'Code for India' and many more. We reached till India finals in ACM ICPC. We are so proud to say today that our alumni are presently working with the leading tech companies like Amazon, Samsung, Adobe, BookMyShow, Thought Works, EMC2, Squadrun, Mediatek, Sapient, STC, Libsys, ST. Every day, we do something that takes us closer to where we want to be. We are unstoppable. We are Manan."
+    />
+    <meta
+      property="og:site_name"
+      content="Manan, the Technical Society of YMCA University of Science and Technology"
+    />
+    {% endif %} {% if member.profile.dp %}
+    <meta property="og:image" content="{{member.profile.dp}}" />
+    {% else %}
+    <meta
+      property="og:image"
+      content="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png"
+    />
+    {% endif %}
+    <!-- for Twitter -->
+    <meta name="twitter:card" content="website" />
+    {% if member.profile.fname %}
+    <meta
+      name="twitter:title"
+      content="{{member.profile.fname}} {{member.profile.lname}}"
+    />
+    {% else %}
+    <meta
+      name="twitter:title"
+      content="Manan, the Technical Society of YMCA University of Science and Technology"
+    />
+    {% endif %} {% if member.profile.bio %}
+    <meta name="twitter:description" content="{{member.profile.bio}}" />
+    {% else %}
+    <meta
+      name="twitter:description"
+      content="We are unstoppable enthusiast and passionate Programers, Developers & Designers. Manan, the Technical Society of YMCA University of Science and Technology, believes in rising by the means of learning ever so more. The word Manan comes from Sanskrit and it means deep thought, contemplation, or profound reflection and that’s why each member in the society believes in practical implementation of the technology learned. We are proud of our culture wherein we share our knowledge between people to gather more perspective towards things. That’s why we organise, and also take part in tech-talks, workshops, hackathons, coding contests, gaming events and much more.By sticking to our beliefs, a couple of companies have recognised us and have started sponsoring us like; Codeshala, Hackerearth, Codechef, Hackerrank. With the help of these organisations we are able to conduct series of coding contests like ‘Code For YMCA’ which promotes coding culture in our university so that students take part in ICPC and competitions like those, ‘Code Cadet’ which encourages newbies to code more, ‘Code Relay’ which focuses on data structures and algorithms topic-by-topic. Apart from this, during our University’s annual fest we develop online games like ‘Xunbao’, ‘Hackon’.Every year we enrol new members by conducting a test known as ‘Manthan’ where we test a candidate’s programming skills, technical aptitude. We conduct annual hackathon ‘Zenith’ which is sponsored by companies like Digitalocean, Dot Tech, Jetbrains, Mozilla, cCdeshala, sapphire engine, sticker mule. We aim to make each and every member self-capable of creating projects to help solve agendas of a hackathon. This is why we keep ourselves updated of the new technology that comes in the industry. We have members who work on Machine Learning, Virtual Reality, Web Technologies like NodeJS, Angular, Django and the list goes on. And finally, after all the hard work we put in it pays off. We are the winners of several national and international hackathons such as 'Angel Hacks', 'Code for India' and many more. We reached till India finals in ACM ICPC. We are so proud to say today that our alumni are presently working with the leading tech companies like Amazon, Samsung, Adobe, BookMyShow, Thought Works, EMC2, Squadrun, Mediatek, Sapient, STC, Libsys, ST. Every day, we do something that takes us closer to where we want to be. We are unstoppable. We are Manan."
+    />
+    {% endif %} {% if member.profile.dp %}
 
-.pace .pace-activity {
-  display: block;
-  position: fixed;
-  z-index: 2000;
-  top: 15px;
-  right: 15px;
-  width: 14px;
-  height: 14px;
-  border: solid 2px transparent;
-  border-top-color: #29d;
-  border-left-color: #29d;
-  border-radius: 10px;
-  -webkit-animation: pace-spinner 400ms linear infinite;
-  -moz-animation: pace-spinner 400ms linear infinite;
-  -ms-animation: pace-spinner 400ms linear infinite;
-  -o-animation: pace-spinner 400ms linear infinite;
-  animation: pace-spinner 400ms linear infinite;
-}
+    <meta name="twitter:image" content="{{member.profile.dp}} | Manan" />
+    {% else %}
+    <meta
+      name="twitter:image"
+      content="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png"
+    />
+    {% endif %}
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #f3f3f3"
+    >
+      <a class="navbar-brand logo" href="/">
+        <img
+          src="https://raw.githubusercontent.com/Manan-YMCA/Club-Website/master/static/Manan-logo.png"
+          width="120"
+          height="100"
+        />
+        <h1>Manan</h1>
+        <h3>A Techno Surge</h3>
+        <br />
+        <!--<span class="badge badge-secondary">Alpha</span>-->
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        style="background-color: #79589f"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarSupportedContent"
+      >
+        <ul class="navbar-nav justify-content-end">
+          <li class="nav-item active">
+            <a class="nav-link text-dark" href="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/home/">My Console</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/members">Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/events/">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/projects/">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/contactus/">Contact Us</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="/logout/">Logout</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
 
-@-webkit-keyframes pace-spinner {
-  0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
-}
-@-moz-keyframes pace-spinner {
-  0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
-  100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
-}
-@-o-keyframes pace-spinner {
-  0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
-  100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
-}
-@-ms-keyframes pace-spinner {
-  0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
-  100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
-}
-@keyframes pace-spinner {
-  0% { transform: rotate(0deg); transform: rotate(0deg); }
-  100% { transform: rotate(360deg); transform: rotate(360deg); }
-}
+    {% block page_context %} {% endblock page_context %}
+    <footer class="txxt-tail text-center">
+      <p style="color: #79589f; padding-top: 10px">© Manan 2017</p>
+    </footer>
 
-</style>
-<link rel="apple-touch-icon" sizes="57x57" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/favicon-16x16.png">
-<link rel="manifest" href="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/manifest.json">
-<meta name="msapplication-TileColor" content="#79589F">
-<meta name="msapplication-TileImage" content="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/favicons/ms-icon-144x144.png">
-<meta name="theme-color" content="#79589F">
-<!--Meta Data-->
-<!-- for Google -->
-{% if member.profile.bio %}
-<meta name="description" content="{{member.profile.bio}}">
-{% else %}
-<meta name="description" content="We are unstoppable enthusiast and passionate Programers, Developers & Designers. Manan, the Technical Society of YMCA University of Science and Technology, believes in rising by the means of learning ever so more. The word Manan comes from Sanskrit and it means deep thought, contemplation, or profound reflection and that’s why each member in the society believes in practical implementation of the technology learned. We are proud of our culture wherein we share our knowledge between people to gather more perspective towards things. That’s why we organise, and also take part in tech-talks, workshops, hackathons, coding contests, gaming events and much more.By sticking to our beliefs, a couple of companies have recognised us and have started sponsoring us like; Codeshala, Hackerearth, Codechef, Hackerrank. With the help of these organisations we are able to conduct series of coding contests like ‘Code For YMCA’ which promotes coding culture in our university so that students take part in ICPC and competitions like those, ‘Code Cadet’ which encourages newbies to code more, ‘Code Relay’ which focuses on data structures and algorithms topic-by-topic. Apart from this, during our University’s annual fest we develop online games like ‘Xunbao’, ‘Hackon’.Every year we enrol new members by conducting a test known as ‘Manthan’ where we test a candidate’s programming skills, technical aptitude. We conduct annual hackathon ‘Zenith’ which is sponsored by companies like Digitalocean, Dot Tech, Jetbrains, Mozilla, cCdeshala, sapphire engine, sticker mule. We aim to make each and every member self-capable of creating projects to help solve agendas of a hackathon. This is why we keep ourselves updated of the new technology that comes in the industry. We have members who work on Machine Learning, Virtual Reality, Web Technologies like NodeJS, Angular, Django and the list goes on. And finally, after all the hard work we put in it pays off. We are the winners of several national and international hackathons such as 'Angel Hacks', 'Code for India' and many more. We reached till India finals in ACM ICPC. We are so proud to say today that our alumni are presently working with the leading tech companies like Amazon, Samsung, Adobe, BookMyShow, Thought Works, EMC2, Squadrun, Mediatek, Sapient, STC, Libsys, ST. Every day, we do something that takes us closer to where we want to be. We are unstoppable. We are Manan." />
-{% endif %}
-<meta name="keywords" content="Manan A Techno Surge the Technical Society of YMCA University of Science and Technology" />
-<meta name="author" content="manantechnosurge.com" />
-<meta name="copyright" content="contact@manantechnosurge.com" />
-<meta name="application-name" content="Manan" />
-<!-- for Facebook -->
-<meta property="og:url"                content="http://manantechnosurge.com" />
-<meta property="og:type"               content="website" />
-{% if member.profile.fname %}
-<meta property="og:title"              content="{{member.profile.fname}} {{member.profile.lname}} | Manan" />
-{% else %}
-<meta property="og:title"              content="Manan, the Technical Society of YMCA University of Science and Technology" />
-{% endif %}
-{% if member.profile.bio %}
-<meta property="og:description"        content="{{member.profile.bio}}">
-{% else %}
-<meta property="og:description"        content="We are unstoppable enthusiast and passionate Programers, Developers & Designers. Manan, the Technical Society of YMCA University of Science and Technology, believes in rising by the means of learning ever so more. The word Manan comes from Sanskrit and it means deep thought, contemplation, or profound reflection and that’s why each member in the society believes in practical implementation of the technology learned. We are proud of our culture wherein we share our knowledge between people to gather more perspective towards things. That’s why we organise, and also take part in tech-talks, workshops, hackathons, coding contests, gaming events and much more.By sticking to our beliefs, a couple of companies have recognised us and have started sponsoring us like; Codeshala, Hackerearth, Codechef, Hackerrank. With the help of these organisations we are able to conduct series of coding contests like ‘Code For YMCA’ which promotes coding culture in our university so that students take part in ICPC and competitions like those, ‘Code Cadet’ which encourages newbies to code more, ‘Code Relay’ which focuses on data structures and algorithms topic-by-topic. Apart from this, during our University’s annual fest we develop online games like ‘Xunbao’, ‘Hackon’.Every year we enrol new members by conducting a test known as ‘Manthan’ where we test a candidate’s programming skills, technical aptitude. We conduct annual hackathon ‘Zenith’ which is sponsored by companies like Digitalocean, Dot Tech, Jetbrains, Mozilla, cCdeshala, sapphire engine, sticker mule. We aim to make each and every member self-capable of creating projects to help solve agendas of a hackathon. This is why we keep ourselves updated of the new technology that comes in the industry. We have members who work on Machine Learning, Virtual Reality, Web Technologies like NodeJS, Angular, Django and the list goes on. And finally, after all the hard work we put in it pays off. We are the winners of several national and international hackathons such as 'Angel Hacks', 'Code for India' and many more. We reached till India finals in ACM ICPC. We are so proud to say today that our alumni are presently working with the leading tech companies like Amazon, Samsung, Adobe, BookMyShow, Thought Works, EMC2, Squadrun, Mediatek, Sapient, STC, Libsys, ST. Every day, we do something that takes us closer to where we want to be. We are unstoppable. We are Manan." />
-<meta property="og:site_name"          content="Manan, the Technical Society of YMCA University of Science and Technology" />
-{% endif %}
-{% if member.profile.dp %}
-<meta property="og:image" content="{{member.profile.dp}}" />
-{% else %}
-<meta property="og:image" content="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png" />
-{% endif %}
-<!-- for Twitter -->
-<meta name="twitter:card" content="website" />
-{% if member.profile.fname %}
-<meta name="twitter:title" content="{{member.profile.fname}} {{member.profile.lname}}" />
-{% else %}
-<meta name="twitter:title" content="Manan, the Technical Society of YMCA University of Science and Technology" />
-{% endif %}
-{% if member.profile.bio %}
-<meta name="twitter:description" content="{{member.profile.bio}}">
-{% else %}
-<meta name="twitter:description" content="We are unstoppable enthusiast and passionate Programers, Developers & Designers. Manan, the Technical Society of YMCA University of Science and Technology, believes in rising by the means of learning ever so more. The word Manan comes from Sanskrit and it means deep thought, contemplation, or profound reflection and that’s why each member in the society believes in practical implementation of the technology learned. We are proud of our culture wherein we share our knowledge between people to gather more perspective towards things. That’s why we organise, and also take part in tech-talks, workshops, hackathons, coding contests, gaming events and much more.By sticking to our beliefs, a couple of companies have recognised us and have started sponsoring us like; Codeshala, Hackerearth, Codechef, Hackerrank. With the help of these organisations we are able to conduct series of coding contests like ‘Code For YMCA’ which promotes coding culture in our university so that students take part in ICPC and competitions like those, ‘Code Cadet’ which encourages newbies to code more, ‘Code Relay’ which focuses on data structures and algorithms topic-by-topic. Apart from this, during our University’s annual fest we develop online games like ‘Xunbao’, ‘Hackon’.Every year we enrol new members by conducting a test known as ‘Manthan’ where we test a candidate’s programming skills, technical aptitude. We conduct annual hackathon ‘Zenith’ which is sponsored by companies like Digitalocean, Dot Tech, Jetbrains, Mozilla, cCdeshala, sapphire engine, sticker mule. We aim to make each and every member self-capable of creating projects to help solve agendas of a hackathon. This is why we keep ourselves updated of the new technology that comes in the industry. We have members who work on Machine Learning, Virtual Reality, Web Technologies like NodeJS, Angular, Django and the list goes on. And finally, after all the hard work we put in it pays off. We are the winners of several national and international hackathons such as 'Angel Hacks', 'Code for India' and many more. We reached till India finals in ACM ICPC. We are so proud to say today that our alumni are presently working with the leading tech companies like Amazon, Samsung, Adobe, BookMyShow, Thought Works, EMC2, Squadrun, Mediatek, Sapient, STC, Libsys, ST. Every day, we do something that takes us closer to where we want to be. We are unstoppable. We are Manan." />
-{% endif %}
-{% if member.profile.dp %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+      integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+      integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://use.fontawesome.com/bc4369196c.js"></script>
 
-<meta name="twitter:image" content="{{member.profile.dp}} | Manan" />
-{% else %}
-<meta name="twitter:image" content="https://s3.amazonaws.com/aws-website-manan-y6eya/manan/manan-logo.png" />
-{% endif %}
-
-
-
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f3f3f3;">
-    <a class="navbar-brand logo" href="/">
-      <img src="https://raw.githubusercontent.com/Manan-YMCA/Club-Website/master/static/Manan-logo.png" width="120" height="100">
-      <h1>Manan</h1>
-      <h3>A Techno Surge</h3>
-      <br/>
-      <!--<span class="badge badge-secondary">Alpha</span>-->
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #79589F">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav justify-content-end">
-        <li class="nav-item active">
-          <a class="nav-link text-dark" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/home/">My Console</a>
-        </li>
-        {% endif  %}
-        <li class="nav-item">
-          <a class="nav-link  text-dark" href="/members">Members</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link  text-dark" href="/events/">Events</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link  text-dark" href="/projects/">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link  text-dark" href="/contactus/">Contact Us</a>
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link  text-dark" href="/logout/">Logout</a>
-        </li>
-        {% endif  %}
-      </ul>
-    </div>
-  </nav>
-
-  {% block page_context %}
-  {% endblock page_context %}
-  <footer class="txxt-tail text-center">
-    <p style="color:#79589F;padding-top: 10px;">© Manan 2017 </p>
-  </footer>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  <script src="https://use.fontawesome.com/bc4369196c.js"></script>
-
-  {% block page_scripts %}
-  {% endblock page_scripts %}
-</body>
+    {% block page_scripts %} {% endblock page_scripts %}
+  </body>
 </html>
